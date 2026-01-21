@@ -1,0 +1,25 @@
+---
+import { languages } from '../i18n/ui';
+import { getLangFromUrl, switchLang } from '../i18n/utils';
+
+const currentLang = getLangFromUrl(Astro.url);
+---
+
+<div class="flex items-center gap-2">
+  {
+    Object.entries(languages).map(([lang, label]) => (
+      <a
+        href={switchLang(Astro.url, lang as keyof typeof languages)}
+        class:list={[
+          'px-3 py-1 text-sm font-medium rounded-md transition-colors',
+          currentLang === lang
+            ? 'bg-primary-600 text-white'
+            : 'text-gray-600 hover:text-primary-600 hover:bg-gray-100',
+        ]}
+        aria-current={currentLang === lang ? 'page' : undefined}
+      >
+        {label}
+      </a>
+    ))
+  }
+</div>
