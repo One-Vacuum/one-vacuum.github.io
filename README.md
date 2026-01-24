@@ -1,5 +1,7 @@
 # One Vacuum (원베큠)
 
+## 한국어
+
 Astro + Tailwind CSS로 제작된 회사 브로슈어 웹사이트입니다.
 
 [English](#english) | 한국어
@@ -118,6 +120,8 @@ public/products/
 ## English
 
 Company brochure website built with Astro + Tailwind CSS.
+
+English | [한국어](#한국어)
 
 ### Local Development
 
