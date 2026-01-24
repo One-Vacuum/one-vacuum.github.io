@@ -2,10 +2,24 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
 import ProductCard from '../../components/ProductCard.astro';
-import { products, storeLinks } from '../../data/products';
+import { storeLinks } from '../../data/products';
 import { useTranslations } from '../../i18n/utils';
+import fs from 'node:fs';
+import path from 'node:path';
 
 const t = useTranslations('ko');
+
+// Read products from public/products/products.json
+let products: any[] = [];
+try {
+  const filePath = path.join(process.cwd(), 'public/products/products.json');
+  const fileContent = fs.readFileSync(filePath, 'utf-8');
+  products = JSON.parse(fileContent);
+  products.sort((a, b) => (a.order || 99) - (b.order || 99));
+} catch (e) {
+  // No products file or invalid JSON
+  products = [];
+}
 ---
 
 <BaseLayout>
@@ -23,15 +37,22 @@ const t = useTranslations('ko');
         </p>
       </div>
 
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
-        {products.map((product) => (
-          <ProductCard
-            name={product.name.ko}
-            image={product.image}
-            description={product.description?.ko}
-          />
-        ))}
-      </div>
+      {products.length > 0 ? (
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
+          {products.map((product) => (
+            <ProductCard
+              name={product.nameKo}
+              image={`/products/images/${product.image}`}
+              description={product.descriptionKo}
+            />
+          ))}
+        </div>
+      ) : (
+        <div class="text-center py-16">
+          <div class="text-6xl mb-4">📦</div>
+          <p class="text-xl text-gray-500">{t('products.comingSoon')}</p>
+        </div>
+      )}
     </div>
   </section>
 
@@ -48,35 +69,25 @@ const t = useTranslations('ko');
       </div>
 
       <div class="flex flex-col sm:flex-row gap-6 justify-center max-w-2xl mx-auto">
-        <a
-          href={storeLinks.store1.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex-1 flex items-center justify-center gap-3 p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100"
+        <div
+          class="flex-1 flex items-center justify-center gap-3 p-6 bg-gray-100 rounded-xl border border-gray-200 cursor-not-allowed opacity-60"
         >
-          <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
           </svg>
-          <span class="font-semibold text-gray-900">{storeLinks.store1.name.ko}</span>
-          <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-          </svg>
-        </a>
+          <span class="font-semibold text-gray-500">네이버 스토어</span>
+          <span class="text-xs text-gray-400">(준비중)</span>
+        </div>
 
-        <a
-          href={storeLinks.store2.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex-1 flex items-center justify-center gap-3 p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100"
+        <div
+          class="flex-1 flex items-center justify-center gap-3 p-6 bg-gray-100 rounded-xl border border-gray-200 cursor-not-allowed opacity-60"
         >
-          <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
           </svg>
-          <span class="font-semibold text-gray-900">{storeLinks.store2.name.ko}</span>
-          <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-          </svg>
-        </a>
+          <span class="font-semibold text-gray-500">쿠팡</span>
+          <span class="text-xs text-gray-400">(준비중)</span>
+        </div>
       </div>
     </div>
   </section>
@@ -109,7 +120,7 @@ const t = useTranslations('ko');
               </svg>
             </div>
             <h3 class="font-semibold text-gray-900 mb-2">{t('contact.email')}</h3>
-            <p class="text-gray-600">contact@onevacuum.com</p>
+            <p class="text-gray-400">(준비중)</p>
           </div>
 
           <div class="text-center p-6 rounded-xl bg-gray-50">
@@ -120,7 +131,7 @@ const t = useTranslations('ko');
               </svg>
             </div>
             <h3 class="font-semibold text-gray-900 mb-2">{t('contact.address')}</h3>
-            <p class="text-gray-600">서울특별시 OO구 OO로 123</p>
+            <p class="text-gray-600">{t('contact.addressValue')}</p>
           </div>
         </div>
       </div>

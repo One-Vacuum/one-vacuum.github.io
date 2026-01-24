@@ -25,7 +25,7 @@ one-vacuum.github.io/
 │   │   ├── ProductCard.astro      # Product display card
 │   │   └── LanguageSwitcher.astro # KO/EN toggle
 │   ├── data/
-│   │   └── products.ts            # Product data and store links
+│   │   └── products.ts            # Store links configuration
 │   ├── i18n/
 │   │   ├── ui.ts                  # All translation strings (KO/EN)
 │   │   └── utils.ts               # i18n helper functions
@@ -41,9 +41,12 @@ one-vacuum.github.io/
 │       └── global.css             # Tailwind imports + custom styles
 ├── public/
 │   ├── images/
-│   │   ├── logo.png               # Company logo (replace with actual)
-│   │   ├── placeholder-product.svg # Fallback for missing product images
-│   │   └── products/              # Product images (product-1.jpg, etc.)
+│   │   └── logo.png               # Company logo
+│   ├── products/                  # Products folder
+│   │   ├── products.json          # Product data (easy to edit!)
+│   │   └── images/                # Product images
+│   │       ├── product-1.png
+│   │       └── ...
 │   └── favicon.svg
 ├── .github/
 │   └── workflows/
@@ -58,12 +61,46 @@ one-vacuum.github.io/
 
 | What to Update | File(s) |
 |----------------|---------|
-| Product names/descriptions | `src/data/products.ts` |
+| **Products** | `public/products/products.json` + images |
 | Store URLs | `src/data/products.ts` → `storeLinks` |
 | UI text translations | `src/i18n/ui.ts` |
 | Contact info | `src/components/Footer.astro`, page files |
 | Company logo | `public/images/logo.png` |
-| Product images | `public/images/products/product-{1-10}.jpg` |
+
+## Managing Products (For Non-Technical Editors)
+
+All product files are in one folder: `public/products/`
+
+### To Add a New Product:
+
+1. **Add your product image** to `public/products/images/`
+
+2. **Edit `public/products/products.json`** - add a new entry:
+   ```json
+   {
+     "image": "my-product.png",
+     "nameKo": "제품 이름",
+     "nameEn": "Product Name",
+     "descriptionKo": "제품 설명",
+     "descriptionEn": "Product description",
+     "order": 1
+   }
+   ```
+
+3. **Commit and push** - the website will update automatically
+
+### To Remove a Product:
+
+1. Delete the image from `public/products/images/`
+2. Remove the entry from `products.json`
+
+### To Reorder Products:
+
+Change the `order` number (lower numbers appear first)
+
+### If No Products Exist:
+
+Set `products.json` to an empty array `[]` and the website will display "Products Coming Soon..." message automatically.
 
 ## Commands
 

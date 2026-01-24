@@ -1,4 +1,15 @@
 ---
-// Redirect to default locale (Korean)
-return Astro.redirect('/ko/');
+// Instant redirect to Korean homepage for static sites
 ---
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content="0;url=/ko/" />
+    <link rel="canonical" href="/ko/" />
+    <script is:inline>
+      window.location.replace('/ko/');
+    </script>
+  </head>
+  <body></body>
+</html>

@@ -25,6 +25,7 @@ export const ui = {
     // Products
     'products.title': '제품 소개',
     'products.subtitle': '다양한 진공 장비 및 부품을 만나보세요',
+    'products.comingSoon': '제품 준비 중입니다...',
 
     // Where to Buy
     'buy.title': '구매처',
@@ -37,9 +38,11 @@ export const ui = {
     'contact.phone': '전화',
     'contact.email': '이메일',
     'contact.address': '주소',
+    'contact.addressValue': '충청남도 아산시 배방읍 희망로 32',
 
     // Footer
-    'footer.copyright': '© 2024 One Vacuum. All rights reserved.',
+    'footer.owner': '대표: 남해경',
+    'footer.copyright': '© 2026 One Vacuum. All rights reserved.',
   },
   en: {
     // Site
@@ -60,6 +63,7 @@ export const ui = {
     // Products
     'products.title': 'Our Products',
     'products.subtitle': 'Explore our range of vacuum equipment and parts',
+    'products.comingSoon': 'Products Coming Soon...',
 
     // Where to Buy
     'buy.title': 'Where to Buy',
@@ -72,9 +76,11 @@ export const ui = {
     'contact.phone': 'Phone',
     'contact.email': 'Email',
     'contact.address': 'Address',
+    'contact.addressValue': '32 Heemang-ro, Baebang-eup, Asan-si, Chungcheongnam-do',
 
     // Footer
-    'footer.copyright': '© 2024 One Vacuum. All rights reserved.',
+    'footer.owner': 'Owner: Haekyung Nam',
+    'footer.copyright': '© 2026 One Vacuum. All rights reserved.',
   },
 } as const;
 
