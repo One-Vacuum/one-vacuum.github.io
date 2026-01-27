@@ -110,4 +110,4 @@ The site auto-deploys to GitHub Pages when you push to `main`.
 1. Go to repository **Settings** > **Pages**
 2. Under "Build and deployment", select **GitHub Actions**
 3. Push to `main` branch to trigger deployment
-4. Site will be live at: https://one-vacuum.github.io
+4. Site will be live at: https://onevacuum.kr

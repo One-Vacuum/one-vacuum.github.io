@@ -110,4 +110,4 @@ public/products/
 1. 저장소 **Settings** > **Pages** 이동
 2. "Build and deployment"에서 **GitHub Actions** 선택
 3. `main` 브랜치에 푸시하여 배포 시작
-4. 사이트 주소: https://one-vacuum.github.io
+4. 사이트 주소: https://onevacuum.kr
