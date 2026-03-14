@@ -63,7 +63,7 @@ Everything is in one folder: `public/products/`
 
 ```
 public/products/
-├── products.json      ← Product data (names, descriptions)
+├── products.json      ← Product data (names, category, price)
 └── images/            ← Product images
     ├── product-1.png
     ├── product-2.png
@@ -80,11 +80,16 @@ public/products/
      "image": "your-image.png",
      "nameKo": "제품 이름",
      "nameEn": "Product Name",
-     "descriptionKo": "제품 설명",
-     "descriptionEn": "Product description",
+     "descriptionKo": "제품 설명 (optional)",
+     "descriptionEn": "Product description (optional)",
+     "category": "oil",
+     "price": 50000,
      "order": 5
    }
    ```
+   - `category`: `oil`, `oil-filter`, or `vacuum-filter`
+   - `price`: integer in KRW (e.g. 50000 → displayed as ₩50,000)
+   - `order`: lower numbers appear first
 
 3. **Commit and push** - website updates automatically!
 

@@ -2,7 +2,7 @@
 
 Astro + Tailwind CSS로 제작된 회사 브로슈어 웹사이트입니다.
 
-For English: [README_EN.md](README_EN.md)
+For English: [README.en.md](README.en.md)
 
 ---
 
@@ -63,7 +63,7 @@ public/images/logo.png
 
 ```
 public/products/
-├── products.json      ← 제품 데이터 (이름, 설명)
+├── products.json      ← 제품 데이터 (이름, 카테고리, 가격)
 └── images/            ← 제품 이미지
     ├── product-1.png
     ├── product-2.png
@@ -80,11 +80,16 @@ public/products/
      "image": "이미지파일.png",
      "nameKo": "제품 이름",
      "nameEn": "Product Name",
-     "descriptionKo": "제품 설명",
-     "descriptionEn": "Product description",
+     "descriptionKo": "제품 설명 (선택)",
+     "descriptionEn": "Product description (optional)",
+     "category": "oil",
+     "price": 50000,
      "order": 5
    }
    ```
+   - `category`: `oil` (오일), `oil-filter` (오일 필터), `vacuum-filter` (진공 필터) 중 택 1
+   - `price`: 원화 정수 (예: 50000 → ₩50,000으로 표시)
+   - `order`: 낮을수록 먼저 표시
 
 3. **커밋 및 푸시** - 웹사이트가 자동으로 업데이트됩니다!
 
