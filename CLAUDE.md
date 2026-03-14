@@ -10,7 +10,7 @@ This file provides guidance for Claude Code when working on this project.
 
 ## Documentation
 
-- **Keep CLAUDE.md, README.md, and README_EN.md up-to-date** whenever changes occur in the overall codebase (structure, features, commands, etc.).
+- **Keep CLAUDE.md, README.md, and README.en.md up-to-date** whenever changes occur in the overall codebase (structure, features, commands, etc.).
 
 ## Project Overview
 
@@ -21,7 +21,8 @@ One Vacuum (원베큠) — A bilingual (Korean/English) company brochure website
 - **Framework**: Astro 5.x (Static Site Generation)
 - **Styling**: Tailwind CSS 3.4 with custom primary color palette (sky blue)
 - **Font**: Pretendard (loaded from CDN)
-- **i18n**: Path-based routing (`/ko/`, `/en/`) with Korean as default
+- **i18n**: Client-side toggle via `data-i18n` attributes (Korean default, single page)
+- **Theme**: Dark/light mode toggle with Tailwind `dark:` classes (default: light)
 - **Deployment**: GitHub Pages via GitHub Actions (auto-deploy on push to `main`)
 
 ## Project Structure
@@ -30,23 +31,20 @@ One Vacuum (원베큠) — A bilingual (Korean/English) company brochure website
 one-vacuum.github.io/
 ├── src/
 │   ├── components/
-│   │   ├── Header.astro           # Sticky header with logo, nav, language switcher
+│   │   ├── Header.astro           # Sticky header with logo, nav, lang/theme toggles
 │   │   ├── Footer.astro           # Dark footer with contact info & quick links
 │   │   ├── Hero.astro             # Hero section with company intro & CTA buttons
-│   │   ├── HomePage.astro         # Shared homepage content (products, buy, contact)
-│   │   ├── ProductCard.astro      # Reusable product display card
+│   │   ├── HomePage.astro         # Main page (products, buy, contact) + client-side JS
+│   │   ├── ProductCard.astro      # Bilingual product card with data attributes
 │   │   └── LanguageSwitcher.astro # KO/EN toggle buttons
 │   ├── i18n/
-│   │   ├── ui.ts                  # All translation strings (KO/EN)
-│   │   └── utils.ts               # i18n helper functions (getLangFromUrl, useTranslations, etc.)
+│   │   └── ui.ts                  # All translation strings (KO/EN)
 │   ├── lib/
 │   │   └── products.ts            # Product loading utility (reads public/products/products.json)
 │   ├── layouts/
 │   │   └── BaseLayout.astro       # Main HTML layout (head, header, footer)
 │   ├── pages/
-│   │   ├── index.astro            # Root redirect to /ko/
-│   │   ├── ko/index.astro         # Korean homepage (delegates to HomePage component)
-│   │   └── en/index.astro         # English homepage (delegates to HomePage component)
+│   │   └── index.astro            # Single page entry (renders HomePage)
 │   └── styles/
 │       └── global.css             # Tailwind imports + custom component classes
 ├── public/
@@ -56,7 +54,7 @@ one-vacuum.github.io/
 │   │   └── images/                # Product images
 │   └── favicon.svg
 ├── .github/workflows/deploy.yml   # GitHub Pages deployment workflow
-├── astro.config.mjs               # Astro configuration (i18n routes, site URL)
+├── astro.config.mjs               # Astro configuration (site URL, Tailwind)
 ├── tailwind.config.mjs            # Tailwind theme (custom colors, fonts)
 ├── tsconfig.json                  # TypeScript config (path aliases @ → src/)
 └── package.json                   # Dependencies and scripts
@@ -65,14 +63,15 @@ one-vacuum.github.io/
 ## Architecture Notes
 
 ### Page Rendering Flow
-1. `/ko/index.astro` and `/en/index.astro` are thin wrappers that pass `lang` to `HomePage.astro`
-2. `HomePage.astro` contains all shared page content (products, where-to-buy, contact sections)
+1. `index.astro` renders `HomePage.astro` directly (single page, no routing)
+2. `HomePage.astro` contains all page content (products, buy, contact) and client-side JS for language switching + category filtering
 3. `BaseLayout.astro` wraps everything with HTML shell, Header, and Footer
-4. All user-facing strings come from `src/i18n/ui.ts` via `useTranslations(lang)`
+4. All translatable elements use `data-i18n` attributes; client-side `setLang()` swaps text from `src/i18n/ui.ts`
+5. Product names/descriptions use `data-name-ko`/`data-name-en` and `data-desc-ko`/`data-desc-en` attributes
 
 ### Product Loading
 - Products are loaded at **build time** from `public/products/products.json` via `src/lib/products.ts`
-- The `loadProducts(lang)` function reads JSON, sorts by `order`, and returns language-appropriate fields
+- The `loadProducts()` function reads JSON, sorts by `order`, and returns bilingual product data
 - Empty JSON `[]` shows "Products Coming Soon..." message
 - Products are filterable by category via client-side JS tabs (All / Oil / Oil Filter / Vacuum Filter)
 - Prices are displayed in KRW (₩) format
@@ -97,10 +96,17 @@ Each entry in `public/products/products.json`:
 - `order`: lower numbers appear first
 
 ### i18n System
-- Root `/` redirects to `/ko/` (default language)
-- `getLangFromUrl(url)` extracts language from first path segment
-- `useTranslations(lang)` returns a `t(key)` function with Korean fallback
-- `switchLang(url, lang)` builds language-switch URLs
+- Single page with client-side language toggle (default: Korean)
+- All translatable elements have `data-i18n="key"` attributes
+- `setLang('ko'|'en')` in `HomePage.astro` script swaps all text at runtime
+- Product cards use `data-name-ko`/`data-name-en` for bilingual product names
+- Korean is the fallback language if a translation key is missing
+
+### Theme System
+- Dark/light mode toggle in header (default: light/day mode)
+- Uses Tailwind `dark:` variant with `class` strategy
+- Theme preference persisted in `localStorage`
+- `<html>` element gets `class="dark"` toggled
 
 ## Key Files for Content Updates
 
