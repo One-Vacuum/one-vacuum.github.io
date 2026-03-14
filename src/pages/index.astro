@@ -1,15 +1,5 @@
 ---
-// Instant redirect to Korean homepage for static sites
+import HomePage from '../components/HomePage.astro';
 ---
 
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="refresh" content="0;url=/ko/" />
-    <link rel="canonical" href="/ko/" />
-    <script is:inline>
-      window.location.replace('/ko/');
-    </script>
-  </head>
-  <body></body>
-</html>
+<HomePage />

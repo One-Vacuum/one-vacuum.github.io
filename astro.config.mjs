@@ -5,12 +5,4 @@ import tailwind from '@astrojs/tailwind';
 export default defineConfig({
   site: 'https://onevacuum.kr',
   integrations: [tailwind()],
-  i18n: {
-    defaultLocale: 'ko',
-    locales: ['ko', 'en'],
-    routing: {
-      prefixDefaultLocale: true,
-      redirectToDefaultLocale: false,
-    },
-  },
 });

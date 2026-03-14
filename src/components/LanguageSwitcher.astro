@@ -1,25 +1,8 @@
----
-import { languages } from '../i18n/ui';
-import { getLangFromUrl, switchLang } from '../i18n/utils';
-
-const currentLang = getLangFromUrl(Astro.url);
----
-
-<div class="flex items-center gap-2">
-  {
-    Object.entries(languages).map(([lang, label]) => (
-      <a
-        href={switchLang(Astro.url, lang as keyof typeof languages)}
-        class:list={[
-          'px-3 py-1 text-sm font-medium rounded-md transition-colors',
-          currentLang === lang
-            ? 'bg-primary-600 text-white'
-            : 'text-gray-600 hover:text-primary-600 hover:bg-gray-100',
-        ]}
-        aria-current={currentLang === lang ? 'page' : undefined}
-      >
-        {label}
-      </a>
-    ))
-  }
+<div class="flex items-center gap-1 bg-slate-200/80 dark:bg-gray-800/60 rounded-lg p-0.5">
+  <button id="btnKO" class="px-2.5 py-1 text-xs font-medium rounded-md bg-primary-500/15 text-primary-700 dark:bg-primary-500/20 dark:text-primary-400 transition-colors">
+    🇰🇷 <span class="hidden md:inline">한국어</span>
+  </button>
+  <button id="btnEN" class="px-2.5 py-1 text-xs font-medium rounded-md text-slate-500 dark:text-gray-500 hover:text-slate-600 dark:hover:text-gray-300 transition-colors">
+    🇺🇸 <span class="hidden md:inline">English</span>
+  </button>
 </div>

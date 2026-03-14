@@ -1,2 +1,34 @@
 [
+  {
+    "image": "product-1.png",
+    "nameKo": "샘플 오일 A",
+    "nameEn": "Sample Oil A",
+    "category": "oil",
+    "price": 50000,
+    "order": 1
+  },
+  {
+    "image": "product-2.png",
+    "nameKo": "샘플 오일 필터 A",
+    "nameEn": "Sample Oil Filter A",
+    "category": "oil-filter",
+    "price": 30000,
+    "order": 2
+  },
+  {
+    "image": "product-3.png",
+    "nameKo": "샘플 진공 필터 A",
+    "nameEn": "Sample Vacuum Filter A",
+    "category": "vacuum-filter",
+    "price": 45000,
+    "order": 3
+  },
+  {
+    "image": "product-4.png",
+    "nameKo": "샘플 오일 B",
+    "nameEn": "Sample Oil B",
+    "category": "oil",
+    "price": 65000,
+    "order": 4
+  }
 ]

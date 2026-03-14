@@ -1,10 +1,3 @@
-export const languages = {
-  ko: '한국어',
-  en: 'English',
-};
-
-export const defaultLang = 'ko';
-
 export const ui = {
   ko: {
     // Site
@@ -26,19 +19,28 @@ export const ui = {
     'products.title': '제품 소개',
     'products.subtitle': '다양한 진공 장비 및 부품을 만나보세요',
     'products.comingSoon': '제품 준비 중입니다...',
+    'products.filterAll': '전체',
+    'products.filterOil': '오일',
+    'products.filterOilFilter': '오일 필터',
+    'products.filterVacuumFilter': '진공 필터',
 
     // Where to Buy
     'buy.title': '구매처',
     'buy.subtitle': '아래 온라인 스토어에서 제품을 구매하실 수 있습니다',
     'buy.store1': '스토어 1',
     'buy.store2': '스토어 2',
+    'buy.naverStore': '네이버 스토어',
+    'buy.coupang': '쿠팡',
+    'buy.comingSoon': '(준비중)',
 
     // Contact
     'contact.title': '연락처',
     'contact.phone': '전화',
     'contact.email': '이메일',
+    'contact.emailComingSoon': '(준비중)',
     'contact.address': '주소',
     'contact.addressValue': '충청남도 아산시 배방읍 희망로 32',
+    'contact.phoneValue': '000-0000-0000',
 
     // Footer
     'footer.owner': '대표: 남해경',
@@ -64,24 +66,31 @@ export const ui = {
     'products.title': 'Our Products',
     'products.subtitle': 'Explore our range of vacuum equipment and parts',
     'products.comingSoon': 'Products Coming Soon...',
+    'products.filterAll': 'All',
+    'products.filterOil': 'Oil',
+    'products.filterOilFilter': 'Oil Filter',
+    'products.filterVacuumFilter': 'Vacuum Filter',
 
     // Where to Buy
     'buy.title': 'Where to Buy',
     'buy.subtitle': 'Purchase our products at the online stores below',
     'buy.store1': 'Store 1',
     'buy.store2': 'Store 2',
+    'buy.naverStore': 'Naver Store',
+    'buy.coupang': 'Coupang',
+    'buy.comingSoon': '(Coming Soon)',
 
     // Contact
     'contact.title': 'Contact Us',
     'contact.phone': 'Phone',
     'contact.email': 'Email',
+    'contact.emailComingSoon': '(Coming Soon)',
     'contact.address': 'Address',
     'contact.addressValue': '32 Heemang-ro, Baebang-eup, Asan-si, Chungcheongnam-do',
+    'contact.phoneValue': '000-0000-0000',
 
     // Footer
     'footer.owner': 'Owner: Haekyung Nam',
     'footer.copyright': '© 2026 One Vacuum. All rights reserved.',
   },
 } as const;
-
-export type UIKeys = keyof typeof ui.ko;
