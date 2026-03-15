@@ -26,20 +26,46 @@ const products = loadProducts();
 
       {products.length > 0 ? (
         <>
-          <!-- Category Filter Tabs -->
-          <div class="flex flex-wrap justify-center gap-2 mb-8" id="category-filters">
-            <button data-filter="all" class="filter-btn filter-active" data-i18n="products.filterAll">
-              {t['products.filterAll']}
-            </button>
-            <button data-filter="oil" class="filter-btn" data-i18n="products.filterOil">
-              {t['products.filterOil']}
-            </button>
-            <button data-filter="oil-filter" class="filter-btn" data-i18n="products.filterOilFilter">
-              {t['products.filterOilFilter']}
-            </button>
-            <button data-filter="vacuum-filter" class="filter-btn" data-i18n="products.filterVacuumFilter">
-              {t['products.filterVacuumFilter']}
-            </button>
+          <!-- Category Filter + Search + Sort -->
+          <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-8">
+            <div class="flex flex-wrap justify-center lg:justify-start gap-2" id="category-filters">
+              <button data-filter="all" class="filter-btn filter-active" data-i18n="products.filterAll">
+                {t['products.filterAll']}
+              </button>
+              <button data-filter="oil" class="filter-btn" data-i18n="products.filterOil">
+                {t['products.filterOil']}
+              </button>
+              <button data-filter="oil-filter" class="filter-btn" data-i18n="products.filterOilFilter">
+                {t['products.filterOilFilter']}
+              </button>
+              <button data-filter="vacuum-filter" class="filter-btn" data-i18n="products.filterVacuumFilter">
+                {t['products.filterVacuumFilter']}
+              </button>
+            </div>
+            <div class="flex flex-col sm:flex-row items-center gap-3">
+              <div class="relative w-full sm:w-52">
+                <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+                <input
+                  id="search-input"
+                  type="text"
+                  class="w-full pl-10 pr-10 py-2 text-sm border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  data-i18n-placeholder="products.searchPlaceholder"
+                  placeholder={t['products.searchPlaceholder']}
+                />
+                <button id="search-clear" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hidden">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              <select id="sort-select" class="w-full sm:w-auto px-3 py-2 text-sm border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500">
+                <option value="default" data-i18n-option="products.sortDefault">{t['products.sortDefault']}</option>
+                <option value="price-asc" data-i18n-option="products.sortPriceAsc">{t['products.sortPriceAsc']}</option>
+                <option value="price-desc" data-i18n-option="products.sortPriceDesc">{t['products.sortPriceDesc']}</option>
+              </select>
+            </div>
           </div>
 
           <!-- Product Grid -->
@@ -53,8 +79,26 @@ const products = loadProducts();
                 descriptionEn={product.descriptionEn}
                 category={product.category}
                 price={formatPrice(product.price)}
+                rawPrice={product.price}
+                bestSeller={product.bestSeller}
               />
             ))}
+          </div>
+
+          <!-- Show More Button -->
+          <div id="show-more-wrap" class="text-center mt-8">
+            <button id="show-more-btn" class="inline-flex items-center gap-2 px-6 py-3 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+              <span data-i18n="products.showMore">{t['products.showMore']}</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+          </div>
+
+          <!-- Empty filter state -->
+          <div id="empty-filter" class="hidden text-center py-16">
+            <div class="text-6xl mb-4">📦</div>
+            <p class="text-xl text-gray-500 dark:text-gray-400" data-i18n="products.comingSoon">{t['products.comingSoon']}</p>
           </div>
         </>
       ) : (
@@ -130,7 +174,7 @@ const products = loadProducts();
               </svg>
             </div>
             <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2" data-i18n="contact.email">{t['contact.email']}</h3>
-            <p class="text-gray-400 dark:text-gray-500" data-i18n="contact.emailComingSoon">{t['contact.emailComingSoon']}</p>
+            <a href="mailto:sales@gvac.co.kr" class="text-primary-600 dark:text-primary-400 hover:underline" data-i18n="contact.emailValue">{t['contact.emailValue']}</a>
           </div>
 
           <div class="text-center p-6 rounded-xl bg-gray-50 dark:bg-gray-900">
@@ -152,26 +196,120 @@ const products = loadProducts();
 <script>
   import { ui } from '../i18n/ui';
 
-  // ===================== Category Filter =====================
+  // ===================== Search + Category Filter + Sort + Show More =====================
+  const ITEMS_PER_PAGE = 8;
   const filters = document.getElementById('category-filters');
-  const cards = document.querySelectorAll<HTMLElement>('.product-card');
+  const productGrid = document.getElementById('product-grid');
+  const allCards = Array.from(document.querySelectorAll<HTMLElement>('.product-card'));
+  const emptyFilter = document.getElementById('empty-filter');
+  const showMoreWrap = document.getElementById('show-more-wrap');
+  const showMoreBtn = document.getElementById('show-more-btn');
+  const sortSelect = document.getElementById('sort-select') as HTMLSelectElement | null;
+  const searchInput = document.getElementById('search-input') as HTMLInputElement | null;
+  const searchClear = document.getElementById('search-clear');
+
+  let currentFilter = 'all';
+  let currentSort = 'default';
+  let currentSearch = '';
+  let visibleLimit = ITEMS_PER_PAGE;
+
+  function getSortedFilteredCards(): HTMLElement[] {
+    let cards = allCards.filter((card) => {
+      // Category filter
+      if (currentFilter !== 'all' && card.dataset.category !== currentFilter) return false;
+
+      // Search filter
+      if (currentSearch) {
+        const nameEl = card.querySelector('.product-name') as HTMLElement | null;
+        const nameKo = (nameEl?.dataset.nameKo || '').toLowerCase();
+        const nameEn = (nameEl?.dataset.nameEn || '').toLowerCase();
+        if (!nameKo.includes(currentSearch) && !nameEn.includes(currentSearch)) return false;
+      }
+
+      return true;
+    });
+
+    if (currentSort === 'price-asc') {
+      cards.sort((a, b) => Number(a.dataset.price) - Number(b.dataset.price));
+    } else if (currentSort === 'price-desc') {
+      cards.sort((a, b) => Number(b.dataset.price) - Number(a.dataset.price));
+    } else {
+      // default: best sellers first, then by original order
+      cards.sort((a, b) => {
+        const aBest = a.dataset.bestSeller === '1' ? 0 : 1;
+        const bBest = b.dataset.bestSeller === '1' ? 0 : 1;
+        if (aBest !== bBest) return aBest - bBest;
+        return allCards.indexOf(a) - allCards.indexOf(b);
+      });
+    }
+
+    return cards;
+  }
+
+  function applyVisibility() {
+    const sorted = getSortedFilteredCards();
+
+    // Reorder DOM elements
+    if (productGrid) {
+      sorted.forEach((card) => productGrid.appendChild(card));
+    }
+
+    allCards.forEach((card) => (card.style.display = 'none'));
+    sorted.forEach((card, i) => {
+      card.style.display = i < visibleLimit ? '' : 'none';
+    });
+
+    if (productGrid && emptyFilter) {
+      productGrid.style.display = sorted.length > 0 ? '' : 'none';
+      emptyFilter.classList.toggle('hidden', sorted.length > 0);
+    }
+
+    if (showMoreWrap) {
+      showMoreWrap.style.display = sorted.length > visibleLimit ? '' : 'none';
+    }
+  }
+
+  applyVisibility();
 
   filters?.addEventListener('click', (e) => {
     const btn = (e.target as HTMLElement).closest('.filter-btn') as HTMLButtonElement | null;
     if (!btn) return;
 
-    const category = btn.dataset.filter;
+    currentFilter = btn.dataset.filter || 'all';
+    visibleLimit = ITEMS_PER_PAGE;
 
     filters.querySelectorAll('.filter-btn').forEach((b) => b.classList.remove('filter-active'));
     btn.classList.add('filter-active');
 
-    cards.forEach((card) => {
-      if (category === 'all' || card.dataset.category === category) {
-        card.style.display = '';
-      } else {
-        card.style.display = 'none';
-      }
-    });
+    applyVisibility();
+  });
+
+  sortSelect?.addEventListener('change', () => {
+    currentSort = sortSelect.value;
+    visibleLimit = ITEMS_PER_PAGE;
+    applyVisibility();
+  });
+
+  showMoreBtn?.addEventListener('click', () => {
+    visibleLimit += ITEMS_PER_PAGE;
+    applyVisibility();
+  });
+
+  searchInput?.addEventListener('input', () => {
+    currentSearch = (searchInput.value || '').trim().toLowerCase();
+    visibleLimit = ITEMS_PER_PAGE;
+    if (searchClear) {
+      searchClear.classList.toggle('hidden', !currentSearch);
+    }
+    applyVisibility();
+  });
+
+  searchClear?.addEventListener('click', () => {
+    if (searchInput) searchInput.value = '';
+    currentSearch = '';
+    searchClear.classList.add('hidden');
+    visibleLimit = ITEMS_PER_PAGE;
+    applyVisibility();
   });
 
   // ===================== Language Toggle =====================
@@ -206,6 +344,20 @@ const products = loadProducts();
       } else {
         el.textContent = value;
       }
+    });
+
+    // Update select option elements
+    document.querySelectorAll<HTMLOptionElement>('[data-i18n-option]').forEach((el) => {
+      const key = el.dataset.i18nOption as keyof typeof translations;
+      const value = translations[key] || ui.ko[key];
+      if (value) el.textContent = value;
+    });
+
+    // Update placeholder attributes
+    document.querySelectorAll<HTMLElement>('[data-i18n-placeholder]').forEach((el) => {
+      const key = (el as HTMLElement).dataset.i18nPlaceholder as keyof typeof translations;
+      const value = translations[key] || ui.ko[key];
+      if (value) (el as HTMLInputElement).placeholder = value;
     });
 
     // Update product names and descriptions

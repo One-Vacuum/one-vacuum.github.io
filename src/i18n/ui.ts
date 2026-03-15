@@ -2,7 +2,7 @@ export const ui = {
   ko: {
     // Site
     'site.title': 'One Vacuum | 원베큠',
-    'site.description': '고품질 진공 장비 및 부품 전문 기업',
+    'site.description': '진공 장비 및 부품 도매·소매 전문 기업',
 
     // Navigation
     'nav.home': '홈',
@@ -13,7 +13,7 @@ export const ui = {
     // Hero
     'hero.title': 'One Vacuum',
     'hero.subtitle': '원베큠',
-    'hero.description': '고품질 진공 장비 및 부품을 제공하는 전문 기업입니다. 다양한 산업 분야에 최적화된 진공 솔루션을 제공합니다.',
+    'hero.description': '진공 장비 및 부품을 도매·소매하는 전자상거래 전문 기업입니다. 다양한 산업 분야에 최적화된 진공 솔루션을 제공합니다.',
 
     // Products
     'products.title': '제품 소개',
@@ -23,6 +23,12 @@ export const ui = {
     'products.filterOil': '오일',
     'products.filterOilFilter': '오일 필터',
     'products.filterVacuumFilter': '진공 필터',
+    'products.bestSeller': 'BEST',
+    'products.showMore': '더 보기',
+    'products.searchPlaceholder': '제품 검색...',
+    'products.sortDefault': '기본 정렬 (베스트)',
+    'products.sortPriceAsc': '가격 낮은순',
+    'products.sortPriceDesc': '가격 높은순',
 
     // Where to Buy
     'buy.title': '구매처',
@@ -37,19 +43,25 @@ export const ui = {
     'contact.title': '연락처',
     'contact.phone': '전화',
     'contact.email': '이메일',
-    'contact.emailComingSoon': '(준비중)',
+    'contact.emailValue': 'sales@gvac.co.kr',
     'contact.address': '주소',
-    'contact.addressValue': '충청남도 아산시 배방읍 희망로 32',
+    'contact.addressValue': '충청남도 아산시 배방읍 희망로 32, 1동 840호(코아루웰메이드시티) (31470)',
     'contact.phoneValue': '000-0000-0000',
 
+    // KakaoTalk
+    'kakao.tooltip': '카카오톡 문의',
+    'kakao.comingSoon': '카카오톡 채널 준비중입니다.',
+
     // Footer
+    'footer.company': '상호: 원베큠',
     'footer.owner': '대표: 남해경',
+    'footer.bizNo': '사업자등록번호: 590-47-01491',
     'footer.copyright': '© 2026 One Vacuum. All rights reserved.',
   },
   en: {
     // Site
     'site.title': 'One Vacuum',
-    'site.description': 'Professional vacuum equipment and parts supplier',
+    'site.description': 'Wholesale & retail e-commerce for vacuum equipment and parts',
 
     // Navigation
     'nav.home': 'Home',
@@ -60,7 +72,7 @@ export const ui = {
     // Hero
     'hero.title': 'One Vacuum',
     'hero.subtitle': '',
-    'hero.description': 'We are a professional company providing high-quality vacuum equipment and parts. We offer optimized vacuum solutions for various industries.',
+    'hero.description': 'We are a wholesale and retail e-commerce company specializing in vacuum equipment and parts. We offer optimized vacuum solutions for various industries.',
 
     // Products
     'products.title': 'Our Products',
@@ -70,6 +82,12 @@ export const ui = {
     'products.filterOil': 'Oil',
     'products.filterOilFilter': 'Oil Filter',
     'products.filterVacuumFilter': 'Vacuum Filter',
+    'products.bestSeller': 'BEST',
+    'products.showMore': 'Show More',
+    'products.searchPlaceholder': 'Search products...',
+    'products.sortDefault': 'Default (Best Sellers)',
+    'products.sortPriceAsc': 'Price: Low to High',
+    'products.sortPriceDesc': 'Price: High to Low',
 
     // Where to Buy
     'buy.title': 'Where to Buy',
@@ -84,13 +102,19 @@ export const ui = {
     'contact.title': 'Contact Us',
     'contact.phone': 'Phone',
     'contact.email': 'Email',
-    'contact.emailComingSoon': '(Coming Soon)',
+    'contact.emailValue': 'sales@gvac.co.kr',
     'contact.address': 'Address',
-    'contact.addressValue': '32 Heemang-ro, Baebang-eup, Asan-si, Chungcheongnam-do',
+    'contact.addressValue': '32 Heemang-ro, Bldg 1 #840 (Koaru Wellmade City), Baebang-eup, Asan-si, Chungcheongnam-do 31470',
     'contact.phoneValue': '000-0000-0000',
 
+    // KakaoTalk
+    'kakao.tooltip': 'KakaoTalk Inquiry',
+    'kakao.comingSoon': 'KakaoTalk channel coming soon.',
+
     // Footer
+    'footer.company': 'Company: One Vacuum',
     'footer.owner': 'Owner: Haekyung Nam',
+    'footer.bizNo': 'Business Reg. No: 590-47-01491',
     'footer.copyright': '© 2026 One Vacuum. All rights reserved.',
   },
 } as const;
