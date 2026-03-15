@@ -1,298 +1,308 @@
 [
   {
+    "partNumber": "L12005",
     "image": "L12005LVO1205L.png",
     "nameKo": "LVO120, 5 리터",
     "nameEn": "LVO120, 5 Liter",
     "category": "oil",
     "price": 161000,
-    "order": 1,
     "bestSeller": true
   },
   {
+    "partNumber": "L13005",
     "image": "L13005LVO1305L.png",
     "nameKo": "LVO130, 5 리터",
     "nameEn": "LVO130, 5 Liter",
     "category": "oil",
     "price": 161000,
-    "order": 2,
     "bestSeller": true
   },
   {
+    "partNumber": "L13020",
     "image": "L13020LVO13020L.png",
     "nameKo": "LVO130, 20 리터",
     "nameEn": "LVO130, 20 Liter",
     "category": "oil",
     "price": 542000,
-    "order": 3,
     "bestSeller": true
   },
   {
+    "partNumber": "L21020",
     "image": "L21020LVO21020L.png",
     "nameKo": "LVO210, 20 리터",
     "nameEn": "LVO210, 20 Liter",
     "category": "oil",
     "price": 935000,
-    "order": 4,
     "bestSeller": true
   },
   {
+    "partNumber": "L31001",
     "image": "L31001LVO3101L.png",
     "nameKo": "LVO310, 1 리터",
     "nameEn": "LVO310, 1 Liter",
     "category": "oil",
     "price": 116000,
-    "order": 5,
     "bestSeller": true
   },
   {
+    "partNumber": "L42001",
     "image": "L42001LVO4201L.png",
     "nameKo": "LVO420, 1 리터",
     "nameEn": "LVO420, 1 Liter",
     "category": "oil",
     "price": 1157000,
-    "order": 6,
     "bestSeller": true
   },
   {
+    "partNumber": "L70201",
     "image": "L70201LVO7021L.png",
     "nameKo": "LVO702, 1 리터",
     "nameEn": "LVO702, 1 Liter",
     "category": "oil",
     "price": 245000,
-    "order": 7,
     "bestSeller": true
   },
   {
+    "partNumber": "L70205",
     "image": "L70205LVO7025L.png",
     "nameKo": "LVO702, 5 리터",
     "nameEn": "LVO702, 5 Liter",
     "category": "oil",
     "price": 849000,
-    "order": 8,
     "bestSeller": true
   },
   {
+    "partNumber": "L10005",
+    "image": "L10001LVO_100.png",
+    "nameKo": "LVO100, 5 리터",
+    "nameEn": "LVO100, 5 Liter",
+    "category": "oil",
+    "price": 176000,
+    "bestSeller": true,
+    "note": "Using same image as L10001, should be replaced with a different image when available"
+  },
+  {
+    "partNumber": "L10001",
     "image": "L10001LVO_100.png",
     "nameKo": "LVO100, 1 리터",
     "nameEn": "LVO100, 1 Liter",
     "category": "oil",
-    "price": 54000,
-    "order": 10
+    "price": 54000
   },
   {
+    "partNumber": "L12001",
     "image": "L12001LVO1201L.png",
     "nameKo": "LVO120, 1 리터",
     "nameEn": "LVO120, 1 Liter",
     "category": "oil",
-    "price": 50000,
-    "order": 11
+    "price": 50000
   },
   {
+    "partNumber": "L12020",
     "image": "L12020LVO12020L.png",
     "nameKo": "LVO120, 20 리터",
     "nameEn": "LVO120, 20 Liter",
     "category": "oil",
-    "price": 542000,
-    "order": 12
+    "price": 542000
   },
   {
+    "partNumber": "L13001",
     "image": "L13001LVO1301L.png",
     "nameKo": "LVO130, 1 리터",
     "nameEn": "LVO130, 1 Liter",
     "category": "oil",
-    "price": 50000,
-    "order": 13
+    "price": 50000
   },
   {
+    "partNumber": "L13099",
     "image": "L13099LVO130208L.png",
     "nameKo": "LVO130, 208 리터",
     "nameEn": "LVO130, 208 Liter",
     "category": "oil",
-    "price": 4152000,
-    "order": 14
+    "price": 4152000
   },
   {
+    "partNumber": "L15001",
     "image": "L15001LVO1501L.png",
     "nameKo": "LVO150, 1 리터",
     "nameEn": "LVO150, 1 Liter",
     "category": "oil",
-    "price": 63000,
-    "order": 15
+    "price": 63000
   },
   {
+    "partNumber": "L15020",
     "image": "L15020LVO15020L.png",
     "nameKo": "LVO150, 20 리터",
     "nameEn": "LVO150, 20 Liter",
     "category": "oil",
-    "price": 780000,
-    "order": 16
+    "price": 780000
   },
   {
+    "partNumber": "L21001",
     "image": "L21001LVO2101L.png",
     "nameKo": "LVO210, 1 리터",
     "nameEn": "LVO210, 1 Liter",
     "category": "oil",
-    "price": 72000,
-    "order": 17
+    "price": 72000
   },
   {
+    "partNumber": "L21005",
     "image": "L21005LVO2105L.png",
     "nameKo": "LVO210, 5 리터",
     "nameEn": "LVO210, 5 Liter",
     "category": "oil",
-    "price": 257000,
-    "order": 18
+    "price": 257000
   },
   {
+    "partNumber": "L21099",
     "image": "L21099LVO210208L.png",
     "nameKo": "LVO210, 208 리터",
     "nameEn": "LVO210, 208 Liter",
     "category": "oil",
-    "price": 6885000,
-    "order": 19
+    "price": 6885000
   },
   {
+    "partNumber": "L21101",
     "image": "L21101LVO2111L.png",
     "nameKo": "LVO211, 1 리터",
     "nameEn": "LVO211, 1 Liter",
     "category": "oil",
-    "price": 70000,
-    "order": 20
+    "price": 70000
   },
   {
+    "partNumber": "L21105",
     "image": "L21105LVO2115L.png",
     "nameKo": "LVO211, 5 리터",
     "nameEn": "LVO211, 5 Liter",
     "category": "oil",
-    "price": 250000,
-    "order": 21
+    "price": 250000
   },
   {
+    "partNumber": "L21120",
     "image": "L21120LVO21120L.png",
     "nameKo": "LVO211, 20 리터",
     "nameEn": "LVO211, 20 Liter",
     "category": "oil",
-    "price": 905000,
-    "order": 22
+    "price": 905000
   },
   {
+    "partNumber": "L24020",
     "image": "L24020LVO24020L.png",
     "nameKo": "LVO240, 20 리터",
     "nameEn": "LVO240, 20 Liter",
     "category": "oil",
-    "price": 905000,
-    "order": 23
+    "price": 905000
   },
   {
+    "partNumber": "L25000",
     "image": "L25000LVO2500.3L.png",
     "nameKo": "LVO250, 0.3 리터",
     "nameEn": "LVO250, 0.3 Liter",
     "category": "oil",
-    "price": 229000,
-    "order": 24
+    "price": 229000
   },
   {
+    "partNumber": "L26000",
     "image": "L26000LVO2600.3L.png",
     "nameKo": "LVO260, 0.3 리터",
     "nameEn": "LVO260, 0.3 Liter",
     "category": "oil",
-    "price": 247000,
-    "order": 25
+    "price": 247000
   },
   {
+    "partNumber": "L30020",
     "image": "L30020LVO30020L.png",
     "nameKo": "LVO300, 20 리터",
     "nameEn": "LVO300, 20 Liter",
     "category": "oil",
-    "price": 1434000,
-    "order": 26
+    "price": 1434000
   },
   {
+    "partNumber": "L40000",
     "image": "L40000LVO4000.75L.png",
     "nameKo": "LVO400, 0.75 리터",
     "nameEn": "LVO400, 0.75 Liter",
     "category": "oil",
-    "price": 956000,
-    "order": 27
+    "price": 956000
   },
   {
+    "partNumber": "L40001",
     "image": "L40001LVO4001L.png",
     "nameKo": "LVO400, 1 리터",
     "nameEn": "LVO400, 1 Liter",
     "category": "oil",
-    "price": 1157000,
-    "order": 28
+    "price": 1157000
   },
   {
+    "partNumber": "L41000",
     "image": "L41000LVO4100.6L.png",
     "nameKo": "LVO410, 0.6 리터",
     "nameEn": "LVO410, 0.6 Liter",
     "category": "oil",
-    "price": 830000,
-    "order": 29
+    "price": 830000
   },
   {
+    "partNumber": "L41001",
     "image": "L41001LVO4101L.png",
     "nameKo": "LVO410, 1 리터",
     "nameEn": "LVO410, 1 Liter",
     "category": "oil",
-    "price": 1157000,
-    "order": 30
+    "price": 1157000
   },
   {
+    "partNumber": "L50005",
     "image": "L50005LVO5005L.png",
     "nameKo": "LVO500, 5 리터",
     "nameEn": "LVO500, 5 Liter",
     "category": "oil",
-    "price": 1009000,
-    "order": 31
+    "price": 1009000
   },
   {
+    "partNumber": "L52001",
     "image": "L52001LVO5201L.png",
     "nameKo": "LVO520, 1 리터",
     "nameEn": "LVO520, 1 Liter",
     "category": "oil",
-    "price": 629000,
-    "order": 32
+    "price": 629000
   },
   {
+    "partNumber": "L52005",
     "image": "L52005LVO5205L.png",
     "nameKo": "LVO520, 5 리터",
     "nameEn": "LVO520, 5 Liter",
     "category": "oil",
-    "price": 3017000,
-    "order": 33
+    "price": 3017000
   },
   {
+    "partNumber": "L52101",
     "image": "L52101LVO5211L.png",
     "nameKo": "LVO521, 1 리터",
     "nameEn": "LVO521, 1 Liter",
     "category": "oil",
-    "price": 660000,
-    "order": 34
+    "price": 660000
   },
   {
+    "partNumber": "L52105",
     "image": "L52105LVO5215L.png",
     "nameKo": "LVO521, 5 리터",
     "nameEn": "LVO521, 5 Liter",
     "category": "oil",
-    "price": 3171000,
-    "order": 35
+    "price": 3171000
   },
   {
+    "partNumber": "L54020",
     "image": "L54020LVO54020L.png",
     "nameKo": "LVO540, 20 리터",
     "nameEn": "LVO540, 20 Liter",
     "category": "oil",
-    "price": 3499000,
-    "order": 36
+    "price": 3499000
   },
   {
+    "partNumber": "L70202",
     "image": "L70202LVO7022L.png",
     "nameKo": "LVO702, 2 리터",
     "nameEn": "LVO702, 2 Liter",
     "category": "oil",
-    "price": 412000,
-    "order": 37
+    "price": 412000
   }
 ]

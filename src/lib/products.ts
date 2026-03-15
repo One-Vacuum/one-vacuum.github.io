@@ -4,6 +4,7 @@ import path from 'node:path';
 export type Category = 'oil' | 'oil-filter' | 'vacuum-filter';
 
 export interface Product {
+  partNumber: string;
   image: string;
   nameKo: string;
   nameEn: string;
@@ -11,7 +12,6 @@ export interface Product {
   descriptionEn?: string;
   category: Category;
   price: number;
-  order?: number;
   bestSeller?: boolean;
 }
 
@@ -25,7 +25,6 @@ export function loadProducts(): Product[] {
     return [];
   }
 
-  raw.sort((a, b) => (a.order || 99) - (b.order || 99));
   return raw;
 }
 
