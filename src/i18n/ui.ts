@@ -29,6 +29,8 @@ export const ui = {
     'products.sortDefault': '기본 정렬 (베스트)',
     'products.sortPriceAsc': '가격 낮은순',
     'products.sortPriceDesc': '가격 높은순',
+    'products.detailComingSoon': '상세정보 준비중입니다',
+    'products.tapToFlip': '상세정보 보기',
 
     // Where to Buy
     'buy.title': '구매처',
@@ -88,6 +90,8 @@ export const ui = {
     'products.sortDefault': 'Default (Best Sellers)',
     'products.sortPriceAsc': 'Price: Low to High',
     'products.sortPriceDesc': 'Price: High to Low',
+    'products.detailComingSoon': 'Details Coming Soon',
+    'products.tapToFlip': 'View Details',
 
     // Where to Buy
     'buy.title': 'Where to Buy',

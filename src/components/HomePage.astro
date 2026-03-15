@@ -72,6 +72,7 @@ const products = loadProducts();
           <div id="product-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
             {products.map((product) => (
               <ProductCard
+                partNumber={product.partNumber}
                 nameKo={product.nameKo}
                 nameEn={product.nameEn}
                 image={`/products/images/${product.image}`}
@@ -223,7 +224,8 @@ const products = loadProducts();
         const nameEl = card.querySelector('.product-name') as HTMLElement | null;
         const nameKo = (nameEl?.dataset.nameKo || '').toLowerCase();
         const nameEn = (nameEl?.dataset.nameEn || '').toLowerCase();
-        if (!nameKo.includes(currentSearch) && !nameEn.includes(currentSearch)) return false;
+        const partNum = (card.dataset.partNumber || '').toLowerCase();
+        if (!nameKo.includes(currentSearch) && !nameEn.includes(currentSearch) && !partNum.includes(currentSearch)) return false;
       }
 
       return true;
@@ -310,6 +312,13 @@ const products = loadProducts();
     searchClear.classList.add('hidden');
     visibleLimit = ITEMS_PER_PAGE;
     applyVisibility();
+  });
+
+  // ===================== Card Flip =====================
+  productGrid?.addEventListener('click', (e) => {
+    const card = (e.target as HTMLElement).closest('.card-flip') as HTMLElement | null;
+    if (!card) return;
+    card.classList.toggle('flipped');
   });
 
   // ===================== Language Toggle =====================
