@@ -12,6 +12,7 @@ export interface Product {
   category: Category;
   price: number;
   order?: number;
+  bestSeller?: boolean;
 }
 
 export function loadProducts(): Product[] {

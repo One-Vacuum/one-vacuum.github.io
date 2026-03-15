@@ -4,25 +4,39 @@ interface Props {
   nameEn: string;
   image: string;
   price: string;
+  rawPrice: number;
   category: string;
   descriptionKo?: string;
   descriptionEn?: string;
+  bestSeller?: boolean;
 }
 
-const { nameKo, nameEn, image, price, category, descriptionKo, descriptionEn } = Astro.props;
+const { nameKo, nameEn, image, price, rawPrice, category, descriptionKo, descriptionEn, bestSeller } = Astro.props;
 ---
 
-<div class="product-card group bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100 dark:border-gray-700" data-category={category}>
+<div
+  class:list={[
+    'product-card group flex flex-col bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100 dark:border-gray-700',
+    bestSeller && 'ring-2 ring-primary-400/50 dark:ring-primary-500/40',
+  ]}
+  data-category={category}
+  data-price={rawPrice}
+  data-best-seller={bestSeller ? '1' : '0'}
+>
+  {bestSeller && (
+    <div class="bg-primary-500 text-white text-xs font-bold px-3 py-1 text-center" data-i18n="products.bestSeller">BEST</div>
+  )}
   <div class="aspect-square overflow-hidden bg-gray-50 dark:bg-gray-900">
     <img
       src={image}
       alt={nameKo}
-      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+      class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+      onload="if(this.naturalWidth>this.naturalHeight*1.2){this.classList.remove('object-contain');this.classList.add('object-cover')}"
       onerror="this.src='/images/placeholder-product.svg'"
       loading="lazy"
     />
   </div>
-  <div class="p-4">
+  <div class="p-4 mt-auto">
     <h3 class="product-name font-semibold text-gray-900 dark:text-gray-100 text-base" data-name-ko={nameKo} data-name-en={nameEn}>{nameKo}</h3>
     {(descriptionKo || descriptionEn) && (
       <p class="product-desc mt-1 text-sm text-gray-500 dark:text-gray-400" data-desc-ko={descriptionKo || ''} data-desc-en={descriptionEn || ''}>{descriptionKo}</p>
