@@ -304,5 +304,128 @@
     "nameEn": "LVO702, 2 Liter",
     "category": "oil",
     "price": 412000
+  },
+  {
+    "partNumber": "E6537380",
+    "image": "E6537380Oil_filterSV220B.jpeg",
+    "nameKo": "Oil Filter (SV220B)",
+    "nameEn": "Oil Filter (SV220B)",
+    "category": "oil-filter",
+    "price": 33000
+  },
+  {
+    "partNumber": "EK96004",
+    "image": "EK96004Oil_filterSV40BSV65B.png",
+    "nameKo": "Oil Filter (SV40B/SV65B)",
+    "nameEn": "Oil Filter (SV40B/SV65B)",
+    "category": "oil-filter",
+    "price": 67000
+  },
+  {
+    "partNumber": "EK96005",
+    "image": "EK96005Oil_filterSV100B.jpeg",
+    "nameKo": "Oil Filter (SV100B)",
+    "nameEn": "Oil Filter (SV100B)",
+    "category": "oil-filter",
+    "price": 73000
+  },
+  {
+    "partNumber": "EK96006",
+    "image": "EK96006Oil_filterSV300B.jpeg",
+    "nameKo": "Oil Filter (SV300B)",
+    "nameEn": "Oil Filter (SV300B)",
+    "category": "oil-filter",
+    "price": 87000,
+    "bestSeller": true
+  },
+  {
+    "partNumber": "EK96008",
+    "image": "EK96008Oil_filterSV630B.jpeg",
+    "nameKo": "Oil Filter (SV630B)",
+    "nameEn": "Oil Filter (SV630B)",
+    "category": "oil-filter",
+    "price": 131000,
+    "bestSeller": true
+  },
+  {
+    "partNumber": "18972",
+    "image": "18972Exhaust.filterFE16-25.jpeg",
+    "nameKo": "Exhaust Filter (FE16-25)",
+    "nameEn": "Exhaust Filter (FE16-25)",
+    "category": "vacuum-filter",
+    "price": 361000
+  },
+  {
+    "partNumber": "18973",
+    "image": "18973Exhaust.filterFE40-65.jpeg",
+    "nameKo": "Exhaust Filter (FE40-65)",
+    "nameEn": "Exhaust Filter (FE40-65)",
+    "category": "vacuum-filter",
+    "price": 606000
+  },
+  {
+    "partNumber": "71064763",
+    "image": "71064763Exhaust.filterSV4065100200.jpeg",
+    "nameKo": "Exhaust Filter (SV40,65,100,200)",
+    "nameEn": "Exhaust Filter (SV40,65,100,200)",
+    "category": "vacuum-filter",
+    "price": 193000
+  },
+  {
+    "partNumber": "71064773",
+    "image": "71064773Exhaust.filterSV300SV630SV1200.jpeg",
+    "nameKo": "Exhaust Filter (SV300,SV630,SV1200)",
+    "nameEn": "Exhaust Filter (SV300,SV630,SV1200)",
+    "category": "vacuum-filter",
+    "price": 271000,
+    "bestSeller": true
+  },
+  {
+    "partNumber": "71232023",
+    "image": "71232023Exhaust.filterSV1625.jpeg",
+    "nameKo": "Exhaust Filter (SV16,25)",
+    "nameEn": "Exhaust Filter (SV16,25)",
+    "category": "vacuum-filter",
+    "price": 126000
+  },
+  {
+    "partNumber": "71416340",
+    "image": "71416340Exhaust.filterSV25B.jpeg",
+    "nameKo": "Exhaust Filter (SV25B)",
+    "nameEn": "Exhaust Filter (SV25B)",
+    "category": "vacuum-filter",
+    "price": 86000
+  },
+  {
+    "partNumber": "71417300",
+    "image": "71417300Exhaust.filterSV65BSV100B.jpeg",
+    "nameKo": "Exhaust Filter (SV65B,SV100B)",
+    "nameEn": "Exhaust Filter (SV65B,SV100B)",
+    "category": "vacuum-filter",
+    "price": 202000
+  },
+  {
+    "partNumber": "71421180",
+    "image": "71421180Exhaust.filterSV40B.jpeg",
+    "nameKo": "Exhaust Filter (SV40B)",
+    "nameEn": "Exhaust Filter (SV40B)",
+    "category": "vacuum-filter",
+    "price": 149000
+  },
+  {
+    "partNumber": "971431120",
+    "image": "971431120Exhaust.filterSV300BSV630B.png",
+    "nameKo": "Exhaust Filter (SV300B,SV630B)",
+    "nameEn": "Exhaust Filter (SV300B,SV630B)",
+    "category": "vacuum-filter",
+    "price": 250000
+  },
+  {
+    "partNumber": "EK9606M",
+    "image": "EK9606MExhaust.filterSV220B.png",
+    "nameKo": "Exhaust Filter (SV220B)",
+    "nameEn": "Exhaust Filter (SV220B)",
+    "category": "vacuum-filter",
+    "price": 250000
   }
 ]

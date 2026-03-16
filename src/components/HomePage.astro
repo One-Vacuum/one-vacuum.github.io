@@ -384,6 +384,9 @@ const products = loadProducts();
     }
   }
 
-  btnKO.addEventListener('click', () => setLang('ko'));
-  btnEN.addEventListener('click', () => setLang('en'));
+  function toggleLang() {
+    setLang(currentLang === 'ko' ? 'en' : 'ko');
+  }
+  btnKO.addEventListener('click', toggleLang);
+  btnEN.addEventListener('click', toggleLang);
 </script>

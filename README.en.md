@@ -26,8 +26,8 @@ Company brochure website built with Astro + Tailwind CSS.
    ```
 
 3. **Open in browser**
-   - Korean: http://localhost:4321/ko/
-   - English: http://localhost:4321/en/
+   - http://localhost:4321
+   - Single page with client-side KO/EN language toggle in the header
 
 4. **Test production build** (recommended before merging)
    ```bash
@@ -38,11 +38,11 @@ Company brochure website built with Astro + Tailwind CSS.
 ### Verify Before Merge Checklist
 
 - `npm run dev` starts without errors
-- Korean page (`/ko/`) loads correctly
-- English page (`/en/`) loads correctly
-- Language switcher works
+- Page loads correctly (http://localhost:4321)
+- Language toggle works (tap either KO or EN to switch)
 - All product images display
-- Links to external stores work
+- Product card detail toggle works on click
+- Product search and sorting works
 - Mobile responsive layout works
 - `npm run build` completes without errors
 
@@ -54,8 +54,20 @@ Place your logo file at:
 ```
 public/images/logo.png
 ```
-- Recommended size: 200x80 pixels
 - Supported formats: PNG, JPG, SVG
+
+### Favicon
+
+Favicon files are located at:
+```
+public/images/favicon/
+├── favicon.ico
+├── favicon-16x16.png
+├── favicon-32x32.png
+├── apple-touch-icon.png
+├── android-chrome-192x192.png
+└── android-chrome-512x512.png
+```
 
 ## Managing Products
 
@@ -63,7 +75,7 @@ Everything is in one folder: `public/products/`
 
 ```
 public/products/
-├── products.json      ← Product data (names, category, price)
+├── products.json      ← Product data (part number, names, category, price)
 └── images/            ← Product images
     ├── product-1.png
     ├── product-2.png
@@ -77,6 +89,7 @@ public/products/
 2. **Edit `public/products/products.json`** - add a new entry:
    ```json
    {
+     "partNumber": "ABC123",
      "image": "your-image.png",
      "nameKo": "제품 이름",
      "nameEn": "Product Name",
@@ -84,12 +97,13 @@ public/products/
      "descriptionEn": "Product description (optional)",
      "category": "oil",
      "price": 50000,
-     "order": 5
+     "bestSeller": false
    }
    ```
+   - `partNumber`: product part number (required)
    - `category`: `oil`, `oil-filter`, or `vacuum-filter`
    - `price`: integer in KRW (e.g. 50000 → displayed as ₩50,000)
-   - `order`: lower numbers appear first
+   - `bestSeller`: set to `true` to show BEST badge and prioritize in default sort
 
 3. **Commit and push** - website updates automatically!
 
@@ -97,10 +111,6 @@ public/products/
 
 1. Delete the image from `public/products/images/`
 2. Remove the entry from `products.json`
-
-### To Reorder Products:
-
-Change the `order` number (lower = appears first)
 
 ### If No Products:
 

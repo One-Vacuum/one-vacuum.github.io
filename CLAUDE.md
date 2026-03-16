@@ -10,7 +10,7 @@ This file provides guidance for Claude Code when working on this project.
 
 ## Documentation
 
-- **Keep CLAUDE.md, README.md, and README.en.md up-to-date** whenever changes occur in the overall codebase (structure, features, commands, etc.).
+- **IMPORTANT: Every time you make changes to the codebase, update CLAUDE.md, README.md, and README.en.md** to reflect the changes. This includes changes to project structure, features, commands, architecture, product schema, styling conventions, or any other documented aspect. All three files must stay in sync and accurately describe the current state of the project.
 
 ## Project Overview
 
@@ -20,7 +20,7 @@ One Vacuum (원베큠) — A bilingual (Korean/English) company brochure website
 
 - **Framework**: Astro 5.x (Static Site Generation)
 - **Styling**: Tailwind CSS 3.4 with custom primary color palette (sky blue)
-- **Font**: Pretendard (loaded from CDN)
+- **Fonts**: Pretendard (body, loaded from CDN) + Outfit (brand title, loaded from Google Fonts)
 - **i18n**: Client-side toggle via `data-i18n` attributes (Korean default, single page)
 - **Theme**: Dark/light mode toggle with Tailwind `dark:` classes (default: light)
 - **Deployment**: GitHub Pages via GitHub Actions (auto-deploy on push to `main`)
@@ -33,10 +33,10 @@ one-vacuum.github.io/
 │   ├── components/
 │   │   ├── Header.astro           # Sticky header with logo, nav, lang/theme toggles
 │   │   ├── Footer.astro           # Dark footer with contact info & quick links
-│   │   ├── Hero.astro             # Hero section with company intro & CTA buttons
+│   │   ├── Hero.astro             # Hero section with animated product tile background
 │   │   ├── HomePage.astro         # Main page (products, buy, contact) + client-side JS
-│   │   ├── ProductCard.astro      # Bilingual product card with data attributes
-│   │   └── LanguageSwitcher.astro # KO/EN toggle buttons
+│   │   ├── ProductCard.astro      # Product card with opacity-based front/back toggle
+│   │   └── LanguageSwitcher.astro # KO/EN toggle (tap either side to switch)
 │   ├── i18n/
 │   │   └── ui.ts                  # All translation strings (KO/EN)
 │   ├── lib/
@@ -48,11 +48,12 @@ one-vacuum.github.io/
 │   └── styles/
 │       └── global.css             # Tailwind imports + custom component classes
 ├── public/
-│   ├── images/logo.png            # Company logo
+│   ├── images/
+│   │   ├── logo.png               # Company logo
+│   │   └── favicon/               # Favicon files (ico, png, apple-touch-icon)
 │   ├── products/
 │   │   ├── products.json          # Product data (easy to edit!)
 │   │   └── images/                # Product images
-│   └── favicon.svg
 ├── .github/workflows/deploy.yml   # GitHub Pages deployment workflow
 ├── astro.config.mjs               # Astro configuration (site URL, Tailwind)
 ├── tailwind.config.mjs            # Tailwind theme (custom colors, fonts)
@@ -64,7 +65,7 @@ one-vacuum.github.io/
 
 ### Page Rendering Flow
 1. `index.astro` renders `HomePage.astro` directly (single page, no routing)
-2. `HomePage.astro` contains all page content (products, buy, contact) and client-side JS for language switching + category filtering
+2. `HomePage.astro` contains all page content (products, buy, contact) and client-side JS for language switching, category filtering, search, and sorting
 3. `BaseLayout.astro` wraps everything with HTML shell, Header, and Footer
 4. All translatable elements use `data-i18n` attributes; client-side `setLang()` swaps text from `src/i18n/ui.ts`
 5. Product names/descriptions use `data-name-ko`/`data-name-en` and `data-desc-ko`/`data-desc-en` attributes
@@ -74,12 +75,16 @@ one-vacuum.github.io/
 - The `loadProducts()` function reads JSON, sorts by `order`, and returns bilingual product data
 - Empty JSON `[]` shows "Products Coming Soon..." message
 - Products are filterable by category via client-side JS tabs (All / Oil / Oil Filter / Vacuum Filter)
+- Products are searchable by name or part number
+- Products can be sorted by price (ascending/descending); default sort shows best sellers first
 - Prices are displayed in KRW (₩) format
+- Pagination via "Show More" button (8 items per page)
 
 ### Product JSON Schema
 Each entry in `public/products/products.json`:
 ```json
 {
+  "partNumber": "ABC123",
   "image": "my-product.png",
   "nameKo": "제품 이름",
   "nameEn": "Product Name",
@@ -87,16 +92,22 @@ Each entry in `public/products/products.json`:
   "descriptionEn": "Product description (optional)",
   "category": "oil | oil-filter | vacuum-filter",
   "price": 50000,
-  "order": 1
+  "bestSeller": true
 }
 ```
+- `partNumber`: product part number displayed on the card
 - `image`: filename in `public/products/images/`
 - `category`: must be one of `oil`, `oil-filter`, `vacuum-filter`
 - `price`: integer in KRW (no decimals)
-- `order`: lower numbers appear first
+- `bestSeller`: optional, shows BEST badge and prioritizes in default sort
+
+### Product Card Interaction
+- Cards use an **opacity fade** transition (not 3D flip) to toggle between front (product image/price) and back (detail info)
+- Clicking a card toggles the `.flipped` class; CSS handles opacity transitions on `.card-front` and `.card-back`
 
 ### i18n System
 - Single page with client-side language toggle (default: Korean)
+- Tapping either KO or EN button toggles to the other language
 - All translatable elements have `data-i18n="key"` attributes
 - `setLang('ko'|'en')` in `HomePage.astro` script swaps all text at runtime
 - Product cards use `data-name-ko`/`data-name-en` for bilingual product names
@@ -116,6 +127,7 @@ Each entry in `public/products/products.json`:
 | UI text translations | `src/i18n/ui.ts` |
 | Contact info | `src/i18n/ui.ts` (phone, email, address values) |
 | Company logo | `public/images/logo.png` |
+| Favicon | `public/images/favicon/` |
 
 ## Commands
 
@@ -133,6 +145,8 @@ npm run preview # Preview production build locally
   - `.container-custom` — Max-width container with padding
   - `.section` — Standard section padding
   - `.btn-primary` / `.btn-secondary` — Button styles
+  - `.card-flip` / `.card-inner` / `.card-front` / `.card-back` — Product card toggle styles
+- Brand title uses Outfit font (`font-family: 'Outfit'`)
 - Primary color: `primary-600` (#0284c7, sky blue)
 - Responsive breakpoint: `md:` for desktop nav and layout transitions
 
