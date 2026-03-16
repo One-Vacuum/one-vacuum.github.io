@@ -48,6 +48,8 @@ For English: [README.en.md](README.en.md)
 
 ## 이미지 추가
 
+> **이미지 크기 최적화**: 제품 이미지는 가능한 작은 파일 크기를 사용해주세요. JPG 형식 권장 (PNG 대비 파일 크기가 작음). 큰 이미지는 페이지 로딩 속도와 GitHub 저장소 용량에 영향을 줍니다.
+
 ### 회사 로고
 
 로고 파일 위치:
@@ -90,7 +92,7 @@ public/products/
    ```json
    {
      "partNumber": "ABC123",
-     "image": "이미지파일.png",
+     "image": "이미지파일.jpg",
      "nameKo": "제품 이름",
      "nameEn": "Product Name",
      "descriptionKo": "제품 설명 (선택)",

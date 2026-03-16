@@ -48,6 +48,8 @@ Company brochure website built with Astro + Tailwind CSS.
 
 ## Adding Images
 
+> **Image size optimization**: Use small file sizes for product images whenever possible. JPG format is recommended over PNG for smaller file sizes. Large images affect page load speed and GitHub repository size.
+
 ### Company Logo
 
 Place your logo file at:
@@ -90,7 +92,7 @@ public/products/
    ```json
    {
      "partNumber": "ABC123",
-     "image": "your-image.png",
+     "image": "your-image.jpg",
      "nameKo": "제품 이름",
      "nameEn": "Product Name",
      "descriptionKo": "제품 설명 (optional)",

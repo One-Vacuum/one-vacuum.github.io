@@ -1,7 +1,7 @@
 [
   {
     "partNumber": "L12005",
-    "image": "L12005LVO1205L.png",
+    "image": "L12005LVO1205L.jpg",
     "nameKo": "LVO120, 5 리터",
     "nameEn": "LVO120, 5 Liter",
     "category": "oil",
@@ -10,7 +10,7 @@
   },
   {
     "partNumber": "L13005",
-    "image": "L13005LVO1305L.png",
+    "image": "L13005LVO1305L.jpg",
     "nameKo": "LVO130, 5 리터",
     "nameEn": "LVO130, 5 Liter",
     "category": "oil",
@@ -19,7 +19,7 @@
   },
   {
     "partNumber": "L13020",
-    "image": "L13020LVO13020L.png",
+    "image": "L13020LVO13020L.jpg",
     "nameKo": "LVO130, 20 리터",
     "nameEn": "LVO130, 20 Liter",
     "category": "oil",
@@ -28,7 +28,7 @@
   },
   {
     "partNumber": "L21020",
-    "image": "L21020LVO21020L.png",
+    "image": "L21020LVO21020L.jpg",
     "nameKo": "LVO210, 20 리터",
     "nameEn": "LVO210, 20 Liter",
     "category": "oil",
@@ -37,7 +37,7 @@
   },
   {
     "partNumber": "L31001",
-    "image": "L31001LVO3101L.png",
+    "image": "L31001LVO3101L.jpg",
     "nameKo": "LVO310, 1 리터",
     "nameEn": "LVO310, 1 Liter",
     "category": "oil",
@@ -46,7 +46,7 @@
   },
   {
     "partNumber": "L42001",
-    "image": "L42001LVO4201L.png",
+    "image": "L42001LVO4201L.jpg",
     "nameKo": "LVO420, 1 리터",
     "nameEn": "LVO420, 1 Liter",
     "category": "oil",
@@ -55,7 +55,7 @@
   },
   {
     "partNumber": "L70201",
-    "image": "L70201LVO7021L.png",
+    "image": "L70201LVO7021L.jpg",
     "nameKo": "LVO702, 1 리터",
     "nameEn": "LVO702, 1 Liter",
     "category": "oil",
@@ -64,7 +64,7 @@
   },
   {
     "partNumber": "L70205",
-    "image": "L70205LVO7025L.png",
+    "image": "L70205LVO7025L.jpg",
     "nameKo": "LVO702, 5 리터",
     "nameEn": "LVO702, 5 Liter",
     "category": "oil",
@@ -73,7 +73,7 @@
   },
   {
     "partNumber": "L10005",
-    "image": "L10001LVO_100.png",
+    "image": "L10001LVO_100.jpg",
     "nameKo": "LVO100, 5 리터",
     "nameEn": "LVO100, 5 Liter",
     "category": "oil",
@@ -83,7 +83,7 @@
   },
   {
     "partNumber": "L10001",
-    "image": "L10001LVO_100.png",
+    "image": "L10001LVO_100.jpg",
     "nameKo": "LVO100, 1 리터",
     "nameEn": "LVO100, 1 Liter",
     "category": "oil",
@@ -91,7 +91,7 @@
   },
   {
     "partNumber": "L12001",
-    "image": "L12001LVO1201L.png",
+    "image": "L12001LVO1201L.jpg",
     "nameKo": "LVO120, 1 리터",
     "nameEn": "LVO120, 1 Liter",
     "category": "oil",
@@ -99,7 +99,7 @@
   },
   {
     "partNumber": "L12020",
-    "image": "L12020LVO12020L.png",
+    "image": "L12020LVO12020L.jpg",
     "nameKo": "LVO120, 20 리터",
     "nameEn": "LVO120, 20 Liter",
     "category": "oil",
@@ -107,7 +107,7 @@
   },
   {
     "partNumber": "L13001",
-    "image": "L13001LVO1301L.png",
+    "image": "L13001LVO1301L.jpg",
     "nameKo": "LVO130, 1 리터",
     "nameEn": "LVO130, 1 Liter",
     "category": "oil",
@@ -115,7 +115,7 @@
   },
   {
     "partNumber": "L13099",
-    "image": "L13099LVO130208L.png",
+    "image": "L13099LVO130208L.jpg",
     "nameKo": "LVO130, 208 리터",
     "nameEn": "LVO130, 208 Liter",
     "category": "oil",
@@ -123,7 +123,7 @@
   },
   {
     "partNumber": "L15001",
-    "image": "L15001LVO1501L.png",
+    "image": "L15001LVO1501L.jpg",
     "nameKo": "LVO150, 1 리터",
     "nameEn": "LVO150, 1 Liter",
     "category": "oil",
@@ -131,7 +131,7 @@
   },
   {
     "partNumber": "L15020",
-    "image": "L15020LVO15020L.png",
+    "image": "L15020LVO15020L.jpg",
     "nameKo": "LVO150, 20 리터",
     "nameEn": "LVO150, 20 Liter",
     "category": "oil",
@@ -139,7 +139,7 @@
   },
   {
     "partNumber": "L21001",
-    "image": "L21001LVO2101L.png",
+    "image": "L21001LVO2101L.jpg",
     "nameKo": "LVO210, 1 리터",
     "nameEn": "LVO210, 1 Liter",
     "category": "oil",
@@ -147,7 +147,7 @@
   },
   {
     "partNumber": "L21005",
-    "image": "L21005LVO2105L.png",
+    "image": "L21005LVO2105L.jpg",
     "nameKo": "LVO210, 5 리터",
     "nameEn": "LVO210, 5 Liter",
     "category": "oil",
@@ -155,7 +155,7 @@
   },
   {
     "partNumber": "L21099",
-    "image": "L21099LVO210208L.png",
+    "image": "L21099LVO210208L.jpg",
     "nameKo": "LVO210, 208 리터",
     "nameEn": "LVO210, 208 Liter",
     "category": "oil",
@@ -163,7 +163,7 @@
   },
   {
     "partNumber": "L21101",
-    "image": "L21101LVO2111L.png",
+    "image": "L21101LVO2111L.jpg",
     "nameKo": "LVO211, 1 리터",
     "nameEn": "LVO211, 1 Liter",
     "category": "oil",
@@ -171,7 +171,7 @@
   },
   {
     "partNumber": "L21105",
-    "image": "L21105LVO2115L.png",
+    "image": "L21105LVO2115L.jpg",
     "nameKo": "LVO211, 5 리터",
     "nameEn": "LVO211, 5 Liter",
     "category": "oil",
@@ -179,7 +179,7 @@
   },
   {
     "partNumber": "L21120",
-    "image": "L21120LVO21120L.png",
+    "image": "L21120LVO21120L.jpg",
     "nameKo": "LVO211, 20 리터",
     "nameEn": "LVO211, 20 Liter",
     "category": "oil",
@@ -187,7 +187,7 @@
   },
   {
     "partNumber": "L24020",
-    "image": "L24020LVO24020L.png",
+    "image": "L24020LVO24020L.jpg",
     "nameKo": "LVO240, 20 리터",
     "nameEn": "LVO240, 20 Liter",
     "category": "oil",
@@ -195,7 +195,7 @@
   },
   {
     "partNumber": "L25000",
-    "image": "L25000LVO2500.3L.png",
+    "image": "L25000LVO2500.3L.jpg",
     "nameKo": "LVO250, 0.3 리터",
     "nameEn": "LVO250, 0.3 Liter",
     "category": "oil",
@@ -203,7 +203,7 @@
   },
   {
     "partNumber": "L26000",
-    "image": "L26000LVO2600.3L.png",
+    "image": "L26000LVO2600.3L.jpg",
     "nameKo": "LVO260, 0.3 리터",
     "nameEn": "LVO260, 0.3 Liter",
     "category": "oil",
@@ -211,7 +211,7 @@
   },
   {
     "partNumber": "L30020",
-    "image": "L30020LVO30020L.png",
+    "image": "L30020LVO30020L.jpg",
     "nameKo": "LVO300, 20 리터",
     "nameEn": "LVO300, 20 Liter",
     "category": "oil",
@@ -219,7 +219,7 @@
   },
   {
     "partNumber": "L40000",
-    "image": "L40000LVO4000.75L.png",
+    "image": "L40000LVO4000.75L.jpg",
     "nameKo": "LVO400, 0.75 리터",
     "nameEn": "LVO400, 0.75 Liter",
     "category": "oil",
@@ -227,7 +227,7 @@
   },
   {
     "partNumber": "L40001",
-    "image": "L40001LVO4001L.png",
+    "image": "L40001LVO4001L.jpg",
     "nameKo": "LVO400, 1 리터",
     "nameEn": "LVO400, 1 Liter",
     "category": "oil",
@@ -235,7 +235,7 @@
   },
   {
     "partNumber": "L41000",
-    "image": "L41000LVO4100.6L.png",
+    "image": "L41000LVO4100.6L.jpg",
     "nameKo": "LVO410, 0.6 리터",
     "nameEn": "LVO410, 0.6 Liter",
     "category": "oil",
@@ -243,7 +243,7 @@
   },
   {
     "partNumber": "L41001",
-    "image": "L41001LVO4101L.png",
+    "image": "L41001LVO4101L.jpg",
     "nameKo": "LVO410, 1 리터",
     "nameEn": "LVO410, 1 Liter",
     "category": "oil",
@@ -251,7 +251,7 @@
   },
   {
     "partNumber": "L50005",
-    "image": "L50005LVO5005L.png",
+    "image": "L50005LVO5005L.jpg",
     "nameKo": "LVO500, 5 리터",
     "nameEn": "LVO500, 5 Liter",
     "category": "oil",
@@ -259,7 +259,7 @@
   },
   {
     "partNumber": "L52001",
-    "image": "L52001LVO5201L.png",
+    "image": "L52001LVO5201L.jpg",
     "nameKo": "LVO520, 1 리터",
     "nameEn": "LVO520, 1 Liter",
     "category": "oil",
@@ -267,7 +267,7 @@
   },
   {
     "partNumber": "L52005",
-    "image": "L52005LVO5205L.png",
+    "image": "L52005LVO5205L.jpg",
     "nameKo": "LVO520, 5 리터",
     "nameEn": "LVO520, 5 Liter",
     "category": "oil",
@@ -275,7 +275,7 @@
   },
   {
     "partNumber": "L52101",
-    "image": "L52101LVO5211L.png",
+    "image": "L52101LVO5211L.jpg",
     "nameKo": "LVO521, 1 리터",
     "nameEn": "LVO521, 1 Liter",
     "category": "oil",
@@ -283,7 +283,7 @@
   },
   {
     "partNumber": "L52105",
-    "image": "L52105LVO5215L.png",
+    "image": "L52105LVO5215L.jpg",
     "nameKo": "LVO521, 5 리터",
     "nameEn": "LVO521, 5 Liter",
     "category": "oil",
@@ -291,7 +291,7 @@
   },
   {
     "partNumber": "L54020",
-    "image": "L54020LVO54020L.png",
+    "image": "L54020LVO54020L.jpg",
     "nameKo": "LVO540, 20 리터",
     "nameEn": "LVO540, 20 Liter",
     "category": "oil",
@@ -299,7 +299,7 @@
   },
   {
     "partNumber": "L70202",
-    "image": "L70202LVO7022L.png",
+    "image": "L70202LVO7022L.jpg",
     "nameKo": "LVO702, 2 리터",
     "nameEn": "LVO702, 2 Liter",
     "category": "oil",
@@ -315,7 +315,7 @@
   },
   {
     "partNumber": "EK96004",
-    "image": "EK96004Oil_filterSV40BSV65B.png",
+    "image": "EK96004Oil_filterSV40BSV65B.jpg",
     "nameKo": "Oil Filter (SV40B/SV65B)",
     "nameEn": "Oil Filter (SV40B/SV65B)",
     "category": "oil-filter",
@@ -414,7 +414,7 @@
   },
   {
     "partNumber": "971431120",
-    "image": "971431120Exhaust.filterSV300BSV630B.png",
+    "image": "971431120Exhaust.filterSV300BSV630B.jpg",
     "nameKo": "Exhaust Filter (SV300B,SV630B)",
     "nameEn": "Exhaust Filter (SV300B,SV630B)",
     "category": "vacuum-filter",
@@ -422,7 +422,7 @@
   },
   {
     "partNumber": "EK9606M",
-    "image": "EK9606MExhaust.filterSV220B.png",
+    "image": "EK9606MExhaust.filterSV220B.jpg",
     "nameKo": "Exhaust Filter (SV220B)",
     "nameEn": "Exhaust Filter (SV220B)",
     "category": "vacuum-filter",

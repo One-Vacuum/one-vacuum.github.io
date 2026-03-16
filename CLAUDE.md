@@ -85,7 +85,7 @@ Each entry in `public/products/products.json`:
 ```json
 {
   "partNumber": "ABC123",
-  "image": "my-product.png",
+  "image": "my-product.jpg",
   "nameKo": "제품 이름",
   "nameEn": "Product Name",
   "descriptionKo": "제품 설명 (optional)",
@@ -96,7 +96,7 @@ Each entry in `public/products/products.json`:
 }
 ```
 - `partNumber`: product part number displayed on the card
-- `image`: filename in `public/products/images/`
+- `image`: filename in `public/products/images/` (prefer JPG for smaller file size)
 - `category`: must be one of `oil`, `oil-filter`, `vacuum-filter`
 - `price`: integer in KRW (no decimals)
 - `bestSeller`: optional, shows BEST badge and prioritizes in default sort
@@ -118,6 +118,12 @@ Each entry in `public/products/products.json`:
 - Uses Tailwind `dark:` variant with `class` strategy
 - Theme preference persisted in `localStorage`
 - `<html>` element gets `class="dark"` toggled
+
+## Image Optimization
+
+- **Prefer JPG over PNG** for product images — significantly smaller file sizes
+- Keep product images as small as possible to improve page load speed and minimize repository size
+- Logo and favicon files can remain PNG for transparency support
 
 ## Key Files for Content Updates
 
