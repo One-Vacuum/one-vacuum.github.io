@@ -26,8 +26,8 @@ For English: [README.en.md](README.en.md)
    ```
 
 3. **브라우저에서 열기**
-   - 한국어: http://localhost:4321/ko/
-   - 영어: http://localhost:4321/en/
+   - http://localhost:4321
+   - 단일 페이지이며, 우측 상단 KO/EN 토글로 언어 전환
 
 4. **프로덕션 빌드 테스트** (병합 전 권장)
    ```bash
@@ -38,11 +38,11 @@ For English: [README.en.md](README.en.md)
 ### 병합 전 체크리스트
 
 - `npm run dev` 오류 없이 실행
-- 한국어 페이지 (`/ko/`) 정상 로드
-- 영어 페이지 (`/en/`) 정상 로드
-- 언어 전환 버튼 동작
+- 페이지 정상 로드 (http://localhost:4321)
+- 언어 전환 버튼 동작 (KO/EN 어느 쪽이든 터치하면 토글)
 - 모든 제품 이미지 표시
-- 외부 스토어 링크 동작
+- 제품 카드 클릭 시 상세정보 전환 동작
+- 제품 검색 및 정렬 동작
 - 모바일 반응형 레이아웃 동작
 - `npm run build` 오류 없이 완료
 
@@ -54,8 +54,20 @@ For English: [README.en.md](README.en.md)
 ```
 public/images/logo.png
 ```
-- 권장 크기: 200x80 픽셀 (또는 비슷한 비율)
 - 지원 형식: PNG, JPG, SVG
+
+### 파비콘
+
+파비콘 파일 위치:
+```
+public/images/favicon/
+├── favicon.ico
+├── favicon-16x16.png
+├── favicon-32x32.png
+├── apple-touch-icon.png
+├── android-chrome-192x192.png
+└── android-chrome-512x512.png
+```
 
 ## 제품 관리
 
@@ -63,7 +75,7 @@ public/images/logo.png
 
 ```
 public/products/
-├── products.json      ← 제품 데이터 (이름, 카테고리, 가격)
+├── products.json      ← 제품 데이터 (품번, 이름, 카테고리, 가격)
 └── images/            ← 제품 이미지
     ├── product-1.png
     ├── product-2.png
@@ -77,6 +89,7 @@ public/products/
 2. **`public/products/products.json`** 파일에 새 항목 추가:
    ```json
    {
+     "partNumber": "ABC123",
      "image": "이미지파일.png",
      "nameKo": "제품 이름",
      "nameEn": "Product Name",
@@ -84,12 +97,13 @@ public/products/
      "descriptionEn": "Product description (optional)",
      "category": "oil",
      "price": 50000,
-     "order": 5
+     "bestSeller": false
    }
    ```
+   - `partNumber`: 제품 품번 (필수)
    - `category`: `oil` (오일), `oil-filter` (오일 필터), `vacuum-filter` (진공 필터) 중 택 1
    - `price`: 원화 정수 (예: 50000 → ₩50,000으로 표시)
-   - `order`: 낮을수록 먼저 표시
+   - `bestSeller`: `true`로 설정하면 BEST 배지 표시 및 기본 정렬에서 상단 노출
 
 3. **커밋 및 푸시** - 웹사이트가 자동으로 업데이트됩니다!
 
@@ -97,10 +111,6 @@ public/products/
 
 1. `public/products/images/`에서 이미지 삭제
 2. `products.json`에서 해당 항목 삭제
-
-### 제품 순서 변경:
-
-`order` 숫자 변경 (낮을수록 먼저 표시)
 
 ### 제품이 없는 경우:
 

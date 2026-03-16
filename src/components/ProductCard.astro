@@ -17,7 +17,7 @@ const { partNumber, nameKo, nameEn, image, price, rawPrice, category, descriptio
 
 <div
   class:list={[
-    'product-card card-flip cursor-pointer',
+    'product-card card-flip cursor-pointer h-full',
   ]}
   data-category={category}
   data-price={rawPrice}
@@ -27,7 +27,7 @@ const { partNumber, nameKo, nameEn, image, price, rawPrice, category, descriptio
   <div class="card-inner">
     <!-- Front -->
     <div class:list={[
-      'card-front group/card flex flex-col bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm transition-shadow duration-300 border border-gray-100 dark:border-gray-700',
+      'card-front h-full group/card flex flex-col bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm transition-shadow duration-300 border border-gray-100 dark:border-gray-700',
       bestSeller && 'ring-2 ring-primary-400/50 dark:ring-primary-500/40',
     ]}>
       {bestSeller ? (
@@ -40,14 +40,15 @@ const { partNumber, nameKo, nameEn, image, price, rawPrice, category, descriptio
           src={image}
           alt={nameKo}
           class="w-full h-full object-contain transition-transform duration-300"
-          onload="if(this.naturalWidth>this.naturalHeight*1.2){this.classList.remove('object-contain');this.classList.add('object-cover')}"
+          onload="this.loading='eager';if(this.naturalWidth>this.naturalHeight*1.2&&this.naturalWidth<=this.naturalHeight*2){this.classList.remove('object-contain');this.classList.add('object-cover')}"
           onerror="this.src='/images/placeholder-product.svg'"
           loading="lazy"
+          decoding="sync"
         />
       </div>
       <div class="p-4 mt-auto">
         <p class="text-xs text-gray-400 dark:text-gray-500 mb-0.5">{partNumber}</p>
-        <h3 class="product-name font-semibold text-gray-900 dark:text-gray-100 text-base" data-name-ko={nameKo} data-name-en={nameEn}>{nameKo}</h3>
+        <h3 class="product-name font-semibold text-gray-900 dark:text-gray-100 text-base min-h-[2.5rem] line-clamp-2" data-name-ko={nameKo} data-name-en={nameEn}>{nameKo}</h3>
         {(descriptionKo || descriptionEn) && (
           <p class="product-desc mt-1 text-sm text-gray-500 dark:text-gray-400" data-desc-ko={descriptionKo || ''} data-desc-en={descriptionEn || ''}>{descriptionKo}</p>
         )}
