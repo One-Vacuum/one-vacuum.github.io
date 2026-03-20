@@ -48,7 +48,7 @@ export const ui = {
     'contact.emailValue': 'sales@gvac.co.kr',
     'contact.address': '주소',
     'contact.addressValue': '충청남도 아산시 배방읍 희망로 32, 1동 840호(코아루웰메이드시티) (31470)',
-    'contact.phoneValue': '000-0000-0000',
+    'contact.phoneValue': '010-8525-7025',
 
     // KakaoTalk
     'kakao.tooltip': '카카오톡 문의',
@@ -109,7 +109,7 @@ export const ui = {
     'contact.emailValue': 'sales@gvac.co.kr',
     'contact.address': 'Address',
     'contact.addressValue': '32 Heemang-ro, Bldg 1 #840 (Koaru Wellmade City), Baebang-eup, Asan-si, Chungcheongnam-do 31470',
-    'contact.phoneValue': '000-0000-0000',
+    'contact.phoneValue': '010-8525-7025',
 
     // KakaoTalk
     'kakao.tooltip': 'KakaoTalk Inquiry',
