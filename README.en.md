@@ -128,3 +128,20 @@ The site auto-deploys to GitHub Pages when you push to `main`.
 2. Under "Build and deployment", select **GitHub Actions**
 3. Push to `main` branch to trigger deployment
 4. Site will be live at: https://onevacuum.kr
+
+## SEO
+
+Search-engine optimization assets are generated automatically at build time.
+
+- **`sitemap.xml`** — `@astrojs/sitemap` generates `sitemap-index.xml` on every build
+- **`robots.txt`** — lives at `public/robots.txt` and points crawlers to the sitemap
+- **Meta tags** — `BaseLayout.astro` includes canonical URL, Open Graph (link previews on KakaoTalk/Facebook), Twitter card, and JSON-LD structured data
+
+### Registering the site with search engines (manual, one-time)
+
+The code assets alone won't get the site indexed quickly — the domain owner must register it.
+
+1. In [Google Search Console](https://search.google.com/search-console), add `onevacuum.kr` as a **Domain** property and verify ownership via a DNS TXT record
+2. Use **URL Inspection** > `https://onevacuum.kr/` > **Request Indexing**
+3. Submit `https://onevacuum.kr/sitemap-index.xml` under **Sitemaps**
+4. (Optional) Register the same way in [Naver Search Advisor](https://searchadvisor.naver.com/)

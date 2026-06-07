@@ -54,6 +54,7 @@ one-vacuum.github.io/
 │   ├── products/
 │   │   ├── products.json          # Product data (easy to edit!)
 │   │   └── images/                # Product images
+│   └── robots.txt                 # Crawler rules + sitemap location
 ├── .github/workflows/deploy.yml   # GitHub Pages deployment workflow
 ├── astro.config.mjs               # Astro configuration (site URL, Tailwind)
 ├── tailwind.config.mjs            # Tailwind theme (custom colors, fonts)
@@ -155,6 +156,13 @@ npm run preview # Preview production build locally
 - Brand title uses Outfit font (`font-family: 'Outfit'`)
 - Primary color: `primary-600` (#0284c7, sky blue)
 - Responsive breakpoint: `md:` for desktop nav and layout transitions
+
+## SEO
+
+- **Sitemap**: Generated automatically at build time by `@astrojs/sitemap` (configured in `astro.config.mjs`). Outputs `sitemap-index.xml` + `sitemap-0.xml` to `dist/`. The `site` URL in `astro.config.mjs` must stay accurate for correct absolute URLs.
+- **robots.txt**: Static file at `public/robots.txt`; allows all crawlers and references `https://onevacuum.kr/sitemap-index.xml`.
+- **Meta tags**: `BaseLayout.astro` head includes canonical URL, Open Graph (social/KakaoTalk previews), Twitter card, and JSON-LD `Organization` structured data. These derive from `Astro.site` and the `site.title`/`site.description` i18n strings — keep those in sync when updating branding.
+- **Search Console (manual)**: Code assets alone do not get the site indexed. The domain owner must register `onevacuum.kr` in Google Search Console (Domain property, DNS verification), request indexing, and submit the sitemap. See README for steps.
 
 ## Deployment
 

@@ -128,3 +128,20 @@ public/products/
 2. "Build and deployment"에서 **GitHub Actions** 선택
 3. `main` 브랜치에 푸시하여 배포 시작
 4. 사이트 주소: https://onevacuum.kr
+
+## SEO (검색 노출)
+
+빌드 시 검색엔진 최적화 자산이 자동 생성됩니다.
+
+- **`sitemap.xml`** — `@astrojs/sitemap`이 빌드마다 `sitemap-index.xml`을 자동 생성
+- **`robots.txt`** — `public/robots.txt`에 위치하며 사이트맵 위치를 안내
+- **메타 태그** — `BaseLayout.astro`에 canonical, Open Graph(카카오톡·페이스북 공유 미리보기), Twitter 카드, JSON-LD 구조화 데이터 포함
+
+### 검색엔진에 사이트 등록 (수동, 최초 1회)
+
+코드 자산만으로는 색인이 빨리 되지 않습니다. 도메인 소유자가 직접 등록해야 합니다.
+
+1. [Google Search Console](https://search.google.com/search-console)에서 **도메인** 속성으로 `onevacuum.kr` 추가 후 DNS TXT 레코드로 소유권 인증
+2. **URL 검사** > `https://onevacuum.kr/` > **색인 생성 요청**
+3. **Sitemaps**에서 `https://onevacuum.kr/sitemap-index.xml` 제출
+4. (선택) [네이버 서치어드바이저](https://searchadvisor.naver.com/)에도 동일하게 등록
