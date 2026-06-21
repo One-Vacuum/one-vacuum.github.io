@@ -144,4 +144,4 @@ public/products/
 1. [Google Search Console](https://search.google.com/search-console)에서 **도메인** 속성으로 `onevacuum.kr` 추가 후 DNS TXT 레코드로 소유권 인증
 2. **URL 검사** > `https://onevacuum.kr/` > **색인 생성 요청**
 3. **Sitemaps**에서 `https://onevacuum.kr/sitemap-index.xml` 제출
-4. (선택) [네이버 서치어드바이저](https://searchadvisor.naver.com/)에도 동일하게 등록
+4. [네이버 서치어드바이저](https://searchadvisor.naver.com/) > **웹마스터 도구**에 `onevacuum.kr` 등록 (네이버는 DNS 인증 미지원 — `BaseLayout.astro` `<head>`의 `naver-site-verification` 메타태그로 소유권 확인). 배포 후 소유확인 → **요청 > 사이트맵 제출**에 `https://onevacuum.kr/sitemap-index.xml` 제출. 이 메타태그를 지우면 소유권 인증이 풀립니다.
