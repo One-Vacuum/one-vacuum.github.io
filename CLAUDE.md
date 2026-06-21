@@ -163,6 +163,7 @@ npm run preview # Preview production build locally
 - **robots.txt**: Static file at `public/robots.txt`; allows all crawlers and references `https://onevacuum.kr/sitemap-index.xml`.
 - **Meta tags**: `BaseLayout.astro` head includes canonical URL, Open Graph (social/KakaoTalk previews), Twitter card, and JSON-LD `Organization` structured data. These derive from `Astro.site` and the `site.title`/`site.description` i18n strings — keep those in sync when updating branding.
 - **Search Console (manual)**: Code assets alone do not get the site indexed. The domain owner must register `onevacuum.kr` in Google Search Console (Domain property, DNS verification), request indexing, and submit the sitemap. See README for steps.
+- **Naver Search Advisor (manual)**: For Korean search traffic, register `onevacuum.kr` in [Naver Search Advisor](https://searchadvisor.naver.com/) (웹마스터 도구). Naver does not support DNS verification — ownership is verified via the `naver-site-verification` meta tag in `BaseLayout.astro` `<head>`. After deploy, verify ownership, then submit `https://onevacuum.kr/sitemap-index.xml` under 요청 → 사이트맵 제출. The verification meta tag must remain in the head or ownership lapses.
 
 ## Deployment
 

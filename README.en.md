@@ -144,4 +144,4 @@ The code assets alone won't get the site indexed quickly — the domain owner mu
 1. In [Google Search Console](https://search.google.com/search-console), add `onevacuum.kr` as a **Domain** property and verify ownership via a DNS TXT record
 2. Use **URL Inspection** > `https://onevacuum.kr/` > **Request Indexing**
 3. Submit `https://onevacuum.kr/sitemap-index.xml` under **Sitemaps**
-4. (Optional) Register the same way in [Naver Search Advisor](https://searchadvisor.naver.com/)
+4. Register `onevacuum.kr` in [Naver Search Advisor](https://searchadvisor.naver.com/) > **Webmaster Tools** (Naver has no DNS verification — ownership is confirmed via the `naver-site-verification` meta tag in `BaseLayout.astro` `<head>`). After deploy, verify ownership, then submit `https://onevacuum.kr/sitemap-index.xml` under **Request > Submit Sitemap**. Removing the meta tag revokes ownership.
