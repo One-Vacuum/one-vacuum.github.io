@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from './Hero.astro';
 import ProductCard from './ProductCard.astro';
 import { ui } from '../i18n/ui';
-import { loadProducts, formatPrice } from '../lib/products';
+import { loadProducts, formatPrice, coupangUrl } from '../lib/products';
 
 const t = ui.ko;
 const products = loadProducts();
@@ -82,6 +82,9 @@ const products = loadProducts();
                 price={formatPrice(product.price)}
                 rawPrice={product.price}
                 bestSeller={product.bestSeller}
+                naverUrl={product.naverUrl}
+                coupangUrl={coupangUrl(product)}
+                coupangIsExact={Boolean(product.coupangUrl)}
               />
             ))}
           </div>
@@ -123,26 +126,34 @@ const products = loadProducts();
         </p>
       </div>
 
-      <div class="flex flex-col sm:flex-row gap-6 justify-center max-w-2xl mx-auto">
-        <div
-          class="flex-1 flex items-center justify-center gap-3 p-6 bg-gray-100 dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 cursor-not-allowed opacity-60"
+      <div class="grid sm:grid-cols-2 gap-4 sm:gap-6 max-w-3xl mx-auto">
+        <a
+          href="https://smartstore.naver.com/onevacuum"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group flex items-center justify-center gap-3 px-6 py-7 bg-gray-50 dark:bg-gray-800/60 rounded-2xl border border-gray-200/80 dark:border-gray-700 hover:-translate-y-0.5 hover:shadow-lg hover:border-[#03C75A]/60 dark:hover:border-[#03C75A]/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#03C75A] focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900 transition-all duration-300"
         >
-          <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-          </svg>
-          <span class="font-semibold text-gray-500 dark:text-gray-400" data-i18n="buy.naverStore">{t['buy.naverStore']}</span>
-          <span class="text-xs text-gray-400 dark:text-gray-500" data-i18n="buy.comingSoon">{t['buy.comingSoon']}</span>
-        </div>
+          <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#03C75A]/10 text-[#03C75A] transition-colors group-hover:bg-[#03C75A] group-hover:text-white">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+            </svg>
+          </span>
+          <span class="text-lg font-bold text-gray-900 dark:text-gray-100" data-i18n="buy.naverStore">{t['buy.naverStore']}</span>
+        </a>
 
-        <div
-          class="flex-1 flex items-center justify-center gap-3 p-6 bg-gray-100 dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 cursor-not-allowed opacity-60"
+        <a
+          href="https://www.coupang.com/np/search?q=LEYBONOL"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group flex items-center justify-center gap-3 px-6 py-7 bg-gray-50 dark:bg-gray-800/60 rounded-2xl border border-gray-200/80 dark:border-gray-700 hover:-translate-y-0.5 hover:shadow-lg hover:border-[#346AFF]/60 dark:hover:border-[#346AFF]/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#346AFF] focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900 transition-all duration-300"
         >
-          <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-          </svg>
-          <span class="font-semibold text-gray-500 dark:text-gray-400" data-i18n="buy.coupang">{t['buy.coupang']}</span>
-          <span class="text-xs text-gray-400 dark:text-gray-500" data-i18n="buy.comingSoon">{t['buy.comingSoon']}</span>
-        </div>
+          <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#346AFF]/10 text-[#346AFF] transition-colors group-hover:bg-[#346AFF] group-hover:text-white">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+            </svg>
+          </span>
+          <span class="text-lg font-bold text-gray-900 dark:text-gray-100" data-i18n="buy.coupang">{t['buy.coupang']}</span>
+        </a>
       </div>
     </div>
   </section>
@@ -312,13 +323,6 @@ const products = loadProducts();
     searchClear.classList.add('hidden');
     visibleLimit = ITEMS_PER_PAGE;
     applyVisibility();
-  });
-
-  // ===================== Card Flip =====================
-  productGrid?.addEventListener('click', (e) => {
-    const card = (e.target as HTMLElement).closest('.card-flip') as HTMLElement | null;
-    if (!card) return;
-    card.classList.toggle('flipped');
   });
 
   // ===================== Language Toggle =====================

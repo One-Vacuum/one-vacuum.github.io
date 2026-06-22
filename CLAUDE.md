@@ -35,7 +35,7 @@ one-vacuum.github.io/
 │   │   ├── Footer.astro           # Dark footer with contact info & quick links
 │   │   ├── Hero.astro             # Hero section with animated product tile background
 │   │   ├── HomePage.astro         # Main page (products, buy, contact) + client-side JS
-│   │   ├── ProductCard.astro      # Product card with opacity-based front/back toggle
+│   │   ├── ProductCard.astro      # Single-sided product card with Naver/Coupang store buttons
 │   │   └── LanguageSwitcher.astro # KO/EN toggle (tap either side to switch)
 │   ├── i18n/
 │   │   └── ui.ts                  # All translation strings (KO/EN)
@@ -93,7 +93,9 @@ Each entry in `public/products/products.json`:
   "descriptionEn": "Product description (optional)",
   "category": "oil | oil-filter | vacuum-filter",
   "price": 50000,
-  "bestSeller": true
+  "bestSeller": true,
+  "naverUrl": "https://smartstore.naver.com/onevacuum/products/123",
+  "coupangUrl": "https://www.coupang.com/vp/products/456"
 }
 ```
 - `partNumber`: product part number displayed on the card
@@ -101,10 +103,13 @@ Each entry in `public/products/products.json`:
 - `category`: must be one of `oil`, `oil-filter`, `vacuum-filter`
 - `price`: integer in KRW (no decimals)
 - `bestSeller`: optional, shows BEST badge and prioritizes in default sort
+- `naverUrl`: optional, exact Naver SmartStore product page URL. Rendered as the "Naver Store" link on the card back; the link is hidden when absent.
+- `coupangUrl`: optional, exact Coupang product page URL. When absent, `coupangUrl(product)` in `src/lib/products.ts` generates a Coupang **search** link from the product name (Coupang blocks automated harvesting of exact per-product URLs). Oil products search as `LEYBONOL <model> <size>`, filters as `LEYBOLD <name>`.
 
 ### Product Card Interaction
-- Cards use an **opacity fade** transition (not 3D flip) to toggle between front (product image/price) and back (detail info)
-- Clicking a card toggles the `.flipped` class; CSS handles opacity transitions on `.card-front` and `.card-back`
+- Cards are **single-sided** (no flip/back): the front shows the part number, name, price, and store links directly. A subtle hover lift (`hover:-translate-y-1 hover:shadow-lg`) and image zoom provide feedback.
+- Store links render at the bottom of every card as two compact, brand-colored buttons — **네이버 (Naver, green `#00853B`)** shown only when `naverUrl` is set, and **쿠팡 (Coupang, blue `#346AFF`)** always present (exact `coupangUrl` or generated search link). The greens are darkened from Naver's `#03C75A` brand color so white button text meets WCAG AA contrast (≥4.5:1). The buttons sit side by side (each `flex-1`) and stack vertically below `480px` so labels stay legible on the 2-column mobile grid. The Coupang button's `aria-label` reflects whether the link is an exact page ("쿠팡에서 보기") or a search ("쿠팡에서 검색"), driven by the `coupangIsExact` prop.
+- The card itself is not clickable; only the store buttons are interactive (`<a target="_blank">`).
 
 ### i18n System
 - Single page with client-side language toggle (default: Korean)
@@ -152,7 +157,7 @@ npm run preview # Preview production build locally
   - `.container-custom` — Max-width container with padding
   - `.section` — Standard section padding
   - `.btn-primary` / `.btn-secondary` — Button styles
-  - `.card-flip` / `.card-inner` / `.card-front` / `.card-back` — Product card toggle styles
+  - `.product-card` — Single-sided product card (hover lift + image zoom; store buttons rendered inline)
 - Brand title uses Outfit font (`font-family: 'Outfit'`)
 - Primary color: `primary-600` (#0284c7, sky blue)
 - Responsive breakpoint: `md:` for desktop nav and layout transitions
