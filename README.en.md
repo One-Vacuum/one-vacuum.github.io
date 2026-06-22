@@ -41,7 +41,7 @@ Company brochure website built with Astro + Tailwind CSS.
 - Page loads correctly (http://localhost:4321)
 - Language toggle works (tap either KO or EN to switch)
 - All product images display
-- Product card detail toggle works on click
+- Naver/Coupang buy buttons on product cards work
 - Product search and sorting works
 - Mobile responsive layout works
 - `npm run build` completes without errors
@@ -108,7 +108,7 @@ public/products/
    - `category`: `oil`, `oil-filter`, or `vacuum-filter`
    - `price`: integer in KRW (e.g. 50000 → displayed as ₩50,000)
    - `bestSeller`: set to `true` to show BEST badge and prioritize in default sort
-   - `naverUrl` (optional): Naver SmartStore product page link, wired to the "Naver Store" button on the product card's detail (back) side. The button is hidden when absent.
+   - `naverUrl` (optional): Naver SmartStore product page link, wired to the green "Naver" button on the front of the product card. The button is hidden when absent.
    - `coupangUrl` (optional): Coupang product page link. When omitted, a Coupang **search link** built from the product name is generated automatically (Coupang blocks automated harvesting of exact product URLs, so a search link is the default)
 
 3. **Commit and push** - website updates automatically!

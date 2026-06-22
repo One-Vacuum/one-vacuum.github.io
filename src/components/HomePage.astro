@@ -125,29 +125,33 @@ const products = loadProducts();
         </p>
       </div>
 
-      <div class="flex flex-col sm:flex-row gap-6 justify-center max-w-2xl mx-auto">
+      <div class="grid sm:grid-cols-2 gap-4 sm:gap-6 max-w-3xl mx-auto">
         <a
           href="https://smartstore.naver.com/onevacuum"
           target="_blank"
           rel="noopener noreferrer"
-          class="flex-1 flex items-center justify-center gap-3 p-6 bg-gray-100 dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-primary-500 dark:hover:border-primary-500 hover:shadow-md transition-all"
+          class="group flex items-center justify-center gap-3 px-6 py-7 bg-gray-50 dark:bg-gray-800/60 rounded-2xl border border-gray-200/80 dark:border-gray-700 hover:-translate-y-0.5 hover:shadow-lg hover:border-[#03C75A]/60 dark:hover:border-[#03C75A]/60 transition-all duration-300"
         >
-          <svg class="w-6 h-6 text-primary-600 dark:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-          </svg>
-          <span class="font-semibold text-gray-900 dark:text-gray-100" data-i18n="buy.naverStore">{t['buy.naverStore']}</span>
+          <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#03C75A]/10 text-[#03C75A] transition-colors group-hover:bg-[#03C75A] group-hover:text-white">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+            </svg>
+          </span>
+          <span class="text-lg font-bold text-gray-900 dark:text-gray-100" data-i18n="buy.naverStore">{t['buy.naverStore']}</span>
         </a>
 
         <a
           href="https://www.coupang.com/vp/products/9578623755?itemId=28591525460&vendorItemId=95535428127&q=%5BLEYBOLD+%EC%A0%95%ED%92%88%5D+LEYBONOL+LVO702+1L&searchId=7df466eb5580717&sourceType=search&itemsCount=60&searchRank=0&rank=0&traceId=mqoohl1r"
           target="_blank"
           rel="noopener noreferrer"
-          class="flex-1 flex items-center justify-center gap-3 p-6 bg-gray-100 dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-primary-500 dark:hover:border-primary-500 hover:shadow-md transition-all"
+          class="group flex items-center justify-center gap-3 px-6 py-7 bg-gray-50 dark:bg-gray-800/60 rounded-2xl border border-gray-200/80 dark:border-gray-700 hover:-translate-y-0.5 hover:shadow-lg hover:border-[#346AFF]/60 dark:hover:border-[#346AFF]/60 transition-all duration-300"
         >
-          <svg class="w-6 h-6 text-primary-600 dark:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-          </svg>
-          <span class="font-semibold text-gray-900 dark:text-gray-100" data-i18n="buy.coupang">{t['buy.coupang']}</span>
+          <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#346AFF]/10 text-[#346AFF] transition-colors group-hover:bg-[#346AFF] group-hover:text-white">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+            </svg>
+          </span>
+          <span class="text-lg font-bold text-gray-900 dark:text-gray-100" data-i18n="buy.coupang">{t['buy.coupang']}</span>
         </a>
       </div>
     </div>
@@ -318,15 +322,6 @@ const products = loadProducts();
     searchClear.classList.add('hidden');
     visibleLimit = ITEMS_PER_PAGE;
     applyVisibility();
-  });
-
-  // ===================== Card Flip =====================
-  productGrid?.addEventListener('click', (e) => {
-    // Let store links on the card back open normally without toggling the flip.
-    if ((e.target as HTMLElement).closest('a')) return;
-    const card = (e.target as HTMLElement).closest('.card-flip') as HTMLElement | null;
-    if (!card) return;
-    card.classList.toggle('flipped');
   });
 
   // ===================== Language Toggle =====================
