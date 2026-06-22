@@ -99,13 +99,17 @@ public/products/
      "descriptionEn": "Product description (optional)",
      "category": "oil",
      "price": 50000,
-     "bestSeller": false
+     "bestSeller": false,
+     "naverUrl": "https://smartstore.naver.com/onevacuum/products/123",
+     "coupangUrl": "https://www.coupang.com/vp/products/456"
    }
    ```
    - `partNumber`: product part number (required)
    - `category`: `oil`, `oil-filter`, or `vacuum-filter`
    - `price`: integer in KRW (e.g. 50000 → displayed as ₩50,000)
    - `bestSeller`: set to `true` to show BEST badge and prioritize in default sort
+   - `naverUrl` (optional): Naver SmartStore product page link, wired to the "Naver Store" button on the product card's detail (back) side. The button is hidden when absent.
+   - `coupangUrl` (optional): Coupang product page link. When omitted, a Coupang **search link** built from the product name is generated automatically (Coupang blocks automated harvesting of exact product URLs, so a search link is the default)
 
 3. **Commit and push** - website updates automatically!
 

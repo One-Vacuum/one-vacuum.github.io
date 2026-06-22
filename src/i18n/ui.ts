@@ -31,6 +31,9 @@ export const ui = {
     'products.sortPriceDesc': '가격 높은순',
     'products.detailComingSoon': '상세정보 준비중입니다',
     'products.tapToFlip': '상세정보 보기',
+    'products.buyHeading': '구매하러 가기',
+    'products.viewOnNaver': '네이버 스토어',
+    'products.viewOnCoupang': '쿠팡에서 검색',
 
     // Where to Buy
     'buy.title': '구매처',
@@ -91,6 +94,9 @@ export const ui = {
     'products.sortPriceDesc': 'Price: High to Low',
     'products.detailComingSoon': 'Details Coming Soon',
     'products.tapToFlip': 'View Details',
+    'products.buyHeading': 'Buy Now',
+    'products.viewOnNaver': 'Naver Store',
+    'products.viewOnCoupang': 'Search on Coupang',
 
     // Where to Buy
     'buy.title': 'Where to Buy',

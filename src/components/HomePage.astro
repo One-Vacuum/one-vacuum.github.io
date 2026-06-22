@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from './Hero.astro';
 import ProductCard from './ProductCard.astro';
 import { ui } from '../i18n/ui';
-import { loadProducts, formatPrice } from '../lib/products';
+import { loadProducts, formatPrice, coupangUrl } from '../lib/products';
 
 const t = ui.ko;
 const products = loadProducts();
@@ -82,6 +82,8 @@ const products = loadProducts();
                 price={formatPrice(product.price)}
                 rawPrice={product.price}
                 bestSeller={product.bestSeller}
+                naverUrl={product.naverUrl}
+                coupangUrl={coupangUrl(product)}
               />
             ))}
           </div>
@@ -320,6 +322,8 @@ const products = loadProducts();
 
   // ===================== Card Flip =====================
   productGrid?.addEventListener('click', (e) => {
+    // Let store links on the card back open normally without toggling the flip.
+    if ((e.target as HTMLElement).closest('a')) return;
     const card = (e.target as HTMLElement).closest('.card-flip') as HTMLElement | null;
     if (!card) return;
     card.classList.toggle('flipped');

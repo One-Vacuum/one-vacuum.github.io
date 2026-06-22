@@ -6,7 +6,8 @@
     "nameEn": "LVO120, 5 Liter",
     "category": "oil",
     "price": 161000,
-    "bestSeller": true
+    "bestSeller": true,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467712"
   },
   {
     "partNumber": "L13005",
@@ -15,7 +16,8 @@
     "nameEn": "LVO130, 5 Liter",
     "category": "oil",
     "price": 161000,
-    "bestSeller": true
+    "bestSeller": true,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467716"
   },
   {
     "partNumber": "L13020",
@@ -24,7 +26,8 @@
     "nameEn": "LVO130, 20 Liter",
     "category": "oil",
     "price": 542000,
-    "bestSeller": true
+    "bestSeller": true,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467717"
   },
   {
     "partNumber": "L21020",
@@ -33,7 +36,8 @@
     "nameEn": "LVO210, 20 Liter",
     "category": "oil",
     "price": 935000,
-    "bestSeller": true
+    "bestSeller": true,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467723"
   },
   {
     "partNumber": "L31001",
@@ -42,7 +46,8 @@
     "nameEn": "LVO310, 1 Liter",
     "category": "oil",
     "price": 116000,
-    "bestSeller": true
+    "bestSeller": true,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468700"
   },
   {
     "partNumber": "L42001",
@@ -51,7 +56,8 @@
     "nameEn": "LVO420, 1 Liter",
     "category": "oil",
     "price": 1157000,
-    "bestSeller": true
+    "bestSeller": true,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468706"
   },
   {
     "partNumber": "L70201",
@@ -60,7 +66,8 @@
     "nameEn": "LVO702, 1 Liter",
     "category": "oil",
     "price": 245000,
-    "bestSeller": true
+    "bestSeller": true,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468713"
   },
   {
     "partNumber": "L70205",
@@ -69,7 +76,8 @@
     "nameEn": "LVO702, 5 Liter",
     "category": "oil",
     "price": 849000,
-    "bestSeller": true
+    "bestSeller": true,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468715"
   },
   {
     "partNumber": "L10005",
@@ -95,7 +103,8 @@
     "nameKo": "LVO120, 1 리터",
     "nameEn": "LVO120, 1 Liter",
     "category": "oil",
-    "price": 50000
+    "price": 50000,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467711"
   },
   {
     "partNumber": "L12020",
@@ -103,7 +112,8 @@
     "nameKo": "LVO120, 20 리터",
     "nameEn": "LVO120, 20 Liter",
     "category": "oil",
-    "price": 542000
+    "price": 542000,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467713"
   },
   {
     "partNumber": "L13001",
@@ -111,7 +121,8 @@
     "nameKo": "LVO130, 1 리터",
     "nameEn": "LVO130, 1 Liter",
     "category": "oil",
-    "price": 50000
+    "price": 50000,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467715"
   },
   {
     "partNumber": "L13099",
@@ -119,7 +130,8 @@
     "nameKo": "LVO130, 208 리터",
     "nameEn": "LVO130, 208 Liter",
     "category": "oil",
-    "price": 4152000
+    "price": 4152000,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467718"
   },
   {
     "partNumber": "L15001",
@@ -127,7 +139,8 @@
     "nameKo": "LVO150, 1 리터",
     "nameEn": "LVO150, 1 Liter",
     "category": "oil",
-    "price": 63000
+    "price": 63000,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467719"
   },
   {
     "partNumber": "L15020",
@@ -135,7 +148,8 @@
     "nameKo": "LVO150, 20 리터",
     "nameEn": "LVO150, 20 Liter",
     "category": "oil",
-    "price": 780000
+    "price": 780000,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467720"
   },
   {
     "partNumber": "L21001",
@@ -143,7 +157,8 @@
     "nameKo": "LVO210, 1 리터",
     "nameEn": "LVO210, 1 Liter",
     "category": "oil",
-    "price": 72000
+    "price": 72000,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467721"
   },
   {
     "partNumber": "L21005",
@@ -151,7 +166,8 @@
     "nameKo": "LVO210, 5 리터",
     "nameEn": "LVO210, 5 Liter",
     "category": "oil",
-    "price": 257000
+    "price": 257000,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467722"
   },
   {
     "partNumber": "L21099",
@@ -159,7 +175,8 @@
     "nameKo": "LVO210, 208 리터",
     "nameEn": "LVO210, 208 Liter",
     "category": "oil",
-    "price": 6885000
+    "price": 6885000,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467724"
   },
   {
     "partNumber": "L21101",
@@ -167,7 +184,8 @@
     "nameKo": "LVO211, 1 리터",
     "nameEn": "LVO211, 1 Liter",
     "category": "oil",
-    "price": 70000
+    "price": 70000,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467725"
   },
   {
     "partNumber": "L21105",
@@ -175,7 +193,8 @@
     "nameKo": "LVO211, 5 리터",
     "nameEn": "LVO211, 5 Liter",
     "category": "oil",
-    "price": 250000
+    "price": 250000,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467726"
   },
   {
     "partNumber": "L21120",
@@ -183,7 +202,8 @@
     "nameKo": "LVO211, 20 리터",
     "nameEn": "LVO211, 20 Liter",
     "category": "oil",
-    "price": 905000
+    "price": 905000,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467727"
   },
   {
     "partNumber": "L24020",
@@ -191,7 +211,8 @@
     "nameKo": "LVO240, 20 리터",
     "nameEn": "LVO240, 20 Liter",
     "category": "oil",
-    "price": 905000
+    "price": 905000,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467728"
   },
   {
     "partNumber": "L25000",
@@ -199,7 +220,8 @@
     "nameKo": "LVO250, 0.3 리터",
     "nameEn": "LVO250, 0.3 Liter",
     "category": "oil",
-    "price": 229000
+    "price": 229000,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468697"
   },
   {
     "partNumber": "L26000",
@@ -207,7 +229,8 @@
     "nameKo": "LVO260, 0.3 리터",
     "nameEn": "LVO260, 0.3 Liter",
     "category": "oil",
-    "price": 247000
+    "price": 247000,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468698"
   },
   {
     "partNumber": "L30020",
@@ -215,7 +238,8 @@
     "nameKo": "LVO300, 20 리터",
     "nameEn": "LVO300, 20 Liter",
     "category": "oil",
-    "price": 1434000
+    "price": 1434000,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468699"
   },
   {
     "partNumber": "L40000",
@@ -223,7 +247,8 @@
     "nameKo": "LVO400, 0.75 리터",
     "nameEn": "LVO400, 0.75 Liter",
     "category": "oil",
-    "price": 956000
+    "price": 956000,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468701"
   },
   {
     "partNumber": "L40001",
@@ -231,7 +256,8 @@
     "nameKo": "LVO400, 1 리터",
     "nameEn": "LVO400, 1 Liter",
     "category": "oil",
-    "price": 1157000
+    "price": 1157000,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468702"
   },
   {
     "partNumber": "L41000",
@@ -239,7 +265,8 @@
     "nameKo": "LVO410, 0.6 리터",
     "nameEn": "LVO410, 0.6 Liter",
     "category": "oil",
-    "price": 830000
+    "price": 830000,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468703"
   },
   {
     "partNumber": "L41001",
@@ -247,7 +274,8 @@
     "nameKo": "LVO410, 1 리터",
     "nameEn": "LVO410, 1 Liter",
     "category": "oil",
-    "price": 1157000
+    "price": 1157000,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468704"
   },
   {
     "partNumber": "L50005",
@@ -255,7 +283,8 @@
     "nameKo": "LVO500, 5 리터",
     "nameEn": "LVO500, 5 Liter",
     "category": "oil",
-    "price": 1009000
+    "price": 1009000,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468707"
   },
   {
     "partNumber": "L52001",
@@ -263,7 +292,8 @@
     "nameKo": "LVO520, 1 리터",
     "nameEn": "LVO520, 1 Liter",
     "category": "oil",
-    "price": 629000
+    "price": 629000,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468708"
   },
   {
     "partNumber": "L52005",
@@ -271,7 +301,8 @@
     "nameKo": "LVO520, 5 리터",
     "nameEn": "LVO520, 5 Liter",
     "category": "oil",
-    "price": 3017000
+    "price": 3017000,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468709"
   },
   {
     "partNumber": "L52101",
@@ -279,7 +310,8 @@
     "nameKo": "LVO521, 1 리터",
     "nameEn": "LVO521, 1 Liter",
     "category": "oil",
-    "price": 660000
+    "price": 660000,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468710"
   },
   {
     "partNumber": "L52105",
@@ -287,7 +319,8 @@
     "nameKo": "LVO521, 5 리터",
     "nameEn": "LVO521, 5 Liter",
     "category": "oil",
-    "price": 3171000
+    "price": 3171000,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468711"
   },
   {
     "partNumber": "L54020",
@@ -295,7 +328,8 @@
     "nameKo": "LVO540, 20 리터",
     "nameEn": "LVO540, 20 Liter",
     "category": "oil",
-    "price": 3499000
+    "price": 3499000,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468712"
   },
   {
     "partNumber": "L70202",
@@ -303,7 +337,8 @@
     "nameKo": "LVO702, 2 리터",
     "nameEn": "LVO702, 2 Liter",
     "category": "oil",
-    "price": 412000
+    "price": 412000,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468714"
   },
   {
     "partNumber": "E6537380",
@@ -311,7 +346,8 @@
     "nameKo": "Oil Filter (SV220B)",
     "nameEn": "Oil Filter (SV220B)",
     "category": "oil-filter",
-    "price": 33000
+    "price": 33000,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472469602"
   },
   {
     "partNumber": "EK96004",
@@ -319,7 +355,8 @@
     "nameKo": "Oil Filter (SV40B/SV65B)",
     "nameEn": "Oil Filter (SV40B/SV65B)",
     "category": "oil-filter",
-    "price": 67000
+    "price": 67000,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472469599"
   },
   {
     "partNumber": "EK96005",
@@ -327,7 +364,8 @@
     "nameKo": "Oil Filter (SV100B)",
     "nameEn": "Oil Filter (SV100B)",
     "category": "oil-filter",
-    "price": 73000
+    "price": 73000,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472469600"
   },
   {
     "partNumber": "EK96006",
@@ -336,7 +374,8 @@
     "nameEn": "Oil Filter (SV300B)",
     "category": "oil-filter",
     "price": 87000,
-    "bestSeller": true
+    "bestSeller": true,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472469603"
   },
   {
     "partNumber": "EK96008",
@@ -353,7 +392,8 @@
     "nameKo": "Exhaust Filter (FE16-25)",
     "nameEn": "Exhaust Filter (FE16-25)",
     "category": "vacuum-filter",
-    "price": 361000
+    "price": 361000,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472469597"
   },
   {
     "partNumber": "18973",
@@ -361,7 +401,8 @@
     "nameKo": "Exhaust Filter (FE40-65)",
     "nameEn": "Exhaust Filter (FE40-65)",
     "category": "vacuum-filter",
-    "price": 606000
+    "price": 606000,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472469598"
   },
   {
     "partNumber": "71064763",
@@ -369,7 +410,8 @@
     "nameKo": "Exhaust Filter (SV40,65,100,200)",
     "nameEn": "Exhaust Filter (SV40,65,100,200)",
     "category": "vacuum-filter",
-    "price": 193000
+    "price": 193000,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468717"
   },
   {
     "partNumber": "71064773",
@@ -378,7 +420,8 @@
     "nameEn": "Exhaust Filter (SV300,SV630,SV1200)",
     "category": "vacuum-filter",
     "price": 271000,
-    "bestSeller": true
+    "bestSeller": true,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472469590"
   },
   {
     "partNumber": "71232023",
@@ -394,7 +437,8 @@
     "nameKo": "Exhaust Filter (SV25B)",
     "nameEn": "Exhaust Filter (SV25B)",
     "category": "vacuum-filter",
-    "price": 86000
+    "price": 86000,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472469591"
   },
   {
     "partNumber": "71417300",
@@ -402,7 +446,8 @@
     "nameKo": "Exhaust Filter (SV65B,SV100B)",
     "nameEn": "Exhaust Filter (SV65B,SV100B)",
     "category": "vacuum-filter",
-    "price": 202000
+    "price": 202000,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472469594"
   },
   {
     "partNumber": "71421180",
@@ -410,7 +455,8 @@
     "nameKo": "Exhaust Filter (SV40B)",
     "nameEn": "Exhaust Filter (SV40B)",
     "category": "vacuum-filter",
-    "price": 149000
+    "price": 149000,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472469593"
   },
   {
     "partNumber": "971431120",
@@ -418,7 +464,8 @@
     "nameKo": "Exhaust Filter (SV300B,SV630B)",
     "nameEn": "Exhaust Filter (SV300B,SV630B)",
     "category": "vacuum-filter",
-    "price": 250000
+    "price": 250000,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472469596"
   },
   {
     "partNumber": "EK9606M",
@@ -426,6 +473,7 @@
     "nameKo": "Exhaust Filter (SV220B)",
     "nameEn": "Exhaust Filter (SV220B)",
     "category": "vacuum-filter",
-    "price": 250000
+    "price": 250000,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472469595"
   }
 ]

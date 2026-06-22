@@ -99,13 +99,17 @@ public/products/
      "descriptionEn": "Product description (optional)",
      "category": "oil",
      "price": 50000,
-     "bestSeller": false
+     "bestSeller": false,
+     "naverUrl": "https://smartstore.naver.com/onevacuum/products/123",
+     "coupangUrl": "https://www.coupang.com/vp/products/456"
    }
    ```
    - `partNumber`: 제품 품번 (필수)
    - `category`: `oil` (오일), `oil-filter` (오일 필터), `vacuum-filter` (진공 필터) 중 택 1
    - `price`: 원화 정수 (예: 50000 → ₩50,000으로 표시)
    - `bestSeller`: `true`로 설정하면 BEST 배지 표시 및 기본 정렬에서 상단 노출
+   - `naverUrl` (선택): 네이버 스토어 상품 페이지 링크. 제품 카드 상세(뒷면)의 "네이버 스토어" 버튼에 연결됩니다. 없으면 버튼이 숨겨집니다.
+   - `coupangUrl` (선택): 쿠팡 상품 페이지 링크. 생략하면 제품명으로 만든 쿠팡 **검색 링크**가 자동 사용됩니다 (쿠팡은 상품 URL 자동 수집이 차단되어 검색 링크를 기본값으로 사용)
 
 3. **커밋 및 푸시** - 웹사이트가 자동으로 업데이트됩니다!
 

@@ -93,7 +93,9 @@ Each entry in `public/products/products.json`:
   "descriptionEn": "Product description (optional)",
   "category": "oil | oil-filter | vacuum-filter",
   "price": 50000,
-  "bestSeller": true
+  "bestSeller": true,
+  "naverUrl": "https://smartstore.naver.com/onevacuum/products/123",
+  "coupangUrl": "https://www.coupang.com/vp/products/456"
 }
 ```
 - `partNumber`: product part number displayed on the card
@@ -101,10 +103,13 @@ Each entry in `public/products/products.json`:
 - `category`: must be one of `oil`, `oil-filter`, `vacuum-filter`
 - `price`: integer in KRW (no decimals)
 - `bestSeller`: optional, shows BEST badge and prioritizes in default sort
+- `naverUrl`: optional, exact Naver SmartStore product page URL. Rendered as the "Naver Store" link on the card back; the link is hidden when absent.
+- `coupangUrl`: optional, exact Coupang product page URL. When absent, `coupangUrl(product)` in `src/lib/products.ts` generates a Coupang **search** link from the product name (Coupang blocks automated harvesting of exact per-product URLs). Oil products search as `LEYBONOL <model> <size>`, filters as `LEYBOLD <name>`.
 
 ### Product Card Interaction
 - Cards use an **opacity fade** transition (not 3D flip) to toggle between front (product image/price) and back (detail info)
 - Clicking a card toggles the `.flipped` class; CSS handles opacity transitions on `.card-front` and `.card-back`
+- The card **back** shows the part number, name, price, and "구매하러 가기" store links — a Naver Store button (when `naverUrl` is set) and a Coupang button (always, via exact `coupangUrl` or generated search link). The flip click handler in `HomePage.astro` ignores clicks on `<a>` so the links open without toggling the card.
 
 ### i18n System
 - Single page with client-side language toggle (default: Korean)
