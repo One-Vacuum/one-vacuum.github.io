@@ -1,6 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: 'class',
+  // Only apply `hover:` styles on devices that actually support hover, so hover
+  // states (card lift, button colors) don't stick after a tap on touch screens.
+  future: { hoverOnlyWhenSupported: true },
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {

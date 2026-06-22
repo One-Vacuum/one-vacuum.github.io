@@ -14,11 +14,15 @@ interface Props {
   bestSeller?: boolean;
   naverUrl?: string;
   coupangUrl?: string;
+  /** True when `coupangUrl` is an exact product page; false when it is a
+   *  generated Coupang search link. Drives the Coupang button's aria-label. */
+  coupangIsExact?: boolean;
 }
 
-const { partNumber, nameKo, nameEn, image, price, rawPrice, category, descriptionKo, descriptionEn, bestSeller, naverUrl, coupangUrl } = Astro.props;
+const { partNumber, nameKo, nameEn, image, price, rawPrice, category, descriptionKo, descriptionEn, bestSeller, naverUrl, coupangUrl, coupangIsExact } = Astro.props;
 
 const t = ui.ko;
+const coupangLabel = coupangIsExact ? t['products.viewOnCoupangExact'] : t['products.viewOnCoupang'];
 ---
 
 <div
@@ -57,17 +61,19 @@ const t = ui.ko;
     )}
     <p class="mt-2 text-lg font-bold text-primary-600 dark:text-primary-400">{price}</p>
 
-    <!-- Store links -->
-    <div class="mt-auto pt-3 flex gap-2">
+    <!-- Store links. Coupang is always present (exact URL or generated search
+         link); Naver only when the product has a listing. Buttons stack on very
+         narrow cards (2-col mobile grid) and sit side by side once there's room. -->
+    <div class="mt-auto pt-3 flex flex-col min-[480px]:flex-row gap-2">
       {naverUrl && (
         <a
           href={naverUrl}
           target="_blank"
           rel="noopener noreferrer"
           aria-label={t['products.viewOnNaver']}
-          class="flex-1 inline-flex items-center justify-center gap-1.5 px-2 py-2 rounded-lg bg-[#03C75A] text-white text-xs font-semibold hover:bg-[#02b350] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#03C75A]/50 transition-colors"
+          class="flex-1 inline-flex items-center justify-center gap-1.5 px-2 py-2 rounded-lg bg-[#00853B] text-white text-xs font-semibold whitespace-nowrap hover:bg-[#017A36] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00853B]/60 transition-colors"
         >
-          <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
           </svg>
           <span data-i18n="products.cardNaver">{t['products.cardNaver']}</span>
@@ -78,10 +84,10 @@ const t = ui.ko;
           href={coupangUrl}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label={t['products.viewOnCoupang']}
-          class="flex-1 inline-flex items-center justify-center gap-1.5 px-2 py-2 rounded-lg bg-[#346AFF] text-white text-xs font-semibold hover:bg-[#2b5ae0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#346AFF]/50 transition-colors"
+          aria-label={coupangLabel}
+          class="flex-1 inline-flex items-center justify-center gap-1.5 px-2 py-2 rounded-lg bg-[#346AFF] text-white text-xs font-semibold whitespace-nowrap hover:bg-[#2b5ae0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#346AFF]/50 transition-colors"
         >
-          <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
           </svg>
           <span data-i18n="products.cardCoupang">{t['products.cardCoupang']}</span>

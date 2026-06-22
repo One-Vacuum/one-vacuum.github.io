@@ -49,7 +49,7 @@ export function coupangUrl(product: Product): string {
   let query: string;
   if (product.category === 'oil') {
     // "LVO120, 5L" -> "LEYBONOL LVO120 5L"
-    query = 'LEYBONOL ' + product.nameEn.replace(/,/g, '').replace(/(\d+(?:\.\d+)?)\s*Liter/gi, '$1L');
+    query = 'LEYBONOL ' + product.nameEn.replace(/,/g, '');
   } else {
     // "Oil Filter (SV300B)" -> "LEYBOLD Oil Filter SV300B"
     query = 'LEYBOLD ' + product.nameEn.replace(/[()]/g, '');

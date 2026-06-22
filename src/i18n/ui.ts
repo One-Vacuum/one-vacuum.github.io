@@ -31,6 +31,7 @@ export const ui = {
     'products.sortPriceDesc': '가격 높은순',
     'products.viewOnNaver': '네이버 스토어',
     'products.viewOnCoupang': '쿠팡에서 검색',
+    'products.viewOnCoupangExact': '쿠팡에서 보기',
     'products.cardNaver': '네이버',
     'products.cardCoupang': '쿠팡',
 
@@ -93,6 +94,7 @@ export const ui = {
     'products.sortPriceDesc': 'Price: High to Low',
     'products.viewOnNaver': 'Naver Store',
     'products.viewOnCoupang': 'Search on Coupang',
+    'products.viewOnCoupangExact': 'View on Coupang',
     'products.cardNaver': 'Naver',
     'products.cardCoupang': 'Coupang',
 

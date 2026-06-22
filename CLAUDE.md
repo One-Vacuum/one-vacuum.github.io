@@ -108,7 +108,7 @@ Each entry in `public/products/products.json`:
 
 ### Product Card Interaction
 - Cards are **single-sided** (no flip/back): the front shows the part number, name, price, and store links directly. A subtle hover lift (`hover:-translate-y-1 hover:shadow-lg`) and image zoom provide feedback.
-- Store links render at the bottom of every card as two compact, brand-colored buttons — **네이버 (Naver, green `#03C75A`)** shown only when `naverUrl` is set, and **쿠팡 (Coupang, blue `#346AFF`)** always present (exact `coupangUrl` or generated search link). The buttons sit side by side (each `flex-1`), so a card with only Coupang shows a single full-width button.
+- Store links render at the bottom of every card as two compact, brand-colored buttons — **네이버 (Naver, green `#00853B`)** shown only when `naverUrl` is set, and **쿠팡 (Coupang, blue `#346AFF`)** always present (exact `coupangUrl` or generated search link). The greens are darkened from Naver's `#03C75A` brand color so white button text meets WCAG AA contrast (≥4.5:1). The buttons sit side by side (each `flex-1`) and stack vertically below `480px` so labels stay legible on the 2-column mobile grid. The Coupang button's `aria-label` reflects whether the link is an exact page ("쿠팡에서 보기") or a search ("쿠팡에서 검색"), driven by the `coupangIsExact` prop.
 - The card itself is not clickable; only the store buttons are interactive (`<a target="_blank">`).
 
 ### i18n System

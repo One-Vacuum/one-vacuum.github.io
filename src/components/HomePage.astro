@@ -84,6 +84,7 @@ const products = loadProducts();
                 bestSeller={product.bestSeller}
                 naverUrl={product.naverUrl}
                 coupangUrl={coupangUrl(product)}
+                coupangIsExact={Boolean(product.coupangUrl)}
               />
             ))}
           </div>
@@ -130,10 +131,10 @@ const products = loadProducts();
           href="https://smartstore.naver.com/onevacuum"
           target="_blank"
           rel="noopener noreferrer"
-          class="group flex items-center justify-center gap-3 px-6 py-7 bg-gray-50 dark:bg-gray-800/60 rounded-2xl border border-gray-200/80 dark:border-gray-700 hover:-translate-y-0.5 hover:shadow-lg hover:border-[#03C75A]/60 dark:hover:border-[#03C75A]/60 transition-all duration-300"
+          class="group flex items-center justify-center gap-3 px-6 py-7 bg-gray-50 dark:bg-gray-800/60 rounded-2xl border border-gray-200/80 dark:border-gray-700 hover:-translate-y-0.5 hover:shadow-lg hover:border-[#03C75A]/60 dark:hover:border-[#03C75A]/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#03C75A]/60 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900 transition-all duration-300"
         >
           <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#03C75A]/10 text-[#03C75A] transition-colors group-hover:bg-[#03C75A] group-hover:text-white">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
             </svg>
           </span>
@@ -141,13 +142,13 @@ const products = loadProducts();
         </a>
 
         <a
-          href="https://www.coupang.com/vp/products/9578623755?itemId=28591525460&vendorItemId=95535428127&q=%5BLEYBOLD+%EC%A0%95%ED%92%88%5D+LEYBONOL+LVO702+1L&searchId=7df466eb5580717&sourceType=search&itemsCount=60&searchRank=0&rank=0&traceId=mqoohl1r"
+          href="https://www.coupang.com/np/search?q=LEYBONOL"
           target="_blank"
           rel="noopener noreferrer"
-          class="group flex items-center justify-center gap-3 px-6 py-7 bg-gray-50 dark:bg-gray-800/60 rounded-2xl border border-gray-200/80 dark:border-gray-700 hover:-translate-y-0.5 hover:shadow-lg hover:border-[#346AFF]/60 dark:hover:border-[#346AFF]/60 transition-all duration-300"
+          class="group flex items-center justify-center gap-3 px-6 py-7 bg-gray-50 dark:bg-gray-800/60 rounded-2xl border border-gray-200/80 dark:border-gray-700 hover:-translate-y-0.5 hover:shadow-lg hover:border-[#346AFF]/60 dark:hover:border-[#346AFF]/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#346AFF]/60 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900 transition-all duration-300"
         >
           <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#346AFF]/10 text-[#346AFF] transition-colors group-hover:bg-[#346AFF] group-hover:text-white">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
             </svg>
           </span>
