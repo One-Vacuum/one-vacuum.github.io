@@ -39,7 +39,6 @@ export const ui = {
     'buy.store2': '스토어 2',
     'buy.naverStore': '네이버 스토어',
     'buy.coupang': '쿠팡',
-    'buy.comingSoon': '(준비중)',
 
     // Contact
     'contact.title': '연락처',
@@ -100,7 +99,6 @@ export const ui = {
     'buy.store2': 'Store 2',
     'buy.naverStore': 'Naver Store',
     'buy.coupang': 'Coupang',
-    'buy.comingSoon': '(Coming Soon)',
 
     // Contact
     'contact.title': 'Contact Us',
