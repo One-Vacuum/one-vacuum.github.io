@@ -42,6 +42,12 @@ export function formatPrice(price: number): string {
  * `coupangUrl` is set, otherwise a Coupang search URL built from the product
  * name (Coupang blocks automated harvesting of exact per-product URLs, so a
  * search link is the reliable fallback).
+ *
+ * The fallback search query uses brand prefixes hand-tuned to match Coupang's
+ * indexing — `LEYBONOL` for oils (the oil product line) and `LEYBOLD` for
+ * filters (the parent brand). These strings are a business/SEO heuristic, not
+ * arbitrary; changing them or adding a non-`oil` category that isn't a filter
+ * requires re-checking the resulting Coupang search results.
  */
 export function coupangUrl(product: Product): string {
   if (product.coupangUrl) return product.coupangUrl;
