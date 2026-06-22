@@ -29,7 +29,8 @@
     "category": "oil",
     "price": 542000,
     "bestSeller": true,
-    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467717"
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467717",
+    "coupangUrl": "https://www.coupang.com/vp/products/9578612491?itemId=28591492852&vendorItemId=95535396328"
   },
   {
     "partNumber": "L21020",
@@ -39,7 +40,8 @@
     "category": "oil",
     "price": 935000,
     "bestSeller": true,
-    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467723"
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467723",
+    "coupangUrl": "https://www.coupang.com/vp/products/9578621391?itemId=28591517442&vendorItemId=95535420230"
   },
   {
     "partNumber": "L31001",
@@ -49,7 +51,8 @@
     "category": "oil",
     "price": 116000,
     "bestSeller": true,
-    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468700"
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468700",
+    "coupangUrl": "https://www.coupang.com/vp/products/9578644581?itemId=28591589184&vendorItemId=95535489919"
   },
   {
     "partNumber": "L42001",
@@ -59,7 +62,8 @@
     "category": "oil",
     "price": 1157000,
     "bestSeller": true,
-    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468706"
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468706",
+    "coupangUrl": "https://www.coupang.com/vp/products/9578639488?itemId=28591572954&vendorItemId=95535474238"
   },
   {
     "partNumber": "L70201",
@@ -69,7 +73,8 @@
     "category": "oil",
     "price": 245000,
     "bestSeller": true,
-    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468713"
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468713",
+    "coupangUrl": "https://www.coupang.com/vp/products/9578623755?itemId=28591525460&vendorItemId=95535428127"
   },
   {
     "partNumber": "L70205",
@@ -79,7 +84,8 @@
     "category": "oil",
     "price": 849000,
     "bestSeller": true,
-    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468715"
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468715",
+    "coupangUrl": "https://www.coupang.com/vp/products/9578633748?itemId=28591556275&vendorItemId=95535458412"
   },
   {
     "partNumber": "L10005",
@@ -89,7 +95,9 @@
     "category": "oil",
     "price": 176000,
     "bestSeller": true,
-    "note": "Using same image as L10001, should be replaced with a different image when available"
+    "note": "Using same image as L10001, should be replaced with a different image when available",
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467709",
+    "coupangUrl": "https://www.coupang.com/vp/products/9578620684?itemId=28591515115&vendorItemId=95535418303"
   },
   {
     "partNumber": "L10001",
@@ -97,7 +105,9 @@
     "nameKo": "LVO100, 1L",
     "nameEn": "LVO100, 1L",
     "category": "oil",
-    "price": 54000
+    "price": 54000,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467708",
+    "coupangUrl": "https://www.coupang.com/vp/products/9540897830?itemId=28459437115&vendorItemId=95409885486"
   },
   {
     "partNumber": "L12001",
@@ -106,7 +116,8 @@
     "nameEn": "LVO120, 1L",
     "category": "oil",
     "price": 50000,
-    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467711"
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467711",
+    "coupangUrl": "https://www.coupang.com/vp/products/9578616081?itemId=28591501090&vendorItemId=95535404332"
   },
   {
     "partNumber": "L12020",
@@ -115,7 +126,8 @@
     "nameEn": "LVO120, 20L",
     "category": "oil",
     "price": 542000,
-    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467713"
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467713",
+    "coupangUrl": "https://www.coupang.com/vp/products/9578643065?itemId=28591584024&vendorItemId=95535484834"
   },
   {
     "partNumber": "L13001",
@@ -124,7 +136,8 @@
     "nameEn": "LVO130, 1L",
     "category": "oil",
     "price": 50000,
-    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467715"
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467715",
+    "coupangUrl": "https://www.coupang.com/vp/products/9540899845?itemId=28459445619&vendorItemId=95409893397"
   },
   {
     "partNumber": "L13099",
@@ -133,7 +146,8 @@
     "nameEn": "LVO130, 208L",
     "category": "oil",
     "price": 4152000,
-    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467718"
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467718",
+    "coupangUrl": "https://www.coupang.com/vp/products/9578644161?itemId=28591587766&vendorItemId=95535488584"
   },
   {
     "partNumber": "L15001",
@@ -142,7 +156,8 @@
     "nameEn": "LVO150, 1L",
     "category": "oil",
     "price": 63000,
-    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467719"
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467719",
+    "coupangUrl": "https://www.coupang.com/vp/products/9578637492?itemId=28591567513&vendorItemId=95535469125"
   },
   {
     "partNumber": "L15020",
@@ -151,7 +166,8 @@
     "nameEn": "LVO150, 20L",
     "category": "oil",
     "price": 780000,
-    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467720"
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467720",
+    "coupangUrl": "https://www.coupang.com/vp/products/9578615508?itemId=28591499658&vendorItemId=95535402773"
   },
   {
     "partNumber": "L21001",
@@ -160,7 +176,8 @@
     "nameEn": "LVO210, 1L",
     "category": "oil",
     "price": 72000,
-    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467721"
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467721",
+    "coupangUrl": "https://www.coupang.com/vp/products/9578641111?itemId=28591578052&vendorItemId=95535479246"
   },
   {
     "partNumber": "L21005",
@@ -169,7 +186,8 @@
     "nameEn": "LVO210, 5L",
     "category": "oil",
     "price": 257000,
-    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467722"
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467722",
+    "coupangUrl": "https://www.coupang.com/vp/products/9578634264?itemId=28591557570&vendorItemId=95535459697"
   },
   {
     "partNumber": "L21099",
@@ -178,7 +196,8 @@
     "nameEn": "LVO210, 208L",
     "category": "oil",
     "price": 6885000,
-    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467724"
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467724",
+    "coupangUrl": "https://www.coupang.com/vp/products/9578644920?itemId=28591590243&vendorItemId=95535490855"
   },
   {
     "partNumber": "L21101",
@@ -187,7 +206,8 @@
     "nameEn": "LVO211, 1L",
     "category": "oil",
     "price": 70000,
-    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467725"
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467725",
+    "coupangUrl": "https://www.coupang.com/vp/products/9578626182?itemId=28591531926&vendorItemId=95535434569"
   },
   {
     "partNumber": "L21105",
@@ -196,7 +216,8 @@
     "nameEn": "LVO211, 5L",
     "category": "oil",
     "price": 250000,
-    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467726"
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467726",
+    "coupangUrl": "https://www.coupang.com/vp/products/9578617729?itemId=28591505533&vendorItemId=95535408659"
   },
   {
     "partNumber": "L21120",
@@ -205,7 +226,8 @@
     "nameEn": "LVO211, 20L",
     "category": "oil",
     "price": 905000,
-    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467727"
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467727",
+    "coupangUrl": "https://www.coupang.com/vp/products/9578628508?itemId=28591539218&vendorItemId=95535441824"
   },
   {
     "partNumber": "L24020",
@@ -214,7 +236,8 @@
     "nameEn": "LVO240, 20L",
     "category": "oil",
     "price": 905000,
-    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467728"
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472467728",
+    "coupangUrl": "https://www.coupang.com/vp/products/9578640717?itemId=28591576939&vendorItemId=95535478023"
   },
   {
     "partNumber": "L25000",
@@ -223,7 +246,8 @@
     "nameEn": "LVO250, 0.3L",
     "category": "oil",
     "price": 229000,
-    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468697"
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468697",
+    "coupangUrl": "https://www.coupang.com/vp/products/9578621371?itemId=28591517393&vendorItemId=95535420136"
   },
   {
     "partNumber": "L26000",
@@ -232,7 +256,8 @@
     "nameEn": "LVO260, 0.3L",
     "category": "oil",
     "price": 247000,
-    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468698"
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468698",
+    "coupangUrl": "https://www.coupang.com/vp/products/9578643827?itemId=28591586620&vendorItemId=95535487410"
   },
   {
     "partNumber": "L30020",
@@ -241,7 +266,8 @@
     "nameEn": "LVO300, 20L",
     "category": "oil",
     "price": 1434000,
-    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468699"
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468699",
+    "coupangUrl": "https://www.coupang.com/vp/products/9578647564?itemId=28591599080&vendorItemId=95535499145"
   },
   {
     "partNumber": "L40000",
@@ -250,7 +276,8 @@
     "nameEn": "LVO400, 0.75L",
     "category": "oil",
     "price": 956000,
-    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468701"
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468701",
+    "coupangUrl": "https://www.coupang.com/vp/products/9578632286?itemId=28591551925&vendorItemId=95535454129"
   },
   {
     "partNumber": "L40001",
@@ -259,7 +286,8 @@
     "nameEn": "LVO400, 1L",
     "category": "oil",
     "price": 1157000,
-    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468702"
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468702",
+    "coupangUrl": "https://www.coupang.com/vp/products/9578637040?itemId=28591565938&vendorItemId=95535467426"
   },
   {
     "partNumber": "L41000",
@@ -268,7 +296,8 @@
     "nameEn": "LVO410, 0.6L",
     "category": "oil",
     "price": 830000,
-    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468703"
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468703",
+    "coupangUrl": "https://www.coupang.com/vp/products/9578619533?itemId=28591511199&vendorItemId=95535414132"
   },
   {
     "partNumber": "L41001",
@@ -277,7 +306,8 @@
     "nameEn": "LVO410, 1L",
     "category": "oil",
     "price": 1157000,
-    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468704"
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468704",
+    "coupangUrl": "https://www.coupang.com/vp/products/9578614515?itemId=28591497438&vendorItemId=95535400661"
   },
   {
     "partNumber": "L50005",
@@ -286,7 +316,8 @@
     "nameEn": "LVO500, 5L",
     "category": "oil",
     "price": 1009000,
-    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468707"
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468707",
+    "coupangUrl": "https://www.coupang.com/vp/products/9578617184?itemId=28591504181&vendorItemId=95535407204"
   },
   {
     "partNumber": "L52001",
@@ -295,7 +326,8 @@
     "nameEn": "LVO520, 1L",
     "category": "oil",
     "price": 629000,
-    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468708"
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468708",
+    "coupangUrl": "https://www.coupang.com/vp/products/9578628903?itemId=28591540514&vendorItemId=95535442933"
   },
   {
     "partNumber": "L52005",
@@ -304,7 +336,8 @@
     "nameEn": "LVO520, 5L",
     "category": "oil",
     "price": 3017000,
-    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468709"
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472468709",
+    "coupangUrl": "https://www.coupang.com/vp/products/9578636307?itemId=28591563438&vendorItemId=95535464990"
   },
   {
     "partNumber": "L52101",
@@ -384,7 +417,8 @@
     "category": "oil-filter",
     "price": 87000,
     "bestSeller": true,
-    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472469603"
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472469603",
+    "coupangUrl": "https://www.coupang.com/vp/products/9578630419?itemId=28591545402&vendorItemId=95535448004"
   },
   {
     "partNumber": "EK96008",
@@ -394,7 +428,8 @@
     "category": "oil-filter",
     "price": 131000,
     "bestSeller": true,
-    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472469604"
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472469604",
+    "coupangUrl": "https://www.coupang.com/vp/products/9578635776?itemId=28591561831&vendorItemId=95535463669"
   },
   {
     "partNumber": "18972",
@@ -434,7 +469,8 @@
     "category": "vacuum-filter",
     "price": 271000,
     "bestSeller": true,
-    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472469590"
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472469590",
+    "coupangUrl": "https://www.coupang.com/vp/products/9578628187?itemId=28591538244&vendorItemId=95535440685"
   },
   {
     "partNumber": "71232023",
