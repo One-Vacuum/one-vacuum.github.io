@@ -393,7 +393,8 @@
     "nameEn": "Oil Filter (SV630B)",
     "category": "oil-filter",
     "price": 131000,
-    "bestSeller": true
+    "bestSeller": true,
+    "naverUrl": "https://smartstore.naver.com/onevacuum/products/13472469604"
   },
   {
     "partNumber": "18972",
