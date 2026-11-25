@@ -12,8 +12,8 @@ export default {
       colors: {
         ink: {
           DEFAULT: '#111216', // text, primary buttons, logo
-          soft: '#4B4D55', // secondary text (8.5:1 on white)
-          mute: '#6B6D75', // tertiary text (4.8:1 on paper)
+          soft: '#4B4D55', // secondary text (8.4:1 on white, 6.2:1 on paper-dim)
+          mute: '#6B6D75', // tertiary text (4.6:1 on paper; too light for paper-dim)
         },
         paper: {
           DEFAULT: '#F3F3F1', // hero panel, tiles, image wells

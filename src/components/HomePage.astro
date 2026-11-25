@@ -29,10 +29,10 @@ const categories = [
   <Hero />
 
   <!-- Products Section -->
-  <section id="products" class="section">
+  <section id="products" class="section" aria-labelledby="products-title">
     <div class="container-custom">
       <div class="mb-8 md:mb-10">
-        <h2 class="section-title" data-i18n="products.title">{t['products.title']}</h2>
+        <h2 id="products-title" class="section-title" data-i18n="products.title">{t['products.title']}</h2>
         <p class="section-sub" data-i18n="products.subtitle">{t['products.subtitle']}</p>
       </div>
 
@@ -51,7 +51,7 @@ const categories = [
                   <span class="cat-dot w-1.5 h-1.5 rounded-full bg-accent" aria-hidden="true"></span>
                   <span data-i18n={c.key}>{t[c.key]}</span>
                 </span>
-                <span class="mt-1 font-display text-[13px] font-semibold text-ink-mute [font-stretch:112%]">{c.list.length}</span>
+                <span class="mt-1 font-display text-[13px] font-semibold text-ink-soft [font-stretch:112%]">{c.list.length}</span>
                 {pick(c.rep, [...c.list]) && (
                   <img
                     src={`/products/images/${pick(c.rep, [...c.list])}`}
@@ -143,10 +143,10 @@ const categories = [
   </section>
 
   <!-- Where to Buy Section -->
-  <section id="buy" class="section pt-0">
+  <section id="buy" class="section pt-0" aria-labelledby="buy-title">
     <div class="container-custom">
       <div class="mb-8 md:mb-10">
-        <h2 class="section-title" data-i18n="buy.title">{t['buy.title']}</h2>
+        <h2 id="buy-title" class="section-title" data-i18n="buy.title">{t['buy.title']}</h2>
         <p class="section-sub" data-i18n="buy.subtitle">{t['buy.subtitle']}</p>
       </div>
 
@@ -187,10 +187,10 @@ const categories = [
   <ProductInquiry />
 
   <!-- Contact Section -->
-  <section id="contact" class="section pt-0">
+  <section id="contact" class="section pt-0" aria-labelledby="contact-title">
     <div class="container-custom">
       <div class="rounded-[28px] md:rounded-[36px] bg-ink dark:bg-night-raised dark:ring-1 dark:ring-inset dark:ring-night-line text-white px-6 py-10 sm:px-10 md:px-14 md:py-14 grid lg:grid-cols-[1fr_2.2fr] gap-10">
-        <h2 class="text-[30px] md:text-[40px] font-extrabold leading-tight tracking-[-0.035em]" data-i18n="contact.title">{t['contact.title']}</h2>
+        <h2 id="contact-title" class="text-[30px] md:text-[40px] font-extrabold leading-tight tracking-[-0.035em]" data-i18n="contact.title">{t['contact.title']}</h2>
         <dl class="grid sm:grid-cols-3 gap-8">
           <div>
             <dt class="text-sm text-white/60" data-i18n="contact.phone">{t['contact.phone']}</dt>
