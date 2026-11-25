@@ -1,8 +1,10 @@
 import { experimental_AstroContainer as AstroContainer } from 'astro/container';
 import { describe, expect, it } from 'vitest';
 import LanguageSwitcher from './LanguageSwitcher.astro';
+import HomePage from './HomePage.astro';
 import Logo from './Logo.astro';
 import ProductCard from './ProductCard.astro';
+import ProductInquiry from './ProductInquiry.astro';
 
 const render = async (component: Parameters<AstroContainer['renderToString']>[0], props = {}) =>
   (await AstroContainer.create()).renderToString(component, { props });
@@ -53,5 +55,25 @@ describe('LanguageSwitcher', () => {
     const html = await render(LanguageSwitcher);
     expect(html).toMatch(/<button id="btnKO"[^>]*>KO<\/button>/);
     expect(html).not.toMatch(/<button id="btnKO"[^>]*aria-label/);
+  });
+});
+
+describe('ProductInquiry', () => {
+  it('is the #inquiry section with the shared form', async () => {
+    const html = await render(ProductInquiry);
+    expect(html).toMatch(/<section id="inquiry"/);
+    expect(html).toMatch(/<form id="inquiry-form"[^>]*method="post"/);
+    expect(html).toContain('제품 문의하기');
+  });
+});
+
+describe('HomePage', () => {
+  it('renders the products, the inquiry section and contact links from contact.ts', async () => {
+    const html = await render(HomePage);
+    expect(html).toContain('id="products"');
+    expect(html).toContain('data-inquiry-form');
+    expect(html).toContain('href="mailto:sales@gvac.co.kr"');
+    expect(html).toContain('href="tel:01085257025"');
+    expect(html).toContain('id="btnKO"');
   });
 });

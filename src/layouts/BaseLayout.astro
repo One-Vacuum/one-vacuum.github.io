@@ -12,9 +12,12 @@ const t = ui.ko;
 const SHOW_KAKAO = false;
 
 // Canonical/absolute URL for SEO + social metadata
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+// `site` is always set in astro.config.mjs; the request URL is only a fallback
+// for renders without it (component tests).
+const base = Astro.site ?? Astro.url;
+const canonicalURL = new URL(Astro.url.pathname, base);
 const siteName = 'One Vacuum';
-const ogImage = new URL('/images/logo.png', Astro.site);
+const ogImage = new URL('/images/logo.png', base);
 
 // JSON-LD structured data describing the business
 const structuredData = {
@@ -80,7 +83,8 @@ const structuredData = {
     <Footer />
 
     {SHOW_KAKAO && (
-    <!-- KakaoTalk Floating Button -->
+    <>
+    {/* KakaoTalk Floating Button */}
     <button
       id="kakao-btn"
       class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#FEE500] hover:bg-[#FDD835] rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center group"
@@ -94,10 +98,11 @@ const structuredData = {
       </span>
     </button>
 
-    <!-- KakaoTalk Toast -->
+    {/* KakaoTalk Toast */}
     <div id="kakao-toast" class="fixed bottom-24 right-6 z-50 px-4 py-3 bg-gray-900 text-white text-sm rounded-lg shadow-lg transition-all duration-300 opacity-0 translate-y-2 pointer-events-none">
       <span data-i18n="kakao.comingSoon">카카오톡 채널 준비중입니다.</span>
     </div>
+    </>
     )}
 
     <script>

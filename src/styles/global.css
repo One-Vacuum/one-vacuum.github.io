@@ -103,7 +103,7 @@
   }
 
   .field {
-    @apply h-12 rounded-full bg-paper dark:bg-night-raised border border-transparent px-5 text-[15px]
+    @apply h-12 rounded-full bg-paper dark:bg-night-raised border border-line-strong dark:border-night-strong px-5 text-[15px]
            text-ink dark:text-snow placeholder:text-ink-mute dark:placeholder:text-snow-mute
            focus:outline-none focus:ring-2 focus:ring-accent dark:focus:ring-accent-light;
   }
@@ -141,6 +141,11 @@
   .inquiry-preview {
     @apply w-[min(640px,calc(100vw-2rem))] max-h-[85vh] overflow-auto rounded-3xl p-6 bg-white text-ink shadow-2xl
            dark:bg-night-raised dark:text-snow;
+  }
+
+  .inquiry-preview-label {
+    @apply font-display text-[11px] font-semibold uppercase tracking-[0.14em] text-accent dark:text-accent-light;
+    font-stretch: 125%;
   }
 
   .inquiry-preview::backdrop {

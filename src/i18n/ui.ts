@@ -1,3 +1,5 @@
+import { CONTACT } from '../lib/contact';
+
 export const ui = {
   ko: {
     // Site
@@ -82,10 +84,10 @@ export const ui = {
     'contact.title': '연락처',
     'contact.phone': '전화',
     'contact.email': '이메일',
-    'contact.emailValue': 'sales@gvac.co.kr',
+    'contact.emailValue': CONTACT.email,
     'contact.address': '주소',
     'contact.addressValue': '충청남도 아산시 배방읍 희망로 32, 1동 840호(코아루웰메이드시티) (31470)',
-    'contact.phoneValue': '010-8525-7025',
+    'contact.phoneValue': CONTACT.phone,
 
     // KakaoTalk
     'kakao.tooltip': '카카오톡 문의',
@@ -179,10 +181,10 @@ export const ui = {
     'contact.title': 'Contact Us',
     'contact.phone': 'Phone',
     'contact.email': 'Email',
-    'contact.emailValue': 'sales@gvac.co.kr',
+    'contact.emailValue': CONTACT.email,
     'contact.address': 'Address',
     'contact.addressValue': '32 Heemang-ro, Bldg 1 #840 (Koaru Wellmade City), Baebang-eup, Asan-si, Chungcheongnam-do 31470',
-    'contact.phoneValue': '010-8525-7025',
+    'contact.phoneValue': CONTACT.phone,
 
     // KakaoTalk
     'kakao.tooltip': 'KakaoTalk Inquiry',
