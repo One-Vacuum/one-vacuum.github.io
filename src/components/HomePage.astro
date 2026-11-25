@@ -11,9 +11,8 @@ import type { Product } from '../lib/products';
 const t = ui.ko;
 const products = loadProducts();
 
-// Category tiles (they are the filter). Counts come from products.json; the
-// tile photo is a fixed representative part, falling back to the first
-// product in that category.
+// Category tiles double as the filter. Photo: a fixed representative part, else
+// the category's first product.
 const pick = (pn: string, list: Product[]) => (list.find((p) => p.partNumber === pn) ?? list[0])?.image;
 const inCat = (c: string) => products.filter((p) => p.category === c);
 const categories = [

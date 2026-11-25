@@ -82,8 +82,7 @@
   }
 
   /* Category tiles double as the product filter (`filter-btn` is the JS hook).
-     The tile stays light in dark mode too, so product photos blend in via
-     mix-blend-darken (the tile must not turn white, or photo backgrounds show). */
+     They stay light in dark mode so mix-blend-darken hides photo backgrounds. */
   .cat-tile {
     @apply focus-ring relative overflow-hidden flex flex-col items-start text-left
            h-[112px] md:h-[136px] rounded-3xl p-4 md:p-5 bg-paper dark:bg-paper-dim text-ink
@@ -122,8 +121,7 @@
     @apply text-[13px] font-medium text-danger dark:text-danger-light empty:hidden;
   }
 
-  /* The status live region stays rendered when empty (sr-only, not hidden) so
-     screen readers announce what is written into it. */
+  /* Rendered even when empty (sr-only, not hidden) so screen readers announce updates. */
   .inquiry-status {
     @apply text-sm leading-relaxed text-ink-soft dark:text-snow-soft empty:sr-only focus:outline-none;
   }

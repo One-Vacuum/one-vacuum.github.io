@@ -18,15 +18,14 @@ export default {
         paper: {
           DEFAULT: '#F3F3F1', // hero panel, tiles, image wells
           deep: '#E9E9E5', // hover on paper
-          // Product image wells. Photos blend in with mix-blend-darken, so any
-          // photo background lighter than the well disappears; several photos
-          // have off-white (#EBEBEB–#F7F7F7) backgrounds, hence a well this tone.
+          // Product image wells: with mix-blend-darken, off-white photo backgrounds
+          // (#EBEBEB–#F7F7F7) vanish only on a well at least this dark.
           well: '#F0F0ED',
           dim: '#DCDDD9', // image wells in dark mode
         },
         line: {
           DEFAULT: '#E4E4E0', // dividers
-          strong: '#7A7C84', // form control borders (3:1 on white and paper)
+          strong: '#7A7C84', // form control borders (3.7:1+ on white and paper)
         },
         danger: {
           DEFAULT: '#B42318', // error text and borders

@@ -32,8 +32,7 @@ const coupangKey = coupangIsExact ? 'products.viewOnCoupangExact' : 'products.vi
   data-best-seller={bestSeller ? '1' : '0'}
   data-part-number={partNumber}
 >
-  <!-- Image well stays light in dark mode so the photo's white background
-       disappears via mix-blend-darken. -->
+  <!-- Stays light in dark mode so mix-blend-darken hides the photo's white background. -->
   <div class="relative aspect-square overflow-hidden rounded-[20px] bg-paper-well dark:bg-paper-dim">
     <img
       src={image}

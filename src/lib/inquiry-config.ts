@@ -1,8 +1,4 @@
-/**
- * One Vacuum's settings for the inquiry form: fields, email subject, recipient
- * and the hosts that really send. The logic in ./inquiry.ts is shared with
- * top-vacuum.github.io; only this file differs between the two sites.
- */
+/** One Vacuum's inquiry form settings, read by the shared ./inquiry.ts. */
 import { CONTACT } from './contact';
 import type { InquiryFieldDef } from './inquiry';
 
@@ -18,7 +14,7 @@ export const INQUIRY_FIELDS = [
 
 export const SUBJECT_PREFIX = '[원베큠 홈페이지] 제품 문의';
 
-/** Sales inbox (the public contact email in ui.ts). */
+/** Sales inbox (the public contact email). */
 export const DEFAULT_RECIPIENT: string = CONTACT.email;
 
 /** Hostnames where the form really sends. Anywhere else it only previews. */

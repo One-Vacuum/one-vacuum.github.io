@@ -12,8 +12,7 @@ const t = ui.ko;
 const SHOW_KAKAO = false;
 
 // Canonical/absolute URL for SEO + social metadata
-// `site` is always set in astro.config.mjs; the request URL is only a fallback
-// for renders without it (component tests).
+// The request URL is only used where `site` is unset (component tests).
 const base = Astro.site ?? Astro.url;
 const canonicalURL = new URL(Astro.url.pathname, base);
 const siteName = 'One Vacuum';

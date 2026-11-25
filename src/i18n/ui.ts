@@ -12,8 +12,7 @@ export const ui = {
     'nav.contact': '연락처',
     'nav.buy': '구매처',
 
-    // Hero — rearranged from the existing site copy (site.description + the
-    // second sentence of the former hero description); no new claims.
+    // Hero — reuses existing copy (site.description, the former hero's second sentence)
     'hero.eyebrow': 'One Vacuum · 원베큠',
     'hero.headline': '진공 장비 및 부품<br>도매·소매 전문 기업',
     'hero.lead': '다양한 산업 분야에 최적화된 진공 솔루션을 제공합니다.',

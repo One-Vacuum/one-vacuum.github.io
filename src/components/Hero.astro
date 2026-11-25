@@ -6,8 +6,7 @@ const t = ui.ko;
 const products = loadProducts();
 const byPart = (pn: string) => products.find((p) => p.partNumber === pn);
 
-// Three containers of the same oil line, largest at the back. Any part number
-// missing from products.json is simply skipped.
+// Three containers of the same oil line, largest at the back; parts missing from products.json are skipped.
 const stage = [
   { product: byPart('L13020'), cls: 'right-0 bottom-0 h-[88%] w-[58%]' },
   { product: byPart('L13005'), cls: 'left-[4%] bottom-0 h-[66%] w-[42%]' },
