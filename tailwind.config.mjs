@@ -7,22 +7,44 @@ export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {
+      // Brand palette taken from the wordmark: near-black ink, one blue accent
+      // (the dot in the "O"), warm-neutral paper surfaces.
       colors: {
-        primary: {
-          50: '#f0f9ff',
-          100: '#e0f2fe',
-          200: '#bae6fd',
-          300: '#7dd3fc',
-          400: '#38bdf8',
-          500: '#0ea5e9',
-          600: '#0284c7',
-          700: '#0369a1',
-          800: '#075985',
-          900: '#0c4a6e',
+        ink: {
+          DEFAULT: '#111216', // text, primary buttons, logo
+          soft: '#4B4D55', // secondary text (8.5:1 on white)
+          mute: '#6B6D75', // tertiary text (4.8:1 on paper)
+        },
+        paper: {
+          DEFAULT: '#F3F3F1', // hero panel, tiles, image wells
+          deep: '#E9E9E5', // hover on paper
+          // Product image wells. Photos blend in with mix-blend-darken, so any
+          // photo background lighter than the well disappears; several photos
+          // have off-white (#EBEBEB–#F7F7F7) backgrounds, hence a well this tone.
+          well: '#F0F0ED',
+          dim: '#DCDDD9', // image wells in dark mode
+        },
+        line: '#E4E4E0',
+        accent: {
+          DEFAULT: '#1F5BFF', // logo dot, active states (5.3:1 on white)
+          light: '#7C9DFF', // accent on dark backgrounds
+        },
+        night: {
+          DEFAULT: '#0E0F11', // dark-mode page
+          raised: '#17181B',
+          high: '#202125',
+          line: '#2A2C31',
+        },
+        snow: {
+          DEFAULT: '#F2F2F0', // dark-mode text
+          soft: '#B4B6BD',
+          mute: '#8E9098',
         },
       },
       fontFamily: {
         sans: ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'Roboto', 'sans-serif'],
+        // Wordmark face, used only for small uppercase Latin labels.
+        display: ['Archivo', 'Pretendard', 'sans-serif'],
       },
     },
   },

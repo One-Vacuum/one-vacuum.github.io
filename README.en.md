@@ -39,12 +39,14 @@ Company brochure website built with Astro + Tailwind CSS.
 
 - `npm run dev` starts without errors
 - Page loads correctly (http://localhost:4321)
-- Language toggle works (tap either KO or EN to switch)
+- Language switch works (KO = Korean, EN = English)
 - All product images display
 - Naver/Coupang buy buttons on product cards work
 - Product search and sorting works
 - Mobile responsive layout works
 - `npm run build` completes without errors
+- `npm test` passes (inquiry form validation, email format and sending)
+- Inquiry form: an empty submit shows errors; on localhost a submit shows the email preview and sends nothing
 
 ## Adding Images
 
@@ -52,11 +54,9 @@ Company brochure website built with Astro + Tailwind CSS.
 
 ### Company Logo
 
-Place your logo file at:
-```
-public/images/logo.png
-```
-- Supported formats: PNG, JPG, SVG
+- Header/footer wordmark: `src/components/Logo.astro` (inline SVG — follows the text colour; only the dot in the O uses the brand blue)
+- Logo file: `public/images/logo.svg`
+- Link-preview image (1200×630): `public/images/logo.png`
 
 ### Favicon
 
@@ -108,7 +108,7 @@ public/products/
    - `category`: `oil`, `oil-filter`, or `vacuum-filter`
    - `price`: integer in KRW (e.g. 50000 → displayed as ₩50,000)
    - `bestSeller`: set to `true` to show BEST badge and prioritize in default sort
-   - `naverUrl` (optional): Naver SmartStore product page link, wired to the green "Naver" button on the front of the product card. The button is hidden when absent.
+   - `naverUrl` (optional): Naver SmartStore product page link, wired to the "Naver" button (green dot) on the product card. The button is hidden when absent.
    - `coupangUrl` (optional): Coupang product page link. When omitted, a Coupang **search link** built from the product name is generated automatically (Coupang blocks automated harvesting of exact product URLs, so a search link is the default)
 
 3. **Commit and push** - website updates automatically!
@@ -122,9 +122,22 @@ public/products/
 
 Set `products.json` to `[]` and the website will show "Products Coming Soon..."
 
+## Inquiry Form (Email)
+
+Submitting the "Product Inquiry" form emails **sales@gvac.co.kr** through [FormSubmit](https://formsubmit.co). GitHub Pages is static (no server), so the site uses this no-account form-to-email relay.
+
+- **Email format:** subject `[원베큠 홈페이지] 제품 문의 — company · name`; the body is a table (회사명, 담당자/이름, 연락처, 이메일, 제품명 · 품번, 문의 내용, 접수 시각, 문의 언어 — Korean labels for the owner). Hitting "Reply" answers the customer directly.
+- **One-time activation (required):** after deploy, the first submission makes FormSubmit send an "Activate Form" email to sales@gvac.co.kr. Click its button once; later submissions are then delivered. Submissions made before activation are kept for 30 days and delivered after it.
+- **Local testing:** on localhost nothing is sent; a preview of the email the owner would receive is shown instead. To test a real send, run the command below. Without `PUBLIC_INQUIRY_TO` it goes to sales@gvac.co.kr.
+  ```bash
+  PUBLIC_INQUIRY_LIVE=true PUBLIC_INQUIRY_TO=you@example.com npm run dev
+  ```
+- **Spam:** submissions that fill the hidden honeypot field are dropped.
+- **Files:** `src/components/ProductInquiry.astro` (markup), `src/lib/inquiry.ts` (validation, email format, sending), `src/lib/inquiry-form.ts` (browser behaviour); text lives under `inquiry.*` in `src/i18n/ui.ts`
+
 ## Deployment
 
-The site auto-deploys to GitHub Pages when you push to `main`.
+Pushing to `main` runs the tests (`npm test`) and the build, then deploys to GitHub Pages. Opening a PR runs the same tests and build in CI (`.github/workflows/ci.yml`).
 
 ### First-time GitHub Pages Setup
 

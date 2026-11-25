@@ -16,11 +16,13 @@ This file provides guidance for Claude Code when working on this project.
 
 One Vacuum (원베큠) — A bilingual (Korean/English) company brochure website built with Astro and Tailwind CSS, hosted on GitHub Pages at https://onevacuum.kr.
 
+**Copy rule:** all site text comes from the company's existing copy in `src/i18n/ui.ts` and the product data. Do not invent claims, services, slogans, or technical data; design changes may only rearrange existing text. Functional UI text (form labels, validation and status messages) and copy the user has explicitly approved (e.g. the inquiry section heading and lead) are fine.
+
 ## Tech Stack
 
 - **Framework**: Astro 5.x (Static Site Generation)
-- **Styling**: Tailwind CSS 3.4 with custom primary color palette (sky blue)
-- **Fonts**: Pretendard (body, loaded from CDN) + Outfit (brand title, loaded from Google Fonts)
+- **Styling**: Tailwind CSS 3.4 with a brand palette taken from the wordmark (ink `#111216`, accent blue `#1F5BFF`, warm-neutral paper surfaces)
+- **Fonts**: Pretendard (body, loaded from CDN) + Archivo (small uppercase Latin labels, Google Fonts). The wordmark itself is outlined SVG, so it does not depend on a web font
 - **i18n**: Client-side toggle via `data-i18n` attributes (Korean default, single page)
 - **Theme**: Dark/light mode toggle with Tailwind `dark:` classes (default: light)
 - **Deployment**: GitHub Pages via GitHub Actions (auto-deploy on push to `main`)
@@ -31,16 +33,21 @@ One Vacuum (원베큠) — A bilingual (Korean/English) company brochure website
 one-vacuum.github.io/
 ├── src/
 │   ├── components/
-│   │   ├── Header.astro           # Sticky header with logo, nav, lang/theme toggles
-│   │   ├── Footer.astro           # Dark footer with contact info & quick links
-│   │   ├── Hero.astro             # Hero section with animated product tile background
-│   │   ├── HomePage.astro         # Main page (products, buy, contact) + client-side JS
-│   │   ├── ProductCard.astro      # Single-sided product card with Naver/Coupang store buttons
-│   │   └── LanguageSwitcher.astro # KO/EN toggle (tap either side to switch)
+│   │   ├── Header.astro           # Sticky header with wordmark, nav, lang/theme toggles
+│   │   ├── Footer.astro           # Light footer: wordmark, quick links, contact, business info
+│   │   ├── Hero.astro             # Hero panel: headline, CTAs, product photo composition + featured price card
+│   │   ├── HomePage.astro         # Main page (products, buy, inquiry, contact) + client-side JS
+│   │   ├── ProductInquiry.astro   # "제품 문의하기" section (#inquiry): inquiry form + localhost preview
+│   │   ├── Logo.astro             # Wordmark as inline SVG (follows currentColor; dot uses the accent)
+│   │   ├── ProductCard.astro      # Product card with Naver/Coupang store buttons
+│   │   └── LanguageSwitcher.astro # KO / EN segmented switch
 │   ├── i18n/
 │   │   └── ui.ts                  # All translation strings (KO/EN)
 │   ├── lib/
-│   │   └── products.ts            # Product loading utility (reads public/products/products.json)
+│   │   ├── products.ts            # Product loading utility (reads public/products/products.json)
+│   │   ├── inquiry.ts             # Inquiry form logic: validation, email layout, FormSubmit sending
+│   │   ├── inquiry-form.ts        # Browser controller for the inquiry form (+ localhost preview)
+│   │   └── *.test.ts              # Vitest tests for the two modules above
 │   ├── layouts/
 │   │   └── BaseLayout.astro       # Main HTML layout (head, header, footer)
 │   ├── pages/
@@ -49,13 +56,18 @@ one-vacuum.github.io/
 │       └── global.css             # Tailwind imports + custom component classes
 ├── public/
 │   ├── images/
-│   │   ├── logo.png               # Company logo
-│   │   └── favicon/               # Favicon files (ico, png, apple-touch-icon)
+│   │   ├── logo.svg               # Wordmark file (same outlines as Logo.astro)
+│   │   ├── logo.png               # 1200×630 social preview (og:image / JSON-LD logo)
+│   │   ├── placeholder-product.svg # Fallback for missing product images
+│   │   └── favicon/               # Favicon set (ring + dot mark on ink)
 │   ├── products/
 │   │   ├── products.json          # Product data (easy to edit!)
 │   │   └── images/                # Product images
 │   └── robots.txt                 # Crawler rules + sitemap location
-├── .github/workflows/deploy.yml   # GitHub Pages deployment workflow
+├── .github/workflows/
+│   ├── deploy.yml                 # Test + build + deploy to GitHub Pages on push to main
+│   └── ci.yml                     # Test + build on every pull request
+├── vitest.config.ts               # Vitest via Astro's Vite config (getViteConfig)
 ├── astro.config.mjs               # Astro configuration (site URL, Tailwind)
 ├── tailwind.config.mjs            # Tailwind theme (custom colors, fonts)
 ├── tsconfig.json                  # TypeScript config (path aliases @ → src/)
@@ -66,7 +78,7 @@ one-vacuum.github.io/
 
 ### Page Rendering Flow
 1. `index.astro` renders `HomePage.astro` directly (single page, no routing)
-2. `HomePage.astro` contains all page content (products, buy, contact) and client-side JS for language switching, category filtering, search, and sorting
+2. `HomePage.astro` contains all page content (products, buy, `ProductInquiry`, contact) and client-side JS for language switching, category filtering, search, and sorting
 3. `BaseLayout.astro` wraps everything with HTML shell, Header, and Footer
 4. All translatable elements use `data-i18n` attributes; client-side `setLang()` swaps text from `src/i18n/ui.ts`
 5. Product names/descriptions use `data-name-ko`/`data-name-en` and `data-desc-ko`/`data-desc-en` attributes
@@ -75,7 +87,7 @@ one-vacuum.github.io/
 - Products are loaded at **build time** from `public/products/products.json` via `src/lib/products.ts`
 - The `loadProducts()` function reads JSON, sorts by `order`, and returns bilingual product data
 - Empty JSON `[]` shows "Products Coming Soon..." message
-- Products are filterable by category via client-side JS tabs (All / Oil / Oil Filter / Vacuum Filter)
+- Products are filterable by category via the category tiles (All / Oil / Oil Filter / Vacuum Filter); each tile shows its item count and a representative product photo (set in `HomePage.astro`)
 - Products are searchable by name or part number
 - Products can be sorted by price (ascending/descending); default sort shows best sellers first
 - Prices are displayed in KRW (₩) format
@@ -103,27 +115,41 @@ Each entry in `public/products/products.json`:
 - `category`: must be one of `oil`, `oil-filter`, `vacuum-filter`
 - `price`: integer in KRW (no decimals)
 - `bestSeller`: optional, shows BEST badge and prioritizes in default sort
-- `naverUrl`: optional, exact Naver SmartStore product page URL. Rendered as the "Naver Store" link on the card back; the link is hidden when absent.
+- `naverUrl`: optional, exact Naver SmartStore product page URL. Rendered as the card's "네이버" button; the button is hidden when absent.
 - `coupangUrl`: optional, exact Coupang product page URL. When absent, `coupangUrl(product)` in `src/lib/products.ts` generates a Coupang **search** link from the product name (Coupang blocks automated harvesting of exact per-product URLs). Oil products search as `LEYBONOL <model> <size>`, filters as `LEYBOLD <name>`.
 
 ### Product Card Interaction
-- Cards are **single-sided** (no flip/back): the front shows the part number, name, price, and store links directly. A subtle hover lift (`hover:-translate-y-1 hover:shadow-lg`) and image zoom provide feedback.
-- Store links render at the bottom of every card as two compact, brand-colored buttons — **네이버 (Naver, green `#00853B`)** shown only when `naverUrl` is set, and **쿠팡 (Coupang, blue `#346AFF`)** always present (exact `coupangUrl` or generated search link). The greens are darkened from Naver's `#03C75A` brand color so white button text meets WCAG AA contrast (≥4.5:1). The buttons sit side by side (each `flex-1`) and stack vertically below `480px` so labels stay legible on the 2-column mobile grid. The Coupang button's `aria-label` reflects whether the link is an exact page ("쿠팡에서 보기") or a search ("쿠팡에서 검색"), driven by the `coupangIsExact` prop.
+- Cards are **single-sided** (no flip/back): an image well, then part number, name, price, and store links. Hovering zooms the photo slightly. Best sellers get a small `BEST` pill on the image.
+- Store links render at the bottom of every card as two neutral `.store-btn` buttons — **네이버 (Naver)** shown only when `naverUrl` is set, and **쿠팡 (Coupang)** always present (exact `coupangUrl` or generated search link). The brand is signalled by a small colour dot (Naver `#03C75A`, Coupang `#346AFF`); the button text stays ink-on-paper for contrast. The buttons sit side by side (each `flex-1`) and stack vertically below `480px` so labels stay legible on the 2-column mobile grid. The Coupang button's `aria-label` reflects whether the link is an exact page ("쿠팡에서 보기") or a search ("쿠팡에서 검색"), driven by the `coupangIsExact` prop.
 - The card itself is not clickable; only the store buttons are interactive (`<a target="_blank">`).
 
 ### i18n System
 - Single page with client-side language toggle (default: Korean)
-- Tapping either KO or EN button toggles to the other language
+- KO sets Korean, EN sets English (segmented switch; the active side gets `lang-active`)
 - All translatable elements have `data-i18n="key"` attributes
 - `setLang('ko'|'en')` in `HomePage.astro` script swaps all text at runtime
 - Product cards use `data-name-ko`/`data-name-en` for bilingual product names
+- For translations that contain HTML (e.g. the hero headline's `<br>`), add `data-i18n-html` and render with `set:html`; the switcher then uses `innerHTML` (only ever fed constants from `ui.ts`)
 - Korean is the fallback language if a translation key is missing
 
 ### Theme System
 - Dark/light mode toggle in header (default: light/day mode)
 - Uses Tailwind `dark:` variant with `class` strategy
-- Theme preference persisted in `localStorage`
+- The preference is not persisted (reload returns to light)
+- The sun/moon icon swaps via `dark:` classes, no JS
 - `<html>` element gets `class="dark"` toggled
+
+### Inquiry Form (email)
+- `ProductInquiry.astro` renders the form; `src/lib/inquiry-form.ts` (`mountInquiryForm`) runs it in the browser; `src/lib/inquiry.ts` holds the pure logic (validation, email layout, sending)
+- **Delivery:** GitHub Pages is static, so the form POSTs JSON to FormSubmit's AJAX endpoint `https://formsubmit.co/ajax/<recipient>`; FormSubmit emails **sales@gvac.co.kr** (`DEFAULT_RECIPIENT`). No account or key is needed
+- **Email layout (for the owner):** subject `[원베큠 홈페이지] 제품 문의 — <company> · <name>` (name only when no company); FormSubmit `_template: table` with Korean row labels in a fixed order: 회사명, 담당자/이름, 연락처, 이메일, 제품명 · 품번, 문의 내용, 접수 시각 (KST, `formatKst`), 문의 언어. Empty optional fields show `—`. `_replyto` is the customer's email so "Reply" goes straight to them
+- **Fields:** 회사명 and 제품명 · 품번 (`product`) are optional; 담당자/이름, 연락처, 이메일, 문의 내용 are required. Phone allows digits, spaces, `+ ( ) - .` with 8–15 digits; max lengths in `MAX_LENGTH`
+- **Activation:** the first submission to a new recipient makes FormSubmit send an "Activate Form" email; until it is clicked the API answers `success: "false"` with an activation message. FormSubmit keeps those submissions (30 days) and delivers them after activation, so `sendInquiry` returns `pending-activation` and the visitor sees "sent"
+- **Failure:** network/HTTP errors keep the visitor's input and show a `mailto:` link pre-filled with the same subject and body (`mailtoHref`)
+- **Localhost dry run:** on `localhost`/`127.0.0.1` nothing is sent unless `PUBLIC_INQUIRY_LIVE=true`; the form opens a preview dialog of the exact email instead. `PUBLIC_INQUIRY_TO` overrides the recipient (for testing with your own inbox)
+- **Spam:** a hidden `_honey` field; if filled, the submit pretends success and sends nothing
+- **i18n:** labels use `inquiry.*` keys; error/status messages are written with `data-i18n` so the KO/EN switch re-translates them in place. Email labels stay Korean regardless of page language
+- **Tests:** `src/lib/inquiry.test.ts` (pure logic) and `src/lib/inquiry-form.test.ts` (renders `ProductInquiry.astro` with the Astro Container API in happy-dom and drives the form with a mocked `fetch`). Run `npm test`; CI runs it on every PR and before deploy
 
 ## Image Optimization
 
@@ -138,7 +164,8 @@ Each entry in `public/products/products.json`:
 | **Products** | `public/products/products.json` + images in `public/products/images/` |
 | UI text translations | `src/i18n/ui.ts` |
 | Contact info | `src/i18n/ui.ts` (phone, email, address values) |
-| Company logo | `public/images/logo.png` |
+| Inquiry form recipient / email layout | `src/lib/inquiry.ts` (`DEFAULT_RECIPIENT`, `EMAIL_LABELS`, `SUBJECT_PREFIX`) |
+| Company logo | `src/components/Logo.astro` (header/footer), `public/images/logo.svg`, `public/images/logo.png` (social preview) |
 | Favicon | `public/images/favicon/` |
 
 ## Commands
@@ -148,18 +175,17 @@ npm install    # Install dependencies
 npm run dev    # Start dev server (http://localhost:4321)
 npm run build  # Build for production (outputs to ./dist)
 npm run preview # Preview production build locally
+npm test       # Run unit + component tests (Vitest)
 ```
 
 ## Styling Conventions
 
 - Uses Tailwind CSS utility classes
-- Custom components defined in `src/styles/global.css`:
-  - `.container-custom` — Max-width container with padding
-  - `.section` — Standard section padding
-  - `.btn-primary` / `.btn-secondary` — Button styles
-  - `.product-card` — Single-sided product card (hover lift + image zoom; store buttons rendered inline)
-- Brand title uses Outfit font (`font-family: 'Outfit'`)
-- Primary color: `primary-600` (#0284c7, sky blue)
+- Colour tokens (`tailwind.config.mjs`): `ink` (text, primary buttons), `paper` / `paper-well` / `paper-dim` (light surfaces and image wells), `line`, `accent` (`#1F5BFF`, logo dot and active states; `accent-light` on dark), `night-*` and `snow-*` (dark mode). There is no `primary-*` palette any more
+- Custom components defined in `src/styles/global.css`: `.container-custom`, `.section`, `.section-title` / `.section-sub`, `.eyebrow`, `.focus-ring`, `.btn-primary` / `.btn-secondary`, `.icon-btn`, `.nav-link`, `.lang-btn`, `.cat-tile` (category filter tile), `.field` (search/sort), `.store-btn`, `.input` / `.field-error` / `.inquiry-status` / `.inquiry-preview` (inquiry form)
+- **Product photos** blend into their light wells with `mix-blend-darken`. Several photos have off-white (#EBEBEB–#F7F7F7) backgrounds, so wells use `paper-well` (`#F0F0ED`) and stay light in dark mode (`paper-dim`). Don't put product photos on white or dark backgrounds, or the photo background shows as a box
+- `font-display` (Archivo) is only for small uppercase Latin labels; Korean and body text use Pretendard
+- The wordmark paths in `Logo.astro` were generated from Archivo (wdth 125, wght 640, +60 tracking) with the O replaced by a ring + dot; regenerate rather than hand-edit
 - Responsive breakpoint: `md:` for desktop nav and layout transitions
 
 ## SEO

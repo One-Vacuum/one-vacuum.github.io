@@ -10,10 +10,11 @@ export const ui = {
     'nav.contact': '연락처',
     'nav.buy': '구매처',
 
-    // Hero
-    'hero.title': 'One Vacuum',
-    'hero.subtitle': '원베큠',
-    'hero.description': '진공 장비 및 부품을 도매·소매하는 전자상거래 전문 기업입니다. 다양한 산업 분야에 최적화된 진공 솔루션을 제공합니다.',
+    // Hero — rearranged from the existing site copy (site.description + the
+    // second sentence of the former hero description); no new claims.
+    'hero.eyebrow': 'One Vacuum · 원베큠',
+    'hero.headline': '진공 장비 및 부품<br>도매·소매 전문 기업',
+    'hero.lead': '다양한 산업 분야에 최적화된 진공 솔루션을 제공합니다.',
 
     // Products
     'products.title': '제품 소개',
@@ -42,6 +43,28 @@ export const ui = {
     'buy.store2': '스토어 2',
     'buy.naverStore': '네이버 스토어',
     'buy.coupang': '쿠팡',
+
+    // Product inquiry form (제품 문의하기)
+    'inquiry.title': '제품 문의하기',
+    'inquiry.lead': '궁금한 제품명이나 품번, 수량을 적어 보내주세요.',
+    'inquiry.company': '회사명',
+    'inquiry.optional': '(선택)',
+    'inquiry.name': '담당자/이름',
+    'inquiry.phone': '연락처',
+    'inquiry.email': '이메일',
+    'inquiry.product': '제품명 · 품번',
+    'inquiry.productPlaceholder': '예: LVO130 20L, EK96006',
+    'inquiry.message': '문의 내용',
+    'inquiry.submit': '문의 보내기',
+    'inquiry.sending': '보내는 중…',
+    'inquiry.error.required': '필수 입력 항목입니다.',
+    'inquiry.error.email': '이메일 주소를 확인해 주세요.',
+    'inquiry.error.phone': '연락처를 확인해 주세요.',
+    'inquiry.error.tooLong': '입력한 내용이 너무 깁니다.',
+    'inquiry.status.sending': '보내는 중…',
+    'inquiry.status.sent': '문의가 전송되었습니다.',
+    'inquiry.status.error': '전송하지 못했습니다. 잠시 후 다시 시도하시거나 이메일로 보내주세요:',
+    'inquiry.status.dryRun': '로컬 테스트 모드라 실제로 보내지 않았습니다. 미리보기를 확인하세요.',
 
     // Contact
     'contact.title': '연락처',
@@ -74,9 +97,9 @@ export const ui = {
     'nav.buy': 'Where to Buy',
 
     // Hero
-    'hero.title': 'One Vacuum',
-    'hero.subtitle': '',
-    'hero.description': 'We are a wholesale and retail e-commerce company specializing in vacuum equipment and parts. We offer optimized vacuum solutions for various industries.',
+    'hero.eyebrow': 'One Vacuum',
+    'hero.headline': 'Wholesale &amp; retail <span class="whitespace-nowrap">e-commerce</span> for vacuum equipment and parts',
+    'hero.lead': 'We offer optimized vacuum solutions for various industries.',
 
     // Products
     'products.title': 'Our Products',
@@ -105,6 +128,28 @@ export const ui = {
     'buy.store2': 'Store 2',
     'buy.naverStore': 'Naver Store',
     'buy.coupang': 'Coupang',
+
+    // Product inquiry form
+    'inquiry.title': 'Product Inquiry',
+    'inquiry.lead': 'Tell us the product name or part number and the quantity you need.',
+    'inquiry.company': 'Company',
+    'inquiry.optional': '(optional)',
+    'inquiry.name': 'Contact person / Name',
+    'inquiry.phone': 'Phone',
+    'inquiry.email': 'Email',
+    'inquiry.product': 'Product name · Part number',
+    'inquiry.productPlaceholder': 'e.g. LVO130 20L, EK96006',
+    'inquiry.message': 'Message',
+    'inquiry.submit': 'Send Inquiry',
+    'inquiry.sending': 'Sending…',
+    'inquiry.error.required': 'This field is required.',
+    'inquiry.error.email': 'Please check the email address.',
+    'inquiry.error.phone': 'Please check the phone number.',
+    'inquiry.error.tooLong': 'This is too long.',
+    'inquiry.status.sending': 'Sending…',
+    'inquiry.status.sent': 'Your inquiry has been sent.',
+    'inquiry.status.error': 'We could not send it. Please try again later or email us:',
+    'inquiry.status.dryRun': 'Local test mode: nothing was sent. See the preview.',
 
     // Contact
     'contact.title': 'Contact Us',
