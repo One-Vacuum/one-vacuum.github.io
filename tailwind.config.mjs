@@ -24,7 +24,17 @@ export default {
           well: '#F0F0ED',
           dim: '#DCDDD9', // image wells in dark mode
         },
-        line: '#E4E4E0',
+        line: {
+          DEFAULT: '#E4E4E0', // dividers
+          strong: '#7A7C84', // form control borders (3:1 on white and paper)
+        },
+        danger: {
+          DEFAULT: '#B42318', // error text and borders
+          light: '#FDA29B', // the same on dark backgrounds
+        },
+        // Store brand dots on the Naver / Coupang buttons
+        naver: '#03C75A',
+        coupang: '#346AFF',
         accent: {
           DEFAULT: '#1F5BFF', // logo dot, active states (5.3:1 on white)
           light: '#7C9DFF', // accent on dark backgrounds
@@ -34,6 +44,7 @@ export default {
           raised: '#17181B',
           high: '#202125',
           line: '#2A2C31',
+          strong: '#63666E', // form control borders in dark mode
         },
         snow: {
           DEFAULT: '#F2F2F0', // dark-mode text

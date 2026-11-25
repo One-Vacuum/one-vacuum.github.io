@@ -1,9 +1,9 @@
 ---
 import Logo from './Logo.astro';
 import { ui } from '../i18n/ui';
+import { CONTACT, mailHref, telHref } from '../lib/contact';
 
 const t = ui.ko;
-const phoneHref = 'tel:' + t['contact.phoneValue'].replace(/[^0-9+]/g, '');
 ---
 
 <footer class="border-t border-line dark:border-night-line">
@@ -11,7 +11,7 @@ const phoneHref = 'tel:' + t['contact.phoneValue'].replace(/[^0-9+]/g, '');
     <div class="flex flex-col md:flex-row md:justify-between gap-10">
       <!-- Company Info -->
       <div>
-        <a href="#" class="focus-ring inline-flex rounded-sm text-ink dark:text-snow">
+        <a href="/" class="focus-ring inline-flex rounded-sm text-ink dark:text-snow">
           <Logo class="h-[18px] md:h-[22px] w-auto" />
         </a>
         <p class="mt-4 text-sm text-ink-soft dark:text-snow-soft" data-i18n="site.description">
@@ -22,9 +22,9 @@ const phoneHref = 'tel:' + t['contact.phoneValue'].replace(/[^0-9+]/g, '');
       <div class="grid grid-cols-1 sm:grid-cols-[auto_minmax(0,22rem)] gap-10 sm:gap-16 text-sm">
         <!-- Quick Links -->
         <div>
-          <p class="font-extrabold text-ink dark:text-snow">
+          <h2 class="text-sm font-extrabold text-ink dark:text-snow">
             <a href="#" class="focus-ring rounded-sm hover:text-accent dark:hover:text-accent-light transition-colors" data-i18n="nav.home">{t['nav.home']}</a>
-          </p>
+          </h2>
           <ul class="mt-4 space-y-2.5 text-ink-soft dark:text-snow-soft">
             <li><a href="#products" class="focus-ring rounded-sm hover:text-ink dark:hover:text-snow transition-colors" data-i18n="nav.products">{t['nav.products']}</a></li>
             <li><a href="#buy" class="focus-ring rounded-sm hover:text-ink dark:hover:text-snow transition-colors" data-i18n="nav.buy">{t['nav.buy']}</a></li>
@@ -34,10 +34,10 @@ const phoneHref = 'tel:' + t['contact.phoneValue'].replace(/[^0-9+]/g, '');
 
         <!-- Contact -->
         <div>
-          <p class="font-extrabold text-ink dark:text-snow" data-i18n="contact.title">{t['contact.title']}</p>
+          <h2 class="text-sm font-extrabold text-ink dark:text-snow" data-i18n="contact.title">{t['contact.title']}</h2>
           <ul class="mt-4 space-y-2.5 text-ink-soft dark:text-snow-soft">
-            <li><a href={phoneHref} class="focus-ring rounded-sm hover:text-ink dark:hover:text-snow transition-colors" data-i18n="contact.phoneValue">{t['contact.phoneValue']}</a></li>
-            <li><a href="mailto:sales@gvac.co.kr" class="focus-ring rounded-sm hover:text-ink dark:hover:text-snow transition-colors" data-i18n="contact.emailValue">{t['contact.emailValue']}</a></li>
+            <li><a href={telHref(CONTACT.phone)} class="focus-ring rounded-sm hover:text-ink dark:hover:text-snow transition-colors" data-i18n="contact.phoneValue">{t['contact.phoneValue']}</a></li>
+            <li><a href={mailHref(CONTACT.email)} class="focus-ring rounded-sm hover:text-ink dark:hover:text-snow transition-colors" data-i18n="contact.emailValue">{t['contact.emailValue']}</a></li>
             <li class="leading-relaxed" data-i18n="contact.addressValue">{t['contact.addressValue']}</li>
           </ul>
         </div>

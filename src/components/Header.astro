@@ -15,7 +15,7 @@ const t = ui.ko;
       </a>
 
       <!-- Navigation -->
-      <nav class="hidden md:flex items-center gap-1 text-[15px] font-semibold" aria-label="Main">
+      <nav class="hidden md:flex items-center gap-1 text-[15px] font-semibold" aria-label={t['a11y.mainNav']} data-i18n-aria-label="a11y.mainNav">
         <a href="#products" class="nav-link" data-i18n="nav.products">{t['nav.products']}</a>
         <a href="#buy" class="nav-link" data-i18n="nav.buy">{t['nav.buy']}</a>
         <a href="#contact" class="nav-link" data-i18n="nav.contact">{t['nav.contact']}</a>
@@ -26,7 +26,7 @@ const t = ui.ko;
         <LanguageSwitcher />
 
         <!-- Theme Toggle: icon follows the `dark` class, no JS swap needed -->
-        <button id="theme-toggle" type="button" class="icon-btn" aria-label="Toggle theme">
+        <button id="theme-toggle" type="button" class="icon-btn" aria-pressed="false" aria-label={t['a11y.darkMode']} data-i18n-aria-label="a11y.darkMode">
           <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24" aria-hidden="true">
             <circle cx="12" cy="12" r="4" />
             <path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4" />
@@ -37,7 +37,7 @@ const t = ui.ko;
         </button>
 
         <!-- Mobile Menu Button -->
-        <button id="mobile-menu-btn" type="button" class="icon-btn md:hidden" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+        <button id="mobile-menu-btn" type="button" class="icon-btn md:hidden" aria-label={t['a11y.menu']} data-i18n-aria-label="a11y.menu" aria-expanded="false" aria-controls="mobile-menu">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M4 7h16M4 12h16M4 17h16" />
           </svg>
@@ -46,7 +46,7 @@ const t = ui.ko;
     </div>
 
     <!-- Mobile Navigation -->
-    <nav id="mobile-menu" class="hidden md:hidden pb-4" aria-label="Mobile">
+    <nav id="mobile-menu" class="hidden md:hidden pb-4" aria-label={t['a11y.mobileNav']} data-i18n-aria-label="a11y.mobileNav">
       <div class="flex flex-col gap-1 text-base font-semibold">
         <a href="#products" class="nav-link py-3" data-i18n="nav.products">{t['nav.products']}</a>
         <a href="#buy" class="nav-link py-3" data-i18n="nav.buy">{t['nav.buy']}</a>
@@ -72,9 +72,12 @@ const t = ui.ko;
     });
   });
 
-  // Theme toggle (default: light). The sun/moon icons switch via `dark:` classes.
+  // Theme toggle (default: light). The sun/moon icons switch via `dark:` classes;
+  // aria-pressed tells assistive tech whether dark mode is on.
   const themeToggle = document.getElementById('theme-toggle');
+  themeToggle?.setAttribute('aria-pressed', String(document.documentElement.classList.contains('dark')));
   themeToggle?.addEventListener('click', () => {
-    document.documentElement.classList.toggle('dark');
+    const dark = document.documentElement.classList.toggle('dark');
+    themeToggle.setAttribute('aria-pressed', String(dark));
   });
 </script>

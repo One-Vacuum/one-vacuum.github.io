@@ -5,6 +5,7 @@ import ProductCard from './ProductCard.astro';
 import ProductInquiry from './ProductInquiry.astro';
 import { ui } from '../i18n/ui';
 import { loadProducts, formatPrice, coupangUrl } from '../lib/products';
+import { CONTACT, mailHref, telHref } from '../lib/contact';
 import type { Product } from '../lib/products';
 
 const t = ui.ko;
@@ -22,7 +23,6 @@ const categories = [
   { id: 'vacuum-filter', key: 'products.filterVacuumFilter', list: inCat('vacuum-filter'), rep: '18972' },
 ] as const;
 
-const phoneHref = 'tel:' + t['contact.phoneValue'].replace(/[^0-9+]/g, '');
 ---
 
 <BaseLayout>
@@ -77,14 +77,15 @@ const phoneHref = 'tel:' + t['contact.phoneValue'].replace(/[^0-9+]/g, '');
                 data-i18n-placeholder="products.searchPlaceholder"
                 placeholder={t['products.searchPlaceholder']}
                 aria-label={t['products.searchPlaceholder']}
+                data-i18n-aria-label="products.searchPlaceholder"
               />
-              <button id="search-clear" type="button" class="focus-ring absolute right-3 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full inline-flex items-center justify-center text-ink-mute hover:text-ink dark:text-snow-mute dark:hover:text-snow hidden" aria-label="Clear">
+              <button id="search-clear" type="button" class="focus-ring absolute right-3 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full inline-flex items-center justify-center text-ink-mute hover:text-ink dark:text-snow-mute dark:hover:text-snow hidden" aria-label={t['a11y.clearSearch']} data-i18n-aria-label="a11y.clearSearch">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
             </div>
-            <select id="sort-select" class="field w-full sm:w-auto pr-10 cursor-pointer" aria-label={t['products.sortDefault']}>
+            <select id="sort-select" class="field w-full sm:w-auto pr-10 cursor-pointer" aria-label={t['products.sortLabel']} data-i18n-aria-label="products.sortLabel">
               <option value="default" data-i18n-option="products.sortDefault">{t['products.sortDefault']}</option>
               <option value="price-asc" data-i18n-option="products.sortPriceAsc">{t['products.sortPriceAsc']}</option>
               <option value="price-desc" data-i18n-option="products.sortPriceDesc">{t['products.sortPriceDesc']}</option>
@@ -157,7 +158,7 @@ const phoneHref = 'tel:' + t['contact.phoneValue'].replace(/[^0-9+]/g, '');
           class="focus-ring group flex items-center gap-4 md:gap-5 rounded-3xl border border-line dark:border-night-line p-6 md:p-8 hover:border-ink dark:hover:border-snow transition-colors"
         >
           <span class="flex h-12 w-12 md:h-14 md:w-14 shrink-0 items-center justify-center rounded-2xl bg-paper dark:bg-night-high">
-            <span class="w-2.5 h-2.5 rounded-full bg-[#03C75A]" aria-hidden="true"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-naver" aria-hidden="true"></span>
           </span>
           <span class="text-xl md:text-2xl font-extrabold tracking-[-0.03em]" data-i18n="buy.naverStore">{t['buy.naverStore']}</span>
           <span class="ml-auto flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-paper dark:bg-night-high text-ink dark:text-snow transition-colors group-hover:bg-ink group-hover:text-white dark:group-hover:bg-snow dark:group-hover:text-ink" aria-hidden="true">
@@ -172,7 +173,7 @@ const phoneHref = 'tel:' + t['contact.phoneValue'].replace(/[^0-9+]/g, '');
           class="focus-ring group flex items-center gap-4 md:gap-5 rounded-3xl border border-line dark:border-night-line p-6 md:p-8 hover:border-ink dark:hover:border-snow transition-colors"
         >
           <span class="flex h-12 w-12 md:h-14 md:w-14 shrink-0 items-center justify-center rounded-2xl bg-paper dark:bg-night-high">
-            <span class="w-2.5 h-2.5 rounded-full bg-[#346AFF]" aria-hidden="true"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-coupang" aria-hidden="true"></span>
           </span>
           <span class="text-xl md:text-2xl font-extrabold tracking-[-0.03em]" data-i18n="buy.coupang">{t['buy.coupang']}</span>
           <span class="ml-auto flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-paper dark:bg-night-high text-ink dark:text-snow transition-colors group-hover:bg-ink group-hover:text-white dark:group-hover:bg-snow dark:group-hover:text-ink" aria-hidden="true">
@@ -194,13 +195,13 @@ const phoneHref = 'tel:' + t['contact.phoneValue'].replace(/[^0-9+]/g, '');
           <div>
             <dt class="text-sm text-white/60" data-i18n="contact.phone">{t['contact.phone']}</dt>
             <dd class="mt-2 text-xl md:text-2xl font-bold tracking-[-0.02em]">
-              <a href={phoneHref} class="focus-ring rounded-sm hover:text-accent-light transition-colors" data-i18n="contact.phoneValue">{t['contact.phoneValue']}</a>
+              <a href={telHref(CONTACT.phone)} class="focus-ring rounded-sm hover:text-accent-light transition-colors" data-i18n="contact.phoneValue">{t['contact.phoneValue']}</a>
             </dd>
           </div>
           <div>
             <dt class="text-sm text-white/60" data-i18n="contact.email">{t['contact.email']}</dt>
             <dd class="mt-2 text-lg md:text-xl font-bold tracking-[-0.01em] break-all">
-              <a href="mailto:sales@gvac.co.kr" class="focus-ring rounded-sm hover:text-accent-light transition-colors" data-i18n="contact.emailValue">{t['contact.emailValue']}</a>
+              <a href={mailHref(CONTACT.email)} class="focus-ring rounded-sm hover:text-accent-light transition-colors" data-i18n="contact.emailValue">{t['contact.emailValue']}</a>
             </dd>
           </div>
           <div>
@@ -338,6 +339,9 @@ const phoneHref = 'tel:' + t['contact.phoneValue'].replace(/[^0-9+]/g, '');
   });
 
   // ===================== Language Toggle =====================
+  // The only keys whose values contain markup (constant strings from ui.ts).
+  const HTML_KEYS = new Set<string>(['hero.headline']);
+
   const btnKO = document.getElementById('btnKO')!;
   const btnEN = document.getElementById('btnEN')!;
 
@@ -362,8 +366,7 @@ const phoneHref = 'tel:' + t['contact.phoneValue'].replace(/[^0-9+]/g, '');
         document.title = value;
       } else if (el.tagName === 'META') {
         el.setAttribute('content', value);
-      } else if (el.hasAttribute('data-i18n-html')) {
-        // Only ever fed our own constant strings from src/i18n/ui.ts.
+      } else if (el.hasAttribute('data-i18n-html') && HTML_KEYS.has(key)) {
         el.innerHTML = value;
       } else {
         el.textContent = value;
@@ -381,10 +384,19 @@ const phoneHref = 'tel:' + t['contact.phoneValue'].replace(/[^0-9+]/g, '');
     document.querySelectorAll<HTMLElement>('[data-i18n-placeholder]').forEach((el) => {
       const key = (el as HTMLElement).dataset.i18nPlaceholder as keyof typeof translations;
       const value = translations[key] || ui.ko[key];
-      if (value) {
-        (el as HTMLInputElement).placeholder = value;
-        el.setAttribute('aria-label', value);
-      }
+      if (value) (el as HTMLInputElement).placeholder = value;
+    });
+
+    // Update accessible names
+    document.querySelectorAll<HTMLElement>('[data-i18n-aria-label]').forEach((el) => {
+      const key = el.dataset.i18nAriaLabel as keyof typeof translations;
+      const value = translations[key] || ui.ko[key];
+      if (value) el.setAttribute('aria-label', value);
+    });
+
+    // Update product image alt text
+    document.querySelectorAll<HTMLImageElement>('img[data-alt-ko]').forEach((el) => {
+      el.alt = (lang === 'ko' ? el.dataset.altKo : el.dataset.altEn) || '';
     });
 
     // Update product names and descriptions

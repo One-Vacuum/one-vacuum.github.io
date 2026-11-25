@@ -22,7 +22,7 @@ interface Props {
 const { partNumber, nameKo, nameEn, image, price, rawPrice, category, descriptionKo, descriptionEn, bestSeller, naverUrl, coupangUrl, coupangIsExact } = Astro.props;
 
 const t = ui.ko;
-const coupangLabel = coupangIsExact ? t['products.viewOnCoupangExact'] : t['products.viewOnCoupang'];
+const coupangKey = coupangIsExact ? 'products.viewOnCoupangExact' : 'products.viewOnCoupang';
 ---
 
 <article
@@ -38,6 +38,8 @@ const coupangLabel = coupangIsExact ? t['products.viewOnCoupangExact'] : t['prod
     <img
       src={image}
       alt={nameKo}
+      data-alt-ko={nameKo}
+      data-alt-en={nameEn}
       class="absolute inset-0 w-full h-full object-contain p-5 md:p-7 mix-blend-darken transition-transform duration-500 group-hover/card:scale-[1.04]"
       onerror="this.src='/images/placeholder-product.svg'"
       loading="lazy"
@@ -62,14 +64,14 @@ const coupangLabel = coupangIsExact ? t['products.viewOnCoupangExact'] : t['prod
          Neutral buttons; the brand is signalled by a small colour dot. -->
     <div class="mt-auto pt-4 flex flex-col min-[480px]:flex-row gap-2">
       {naverUrl && (
-        <a href={naverUrl} target="_blank" rel="noopener noreferrer" aria-label={t['products.viewOnNaver']} class="store-btn">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#03C75A]" aria-hidden="true"></span>
+        <a href={naverUrl} target="_blank" rel="noopener noreferrer" aria-label={t['products.viewOnNaver']} data-i18n-aria-label="products.viewOnNaver" class="store-btn">
+          <span class="w-1.5 h-1.5 rounded-full bg-naver" aria-hidden="true"></span>
           <span data-i18n="products.cardNaver">{t['products.cardNaver']}</span>
         </a>
       )}
       {coupangUrl && (
-        <a href={coupangUrl} target="_blank" rel="noopener noreferrer" aria-label={coupangLabel} class="store-btn">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#346AFF]" aria-hidden="true"></span>
+        <a href={coupangUrl} target="_blank" rel="noopener noreferrer" aria-label={t[coupangKey]} data-i18n-aria-label={coupangKey} class="store-btn">
+          <span class="w-1.5 h-1.5 rounded-full bg-coupang" aria-hidden="true"></span>
           <span data-i18n="products.cardCoupang">{t['products.cardCoupang']}</span>
         </a>
       )}

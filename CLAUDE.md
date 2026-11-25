@@ -42,18 +42,24 @@ one-vacuum.github.io/
 │   │   ├── ProductCard.astro      # Product card with Naver/Coupang store buttons
 │   │   └── LanguageSwitcher.astro # KO / EN segmented switch
 │   ├── i18n/
-│   │   └── ui.ts                  # All translation strings (KO/EN)
+│   │   ├── ui.ts                  # All translation strings (KO/EN)
+│   │   ├── client.ts              # Browser helpers: current language, translate, setI18nText
+│   │   └── ui.test.ts             # KO/EN key parity test
 │   ├── lib/
 │   │   ├── products.ts            # Product loading utility (reads public/products/products.json)
-│   │   ├── inquiry.ts             # Inquiry form logic: validation, email layout, FormSubmit sending
-│   │   ├── inquiry-form.ts        # Browser controller for the inquiry form (+ localhost preview)
-│   │   └── *.test.ts              # Vitest tests for the two modules above
+│   │   ├── contact.ts             # Phone / email (read from ui.ko) + tel:/mailto: helpers
+│   │   ├── inquiry-config.ts      # This site's inquiry form settings (fields, subject, recipient, hosts)
+│   │   ├── inquiry.ts             # Inquiry logic: validation, email layout, FormSubmit sending (shared)
+│   │   ├── inquiry-form.ts        # Inquiry browser controller + preview dialog (shared)
+│   │   └── *.test.ts              # Vitest tests
 │   ├── layouts/
 │   │   └── BaseLayout.astro       # Main HTML layout (head, header, footer)
 │   ├── pages/
 │   │   └── index.astro            # Single page entry (renders HomePage)
-│   └── styles/
-│       └── global.css             # Tailwind imports + custom component classes
+│   ├── styles/
+│   │   └── global.css             # Tailwind imports + custom component classes
+│   └── test/
+│       └── setup.ts               # Vitest setup: unmocked fetch fails (no network in tests)
 ├── public/
 │   ├── images/
 │   │   ├── logo.svg               # Wordmark file (same outlines as Logo.astro)
@@ -65,8 +71,8 @@ one-vacuum.github.io/
 │   │   └── images/                # Product images
 │   └── robots.txt                 # Crawler rules + sitemap location
 ├── .github/workflows/
-│   ├── deploy.yml                 # Test + build + deploy to GitHub Pages on push to main
-│   └── ci.yml                     # Test + build on every pull request
+│   ├── deploy.yml                 # Test + build + deploy to GitHub Pages on push to main (per-job least-privilege permissions)
+│   └── ci.yml                     # Test + build on every pull request (read-only token)
 ├── vitest.config.ts               # Vitest via Astro's Vite config (getViteConfig)
 ├── astro.config.mjs               # Astro configuration (site URL, Tailwind)
 ├── tailwind.config.mjs            # Tailwind theme (custom colors, fonts)
@@ -130,26 +136,29 @@ Each entry in `public/products/products.json`:
 - `setLang('ko'|'en')` in `HomePage.astro` script swaps all text at runtime
 - Product cards use `data-name-ko`/`data-name-en` for bilingual product names
 - For translations that contain HTML (e.g. the hero headline's `<br>`), add `data-i18n-html` and render with `set:html`; the switcher then uses `innerHTML` (only ever fed constants from `ui.ts`)
+- Accessible names follow the language too: `data-i18n-aria-label="key"` (nav landmarks, theme/menu/clear/close buttons, search and sort, store buttons) and product image `alt` via `data-alt-ko`/`data-alt-en`
+- `data-i18n-html` is honoured only for keys in `HTML_KEYS` in `setLang()` (the strings that contain markup); other keys always use `textContent`
 - Korean is the fallback language if a translation key is missing
 
 ### Theme System
 - Dark/light mode toggle in header (default: light/day mode)
 - Uses Tailwind `dark:` variant with `class` strategy
 - The preference is not persisted (reload returns to light)
-- The sun/moon icon swaps via `dark:` classes, no JS
+- The sun/moon icon swaps via `dark:` classes, no JS; the button's `aria-pressed` reflects dark mode
 - `<html>` element gets `class="dark"` toggled
 
 ### Inquiry Form (email)
-- `ProductInquiry.astro` renders the form; `src/lib/inquiry-form.ts` (`mountInquiryForm`) runs it in the browser; `src/lib/inquiry.ts` holds the pure logic (validation, email layout, sending)
-- **Delivery:** GitHub Pages is static, so the form POSTs JSON to FormSubmit's AJAX endpoint `https://formsubmit.co/ajax/<recipient>`; FormSubmit emails **sales@gvac.co.kr** (`DEFAULT_RECIPIENT`). No account or key is needed
-- **Email layout (for the owner):** subject `[원베큠 홈페이지] 제품 문의 — <company> · <name>` (name only when no company); FormSubmit `_template: table` with Korean row labels in a fixed order: 회사명, 담당자/이름, 연락처, 이메일, 제품명 · 품번, 문의 내용, 접수 시각 (KST, `formatKst`), 문의 언어. Empty optional fields show `—`. `_replyto` is the customer's email so "Reply" goes straight to them
-- **Fields:** 회사명 and 제품명 · 품번 (`product`) are optional; 담당자/이름, 연락처, 이메일, 문의 내용 are required. Phone allows digits, spaces, `+ ( ) - .` with 8–15 digits; max lengths in `MAX_LENGTH`
-- **Activation:** the first submission to a new recipient makes FormSubmit send an "Activate Form" email; until it is clicked the API answers `success: "false"` with an activation message. FormSubmit keeps those submissions (30 days) and delivers them after activation, so `sendInquiry` returns `pending-activation` and the visitor sees "sent"
-- **Failure:** network/HTTP errors keep the visitor's input and show a `mailto:` link pre-filled with the same subject and body (`mailtoHref`)
-- **Localhost dry run:** on `localhost`/`127.0.0.1` nothing is sent unless `PUBLIC_INQUIRY_LIVE=true`; the form opens a preview dialog of the exact email instead. `PUBLIC_INQUIRY_TO` overrides the recipient (for testing with your own inbox)
-- **Spam:** a hidden `_honey` field; if filled, the submit pretends success and sends nothing
-- **i18n:** labels use `inquiry.*` keys; error/status messages are written with `data-i18n` so the KO/EN switch re-translates them in place. Email labels stay Korean regardless of page language
-- **Tests:** `src/lib/inquiry.test.ts` (pure logic) and `src/lib/inquiry-form.test.ts` (renders `ProductInquiry.astro` with the Astro Container API in happy-dom and drives the form with a mocked `fetch`). Run `npm test`; CI runs it on every PR and before deploy
+- **Files:** `ProductInquiry.astro` renders the form (`#inquiry-form`) inside the "제품 문의하기" section (`#inquiry`); `src/lib/inquiry-config.ts` holds this site's fields, subject prefix, recipient and production hosts; `src/lib/inquiry.ts` (validation, email layout, sending) and `src/lib/inquiry-form.ts` (browser controller, preview dialog) are **identical in top-vacuum.github.io — change both**
+- **Fields:** one list, `INQUIRY_FIELDS` in `inquiry-config.ts`, drives the markup, validation, max lengths and email rows. 회사명 and 제품명 · 품번 (`product`) are optional; 담당자/이름, 연락처, 이메일, 문의 내용 are required. Phone: 8–20 digits, anything else around them allowed (extensions, 내선), full-width digits normalised. Email: no whitespace or `, ; < > ( ) "` so it can never become several Reply-To addresses
+- **Delivery:** GitHub Pages is static, so `deliverInquiry` POSTs JSON to FormSubmit's AJAX endpoint `https://formsubmit.co/ajax/<recipient>` (no account or key) and aborts after 15 s. Recipient: **sales@gvac.co.kr** (`DEFAULT_RECIPIENT`, the public contact email from `ui.ts`)
+- **Email layout (for the owner):** subject `[원베큠 홈페이지] 제품 문의 — <company> · <name>` (name only without a company; each part one line, max 40 characters); FormSubmit `_template: table` with Korean row labels in field order, then 접수 시각 (KST) and 문의 언어. Empty optional fields show `—`. `_replyto` is the customer, so "Reply" goes straight to them. `_url` is the page origin + path (no query string)
+- **Outcomes:** sent → form resets, "문의가 전송되었습니다". FormSubmit's exact "This form needs Activation" reply (recipient has not clicked the one-time activation email; FormSubmit keeps those submissions 30 days) → form resets, "문의가 접수되었습니다…" plus a pre-filled email link. Any other refusal, HTTP error, non-JSON body, network failure or timeout → input kept, error message plus a pre-filled `mailto:` link (capped at 1800 characters by shortening the message)
+- **While sending:** the button is `aria-disabled` (not `disabled`, which would drop keyboard focus) and fields are read-only; afterwards focus moves to the status message. The status region (`role="status"`) stays rendered when empty (`sr-only`) so it is announced
+- **Preview instead of sending:** real sends happen only on `onevacuum.kr`, `www.onevacuum.kr` (`PRODUCTION_HOSTS`). Everywhere else (localhost, LAN IPs, tunnels, `npm run preview`) the form opens a dialog showing the exact email and sends nothing. A real send from `astro dev` needs both `PUBLIC_INQUIRY_LIVE=true` and `PUBLIC_INQUIRY_TO=<address>`; `PUBLIC_INQUIRY_TO` is ignored in production builds
+- **Spam:** a hidden `_honey` field; if filled, the submit pretends success and sends nothing. The endpoint itself is public, so direct POSTs bypass every client check — accepted for a no-backend site; see README
+- **No-JS:** the form is `method="post"`, so if the script never loads, typed details are not put in the URL
+- **i18n:** labels use `inquiry.*` keys; error/status messages carry `data-i18n` so the KO/EN switch re-translates them. Email labels stay Korean regardless of page language
+- **Tests:** `src/lib/inquiry.test.ts` (logic), `src/lib/inquiry-form.test.ts` (renders `ProductInquiry.astro` with Astro's `experimental_AstroContainer` in happy-dom and drives it through `initInquiryForms` with a mocked `fetch`), `src/i18n/ui.test.ts` (KO/EN key parity), `src/components/components.test.ts`. `src/test/setup.ts` makes any unmocked `fetch` fail, so tests can never email the owner. The Container API is experimental: re-run `npm test` after any `astro` upgrade
 
 ## Image Optimization
 
@@ -163,8 +172,8 @@ Each entry in `public/products/products.json`:
 |----------------|---------|
 | **Products** | `public/products/products.json` + images in `public/products/images/` |
 | UI text translations | `src/i18n/ui.ts` |
-| Contact info | `src/i18n/ui.ts` (phone, email, address values) |
-| Inquiry form recipient / email layout | `src/lib/inquiry.ts` (`DEFAULT_RECIPIENT`, `EMAIL_LABELS`, `SUBJECT_PREFIX`) |
+| Contact info | `src/i18n/ui.ts` (phone, email, address values; `src/lib/contact.ts` reads them for links) |
+| Inquiry form fields / subject / recipient / live hosts | `src/lib/inquiry-config.ts` |
 | Company logo | `src/components/Logo.astro` (header/footer), `public/images/logo.svg`, `public/images/logo.png` (social preview) |
 | Favicon | `public/images/favicon/` |
 
@@ -181,11 +190,11 @@ npm test       # Run unit + component tests (Vitest)
 ## Styling Conventions
 
 - Uses Tailwind CSS utility classes
-- Colour tokens (`tailwind.config.mjs`): `ink` (text, primary buttons), `paper` / `paper-well` / `paper-dim` (light surfaces and image wells), `line`, `accent` (`#1F5BFF`, logo dot and active states; `accent-light` on dark), `night-*` and `snow-*` (dark mode). There is no `primary-*` palette any more
-- Custom components defined in `src/styles/global.css`: `.container-custom`, `.section`, `.section-title` / `.section-sub`, `.eyebrow`, `.focus-ring`, `.btn-primary` / `.btn-secondary`, `.icon-btn`, `.nav-link`, `.lang-btn`, `.cat-tile` (category filter tile), `.field` (search/sort), `.store-btn`, `.input` / `.field-error` / `.inquiry-status` / `.inquiry-preview` (inquiry form)
+- Colour tokens (`tailwind.config.mjs`): `ink` (text, primary buttons), `paper` / `paper-well` / `paper-dim` (light surfaces and image wells), `line` / `line-strong` (dividers / form control borders, 3:1), `danger` (errors), `naver` / `coupang` (store dots), `accent` (`#1F5BFF`, logo dot and active states; `accent-light` on dark), `night-*` and `snow-*` (dark mode). There is no `primary-*` palette any more
+- Custom components defined in `src/styles/global.css`: `.container-custom`, `.section`, `.section-title` / `.section-sub`, `.eyebrow`, `.focus-ring`, `.btn-primary` / `.btn-secondary`, `.icon-btn`, `.nav-link`, `.lang-btn`, `.cat-tile` (category filter tile), `.field` (search/sort), `.store-btn`, `.input` / `.field-error` / `.inquiry-status` / `.inquiry-preview` (inquiry form). `.focus-ring` adds a transparent outline so focus stays visible in forced-colors (high contrast) mode
 - **Product photos** blend into their light wells with `mix-blend-darken`. Several photos have off-white (#EBEBEB–#F7F7F7) backgrounds, so wells use `paper-well` (`#F0F0ED`) and stay light in dark mode (`paper-dim`). Don't put product photos on white or dark backgrounds, or the photo background shows as a box
 - `font-display` (Archivo) is only for small uppercase Latin labels; Korean and body text use Pretendard
-- The wordmark paths in `Logo.astro` were generated from Archivo (wdth 125, wght 640, +60 tracking) with the O replaced by a ring + dot; regenerate rather than hand-edit
+- **Logo:** `Logo.astro` and `public/images/logo.svg` are generated by `scripts/build-wordmark.py` (Archivo wdth 125 / wght 640, +60 tracking, O = ring + dot); setup and usage are in the script header. Regenerate rather than hand-edit. `logo.png` and the favicons are rendered from those SVGs (browser screenshot, then ImageMagick resize)
 - Responsive breakpoint: `md:` for desktop nav and layout transitions
 
 ## SEO
@@ -198,4 +207,4 @@ npm test       # Run unit + component tests (Vitest)
 
 ## Deployment
 
-Automatic deployment via GitHub Actions on push to `main` branch. Requires GitHub Pages to be configured with "GitHub Actions" as the build source.
+Automatic deployment via GitHub Actions on push to `main` branch (tests, then build, then deploy; only the deploy job has `pages: write` / `id-token: write`). `ci.yml` runs tests and build on every pull request with a read-only token. Requires GitHub Pages to be configured with "GitHub Actions" as the build source.
