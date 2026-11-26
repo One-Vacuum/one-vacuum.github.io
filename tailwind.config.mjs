@@ -18,18 +18,14 @@ export default {
         paper: {
           DEFAULT: '#F3F3F1', // hero panel, tiles, image wells
           deep: '#E9E9E5', // hover on paper
-          // Product image wells: with mix-blend-darken, off-white photo backgrounds
-          // (#EBEBEB–#F7F7F7) vanish only on a well at least this dark.
+          // Product image wells: photos (pure white backgrounds, see
+          // scripts/normalize-product-images.py) are multiplied onto them.
           well: '#F0F0ED',
           dim: '#DCDDD9', // image wells in dark mode
         },
         line: {
           DEFAULT: '#E4E4E0', // dividers
-          strong: '#7A7C84', // form control borders (3.7:1+ on white and paper)
-        },
-        danger: {
-          DEFAULT: '#B42318', // error text and borders
-          light: '#FDA29B', // the same on dark backgrounds
+          strong: '#7A7C84', // search and sort borders (3.7:1+ on white and paper)
         },
         // Store brand dots on the Naver / Coupang buttons
         naver: '#03C75A',
@@ -43,7 +39,7 @@ export default {
           raised: '#17181B',
           high: '#202125',
           line: '#2A2C31',
-          strong: '#63666E', // form control borders in dark mode
+          strong: '#63666E', // the same in dark mode
         },
         snow: {
           DEFAULT: '#F2F2F0', // dark-mode text

@@ -2,9 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from './Hero.astro';
 import ProductCard from './ProductCard.astro';
-import ProductInquiry from './ProductInquiry.astro';
+import ProductTicker from './ProductTicker.astro';
 import { ui } from '../i18n/ui';
-import { loadProducts, formatPrice, coupangUrl } from '../lib/products';
+import { loadProducts, formatPrice, coupangUrl, cutoutUrl } from '../lib/products';
 import { CONTACT, mailHref, telHref } from '../lib/contact';
 import type { Product } from '../lib/products';
 
@@ -12,20 +12,26 @@ const t = ui.ko;
 const products = loadProducts();
 
 // Category tiles double as the filter. Photo: a fixed representative part, else
-// the category's first product.
-const pick = (pn: string, list: Product[]) => (list.find((p) => p.partNumber === pn) ?? list[0])?.image;
+// the category's first product (its cut-out when it has one).
+const tilePhoto = (pn: string, list: Product[]) => {
+  const p = list.find((x) => x.partNumber === pn) ?? list[0];
+  if (!p) return undefined;
+  const cutout = cutoutUrl(p);
+  return { src: cutout ?? `/products/images/${p.image}`, cls: cutout ? 'product-cutout' : 'mix-blend-multiply' };
+};
 const inCat = (c: string) => products.filter((p) => p.category === c);
 const categories = [
-  { id: 'all', key: 'products.filterAll', list: products, rep: 'L21099' },
-  { id: 'oil', key: 'products.filterOil', list: inCat('oil'), rep: 'L13005' },
-  { id: 'oil-filter', key: 'products.filterOilFilter', list: inCat('oil-filter'), rep: 'EK96006' },
-  { id: 'vacuum-filter', key: 'products.filterVacuumFilter', list: inCat('vacuum-filter'), rep: '18972' },
+  { id: 'all', key: 'products.filterAll', list: products, photo: tilePhoto('L21099', products) },
+  { id: 'oil', key: 'products.filterOil', list: inCat('oil'), photo: tilePhoto('L13005', inCat('oil')) },
+  { id: 'oil-filter', key: 'products.filterOilFilter', list: inCat('oil-filter'), photo: tilePhoto('EK96006', inCat('oil-filter')) },
+  { id: 'vacuum-filter', key: 'products.filterVacuumFilter', list: inCat('vacuum-filter'), photo: tilePhoto('18972', inCat('vacuum-filter')) },
 ] as const;
 
 ---
 
 <BaseLayout>
   <Hero />
+  <ProductTicker />
 
   <!-- Products Section -->
   <section id="products" class="section" aria-labelledby="products-title">
@@ -46,18 +52,12 @@ const categories = [
                 class:list={['filter-btn cat-tile', c.id === 'all' && 'filter-active']}
                 aria-pressed={c.id === 'all' ? 'true' : 'false'}
               >
-                <span class="flex items-center gap-2 text-base md:text-lg font-extrabold tracking-[-0.02em]">
-                  <span class="cat-dot w-1.5 h-1.5 rounded-full bg-accent" aria-hidden="true"></span>
-                  <span data-i18n={c.key}>{t[c.key]}</span>
-                </span>
-                <span class="mt-1 font-display text-[13px] font-semibold text-ink-soft [font-stretch:112%]">{c.list.length}</span>
-                {pick(c.rep, [...c.list]) && (
-                  <img
-                    src={`/products/images/${pick(c.rep, [...c.list])}`}
-                    alt=""
-                    class="absolute right-1 bottom-0 h-[82%] w-[48%] object-contain object-right-bottom mix-blend-darken pointer-events-none"
-                    loading="lazy"
-                  />
+                <span class="relative z-10 text-[15px] md:text-lg font-extrabold tracking-[-0.02em]" data-i18n={c.key}>{t[c.key]}</span>
+                <span class="cat-count">{c.list.length}</span>
+                {c.photo && (
+                  <span class="cat-disc" aria-hidden="true">
+                    <img src={c.photo.src} class={c.photo.cls} alt="" loading="lazy" />
+                  </span>
                 )}
               </button>
             ))}
@@ -92,13 +92,14 @@ const categories = [
           </div>
 
           <!-- Product Grid -->
-          <div id="product-grid" class="mt-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-10 md:gap-x-6 md:gap-y-14">
+          <div id="product-grid" class="mt-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5">
             {products.map((product) => (
               <ProductCard
                 partNumber={product.partNumber}
                 nameKo={product.nameKo}
                 nameEn={product.nameEn}
                 image={`/products/images/${product.image}`}
+                cutout={cutoutUrl(product)}
                 descriptionKo={product.descriptionKo}
                 descriptionEn={product.descriptionEn}
                 category={product.category}
@@ -182,8 +183,6 @@ const categories = [
       </div>
     </div>
   </section>
-
-  <ProductInquiry />
 
   <!-- Contact Section -->
   <section id="contact" class="section pt-0" aria-labelledby="contact-title">
@@ -335,6 +334,13 @@ const categories = [
     searchClear.classList.add('hidden');
     visibleLimit = ITEMS_PER_PAGE;
     applyVisibility();
+  });
+
+  // Hero catalogue counts: select that category, then the link scrolls to the grid.
+  document.querySelectorAll<HTMLAnchorElement>('[data-filter-link]').forEach((link) => {
+    link.addEventListener('click', () => {
+      filters?.querySelector<HTMLButtonElement>(`.filter-btn[data-filter="${link.dataset.filterLink}"]`)?.click();
+    });
   });
 
   // ===================== Language Toggle =====================

@@ -45,29 +45,6 @@ export const ui = {
     'buy.naverStore': '네이버 스토어',
     'buy.coupang': '쿠팡',
 
-    // Product inquiry form (제품 문의하기)
-    'inquiry.title': '제품 문의하기',
-    'inquiry.lead': '궁금한 제품명이나 품번, 수량을 적어 보내주세요.',
-    'inquiry.company': '회사명',
-    'inquiry.optional': '(선택)',
-    'inquiry.name': '담당자/이름',
-    'inquiry.phone': '연락처',
-    'inquiry.email': '이메일',
-    'inquiry.product': '제품명 · 품번',
-    'inquiry.productPlaceholder': '예: LVO130 20L, EK96006',
-    'inquiry.message': '문의 내용',
-    'inquiry.submit': '문의 보내기',
-    'inquiry.sending': '보내는 중…',
-    'inquiry.error.required': '필수 입력 항목입니다.',
-    'inquiry.error.email': '이메일 주소를 확인해 주세요.',
-    'inquiry.error.phone': '연락처를 확인해 주세요.',
-    'inquiry.error.tooLong': '입력한 내용이 너무 깁니다.',
-    'inquiry.status.sending': '보내는 중…',
-    'inquiry.status.sent': '문의가 전송되었습니다.',
-    'inquiry.status.error': '전송하지 못했습니다. 잠시 후 다시 시도하시거나 이메일로 보내주세요:',
-    'inquiry.status.dryRun': '테스트 환경이라 실제로 보내지 않았습니다. 미리보기를 확인하세요.',
-    'inquiry.status.invalid': '입력한 내용을 확인해 주세요.',
-    'inquiry.status.pending': '문의가 접수되었습니다. 답변이 늦어지면 이메일로도 보내주세요:',
 
     // Accessible names (read by screen readers, switched with the language)
     'a11y.language': '언어',
@@ -76,7 +53,6 @@ export const ui = {
     'a11y.mainNav': '주 메뉴',
     'a11y.mobileNav': '모바일 메뉴',
     'a11y.clearSearch': '검색어 지우기',
-    'a11y.close': '닫기',
     'products.sortLabel': '정렬',
 
     // Contact
@@ -142,29 +118,6 @@ export const ui = {
     'buy.naverStore': 'Naver Store',
     'buy.coupang': 'Coupang',
 
-    // Product inquiry form
-    'inquiry.title': 'Product Inquiry',
-    'inquiry.lead': 'Tell us the product name or part number and the quantity you need.',
-    'inquiry.company': 'Company',
-    'inquiry.optional': '(optional)',
-    'inquiry.name': 'Contact person / Name',
-    'inquiry.phone': 'Phone',
-    'inquiry.email': 'Email',
-    'inquiry.product': 'Product name · Part number',
-    'inquiry.productPlaceholder': 'e.g. LVO130 20L, EK96006',
-    'inquiry.message': 'Message',
-    'inquiry.submit': 'Send Inquiry',
-    'inquiry.sending': 'Sending…',
-    'inquiry.error.required': 'This field is required.',
-    'inquiry.error.email': 'Please check the email address.',
-    'inquiry.error.phone': 'Please check the phone number.',
-    'inquiry.error.tooLong': 'This is too long.',
-    'inquiry.status.sending': 'Sending…',
-    'inquiry.status.sent': 'Your inquiry has been sent.',
-    'inquiry.status.error': 'We could not send it. Please try again later or email us:',
-    'inquiry.status.dryRun': 'Test environment: nothing was sent. See the preview.',
-    'inquiry.status.invalid': 'Please check the highlighted fields.',
-    'inquiry.status.pending': "Your inquiry was received. If you don't hear back, please also email us:",
 
     // Accessible names
     'a11y.language': 'Language',
@@ -173,7 +126,6 @@ export const ui = {
     'a11y.mainNav': 'Main menu',
     'a11y.mobileNav': 'Mobile menu',
     'a11y.clearSearch': 'Clear search',
-    'a11y.close': 'Close',
     'products.sortLabel': 'Sort',
 
     // Contact

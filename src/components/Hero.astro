@@ -6,18 +6,26 @@ const t = ui.ko;
 const products = loadProducts();
 const byPart = (pn: string) => products.find((p) => p.partNumber === pn);
 
-// Three containers of the same oil line, largest at the back; parts missing from products.json are skipped.
+// Cut-out photos from scripts/build-hero-cutouts.py (same parts), largest at the back.
 const stage = [
-  { product: byPart('L13020'), cls: 'right-0 bottom-0 h-[88%] w-[58%]' },
-  { product: byPart('L13005'), cls: 'left-[4%] bottom-0 h-[66%] w-[42%]' },
-  { product: byPart('L70201'), cls: 'left-[34%] bottom-0 h-[47%] w-[28%]' },
-].filter((s) => s.product);
-const featured = stage[0]?.product;
+  { pn: 'L13020', cls: 'right-[3%] bottom-[8%] h-[74%]', delay: '80ms' },
+  { pn: 'L13005', cls: 'left-[4%] bottom-[8%] h-[58%]', delay: '200ms' },
+  { pn: 'L70201', cls: 'left-[37%] bottom-[5%] h-[40%]', delay: '320ms' },
+].filter((s) => byPart(s.pn));
+const featured = byPart('L13020');
+
+// Catalogue counts; each links to the product grid with that category selected.
+const counts = [
+  { id: 'all', key: 'products.filterAll', n: products.length },
+  { id: 'oil', key: 'products.filterOil', n: products.filter((p) => p.category === 'oil').length },
+  { id: 'oil-filter', key: 'products.filterOilFilter', n: products.filter((p) => p.category === 'oil-filter').length },
+  { id: 'vacuum-filter', key: 'products.filterVacuumFilter', n: products.filter((p) => p.category === 'vacuum-filter').length },
+] as const;
 ---
 
 <section class="container-custom pt-4 md:pt-6">
-  <div class="rounded-[28px] md:rounded-[36px] bg-paper dark:bg-night-raised px-6 py-10 sm:px-10 md:px-14 lg:px-16 md:py-16 grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">
-    <div>
+  <div class="hero-panel rounded-[28px] md:rounded-[36px] bg-paper dark:bg-night-raised px-6 py-10 sm:px-10 md:px-14 lg:px-16 md:py-16 grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">
+    <div class="hero-rise">
       <p class="eyebrow">
         <span class="w-1.5 h-1.5 rounded-full bg-accent dark:bg-accent-light" aria-hidden="true"></span>
         <span data-i18n="hero.eyebrow">{t['hero.eyebrow']}</span>
@@ -35,27 +43,57 @@ const featured = stage[0]?.product;
         <a href="#products" class="btn-primary" data-i18n="products.title">{t['products.title']}</a>
         <a href="#buy" class="btn-secondary" data-i18n="buy.title">{t['buy.title']}</a>
       </div>
+
+      {products.length > 0 && (
+        <ul class="mt-10 pt-6 max-w-md grid grid-cols-4 gap-2 border-t border-line dark:border-night-line">
+          {counts.map((c) => (
+            <li>
+              <a href="#products" data-filter-link={c.id} class="hero-stat focus-ring">
+                <span class="hero-stat-n">{c.n}</span>
+                <span class="hero-stat-label" data-i18n={c.key}>{t[c.key]}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
 
     {stage.length > 0 && (
-      <div class="relative h-[300px] sm:h-[380px] lg:h-[460px] rounded-3xl dark:bg-paper-dim" aria-hidden="true">
-        {stage.map(({ product, cls }) => (
+      <div class="relative h-[320px] sm:h-[400px] lg:h-[480px]" aria-hidden="true">
+        <!-- The wordmark's ring and dot, as a backdrop -->
+        <div class="hero-orbit absolute left-1/2 top-[45%] -translate-x-1/2 -translate-y-1/2 aspect-square w-[min(100%,290px)] sm:w-[min(100%,370px)] lg:w-[min(100%,440px)]">
+          <div class="absolute inset-0 rounded-full hero-glow"></div>
+          <div class="absolute inset-0 rounded-full border border-ink/10 dark:border-snow/15"></div>
+          <div class="absolute inset-[16%] rounded-full border border-dashed border-ink/10 dark:border-snow/10"></div>
+          <div class="hero-spin absolute inset-0">
+            <span class="absolute left-1/2 -top-[7px] -ml-[7px] w-3.5 h-3.5 rounded-full bg-accent ring-4 ring-paper dark:bg-accent-light dark:ring-night-raised"></span>
+          </div>
+        </div>
+        <div class="absolute inset-x-[4%] bottom-[2%] h-[14%] hero-floor"></div>
+
+        {stage.map(({ pn, cls, delay }) => (
           <img
-            src={`/products/images/${product!.image}`}
+            src={`/images/hero/${pn}.webp`}
             alt=""
-            class:list={['absolute object-contain object-bottom mix-blend-darken', cls]}
+            class:list={['hero-rise absolute object-contain object-bottom drop-shadow-[0_18px_22px_rgba(17,18,22,0.14)]', cls]}
+            style={`animation-delay:${delay}`}
             loading="eager"
           />
         ))}
+
         {featured && (
-          <div
-            class="absolute left-0 top-2 lg:top-4 w-[188px] sm:w-[210px] rounded-2xl bg-white/95 dark:bg-night-high/95 px-4 py-3.5 shadow-[0_12px_32px_rgba(17,18,22,0.12)] flex flex-col gap-0.5"
-          >
-            <span class="text-[12px] font-semibold text-ink-mute dark:text-snow-mute">{featured.partNumber}</span>
-            <span class="product-name text-[15px] font-bold text-ink dark:text-snow" data-name-ko={featured.nameKo} data-name-en={featured.nameEn}>{featured.nameKo}</span>
-            <span class="text-xl font-extrabold tracking-[-0.02em] text-ink dark:text-snow">{formatPrice(featured.price)}</span>
+          <div class="hero-float absolute left-0 top-0 sm:top-[3%] w-[148px] sm:w-[210px] rounded-2xl bg-white/95 dark:bg-night-high/95 px-3 py-2.5 sm:px-4 sm:py-3.5 shadow-[0_12px_32px_rgba(17,18,22,0.12)] flex flex-col gap-0.5">
+            <span class="font-display text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-mute dark:text-snow-mute [font-stretch:112%]">{featured.partNumber}</span>
+            <span class="product-name text-[13px] sm:text-[15px] font-bold text-ink dark:text-snow" data-name-ko={featured.nameKo} data-name-en={featured.nameEn}>{featured.nameKo}</span>
+            <span class="text-base sm:text-xl font-extrabold tracking-[-0.02em] text-ink dark:text-snow">{formatPrice(featured.price)}</span>
           </div>
         )}
+
+        <div class="hero-float hero-float-late absolute right-0 bottom-0 hidden sm:flex items-center gap-3 rounded-full bg-white/95 dark:bg-night-high/95 pl-3.5 pr-4 py-2.5 shadow-[0_12px_32px_rgba(17,18,22,0.12)] text-[13px] font-bold text-ink dark:text-snow">
+          <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-naver"></span><span data-i18n="buy.naverStore">{t['buy.naverStore']}</span></span>
+          <span class="w-px h-3.5 bg-line dark:bg-night-line"></span>
+          <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-coupang"></span><span data-i18n="buy.coupang">{t['buy.coupang']}</span></span>
+        </div>
       </div>
     )}
   </div>

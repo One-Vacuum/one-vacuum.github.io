@@ -82,23 +82,40 @@
   }
 
   /* Category tiles double as the product filter (`filter-btn` is the JS hook).
-     They stay light in dark mode so mix-blend-darken hides photo backgrounds. */
+     The photo sits inside a light disc (the wordmark's ring and dot) and never
+     past its edge: the hover scale isolates the disc, so mix-blend-multiply (on
+     photos) can only blend the photo's white background into the disc itself. */
   .cat-tile {
     @apply focus-ring relative overflow-hidden flex flex-col items-start text-left
-           h-[112px] md:h-[136px] rounded-3xl p-4 md:p-5 bg-paper dark:bg-paper-dim text-ink
-           ring-2 ring-transparent hover:ring-line dark:hover:ring-night-line transition duration-200 cursor-pointer;
+           h-[128px] md:h-[156px] rounded-3xl p-4 md:p-5 bg-paper text-ink hover:bg-paper-deep
+           dark:bg-night-high dark:text-snow dark:hover:bg-night-line transition-colors duration-200 cursor-pointer;
   }
 
   .cat-tile.filter-active {
-    @apply ring-ink dark:ring-accent-light;
+    @apply bg-ink text-white hover:bg-ink dark:bg-snow dark:text-ink dark:hover:bg-snow;
   }
 
-  .cat-tile .cat-dot {
-    @apply opacity-0 transition-opacity;
+  .cat-count {
+    @apply relative z-10 mt-auto font-display text-[30px] md:text-[38px] font-semibold leading-none tracking-[-0.02em];
+    font-stretch: 112%;
   }
 
-  .cat-tile.filter-active .cat-dot {
-    @apply opacity-100;
+  .cat-disc {
+    @apply absolute -right-3 -bottom-3 w-[96px] h-[96px] md:w-[132px] md:h-[132px] rounded-full
+           bg-paper-deep ring-1 ring-ink/10 dark:bg-paper-dim transition-transform duration-300;
+  }
+
+  .cat-tile:hover .cat-disc {
+    @apply scale-105;
+  }
+
+  .cat-disc img {
+    @apply absolute inset-[15%] w-[70%] h-[70%] object-contain;
+  }
+
+  .cat-disc::after {
+    content: '';
+    @apply absolute left-[12%] top-[12%] w-2.5 h-2.5 rounded-full bg-accent ring-2 ring-paper-deep dark:ring-paper-dim;
   }
 
   .field {
@@ -107,61 +124,161 @@
            focus:outline-none focus:ring-2 focus:ring-accent dark:focus:ring-accent-light;
   }
 
-  /* Inquiry form controls. */
-  .input {
-    @apply h-12 w-full rounded-xl border border-line-strong bg-white px-4 text-[15px] text-ink
-           placeholder:text-ink-mute focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-transparent
-           focus:border-ink focus:ring-2 focus:ring-accent read-only:bg-paper
-           aria-[invalid=true]:border-danger
-           dark:border-night-strong dark:bg-night dark:text-snow dark:placeholder:text-snow-mute
-           dark:focus:border-snow dark:focus:ring-accent-light dark:aria-[invalid=true]:border-danger-light;
+  /* Product card: a framed shelf tile with the photo in a light well. */
+  .product-card {
+    @apply relative h-full flex flex-col rounded-[24px] bg-white p-2.5 md:p-3 ring-1 ring-line
+           transition duration-300 hover:-translate-y-1 hover:ring-ink/20 hover:shadow-[0_22px_40px_-24px_rgba(17,18,22,0.35)]
+           dark:bg-night-raised dark:ring-night-line dark:hover:ring-snow/25;
   }
 
-  .field-error {
-    @apply text-[13px] font-medium text-danger dark:text-danger-light empty:hidden;
+  .product-well {
+    @apply relative aspect-square overflow-hidden rounded-[18px] bg-paper-well dark:bg-paper-dim;
   }
 
-  /* Rendered even when empty (sr-only, not hidden) so screen readers announce updates. */
-  .inquiry-status {
-    @apply text-sm leading-relaxed text-ink-soft dark:text-snow-soft empty:sr-only focus:outline-none;
+  /* Transparent cut-out (white filters): a soft shadow grounds it on the well. */
+  .product-cutout {
+    filter: drop-shadow(0 12px 14px rgba(17, 18, 22, 0.16));
   }
 
-  .inquiry-status[data-state='sent'] {
-    @apply font-semibold text-accent dark:text-accent-light;
+  .cat-disc .product-cutout {
+    filter: drop-shadow(0 5px 6px rgba(17, 18, 22, 0.16));
   }
 
-  .inquiry-status[data-state='error'],
-  .inquiry-status[data-state='invalid'] {
-    @apply text-danger dark:text-danger-light;
+  /* An arc of the wordmark's ring in the corner, clear of the centred photo. */
+  .product-well-ring {
+    @apply absolute -right-[34%] -top-[34%] w-[78%] h-[78%] rounded-full border border-ink/[0.07]
+           transition-transform duration-500 group-hover/card:-translate-x-2 group-hover/card:translate-y-2;
   }
 
-  /* Localhost-only preview of the email (see isDryRun in src/lib/inquiry.ts). */
-  .inquiry-preview {
-    @apply w-[min(640px,calc(100vw-2rem))] max-h-[85vh] overflow-auto rounded-3xl p-6 bg-white text-ink shadow-2xl
-           dark:bg-night-raised dark:text-snow;
-  }
-
-  .inquiry-preview-label {
-    @apply font-display text-[11px] font-semibold uppercase tracking-[0.14em] text-accent dark:text-accent-light;
+  .product-best {
+    @apply absolute left-2.5 top-2.5 rounded-full bg-accent px-2.5 py-1 font-display text-[10px] font-bold tracking-[0.1em] text-white;
     font-stretch: 125%;
   }
 
-  .inquiry-preview::backdrop {
-    background: rgb(17 18 22 / 0.5);
+  .product-cat {
+    @apply absolute right-2.5 top-2.5 rounded-full bg-white/90 px-2.5 py-1 text-[11px] font-semibold text-ink-soft;
   }
 
-  .inquiry-preview th {
-    @apply w-32 align-top text-left font-semibold bg-paper dark:bg-night-high px-3 py-2 border-b border-line dark:border-night-line;
+  /* Hero: dot grid behind the product stage. */
+  .hero-panel {
+    @apply relative overflow-hidden isolate;
   }
 
-  .inquiry-preview td {
-    @apply px-3 py-2 align-top whitespace-pre-wrap break-words border-b border-line dark:border-night-line;
+  .hero-panel::before {
+    content: '';
+    @apply absolute inset-0 -z-10 pointer-events-none;
+    background-image: radial-gradient(rgb(17 18 22 / 0.09) 1px, transparent 1.3px);
+    background-size: 22px 22px;
+    mask-image: radial-gradient(ellipse 55% 75% at 78% 50%, #000 25%, transparent 75%);
+  }
+
+  .dark .hero-panel::before {
+    background-image: radial-gradient(rgb(242 242 240 / 0.08) 1px, transparent 1.3px);
+  }
+
+  .hero-glow {
+    background: radial-gradient(circle at 50% 42%, #fff 0%, #fff 34%, rgb(255 255 255 / 0) 70%);
+  }
+
+  .dark .hero-glow {
+    background: radial-gradient(circle at 50% 42%, #dcddd9 0%, #dcddd9 34%, rgb(220 221 217 / 0) 70%);
+  }
+
+  .hero-floor {
+    background: radial-gradient(closest-side, rgb(17 18 22 / 0.16), rgb(17 18 22 / 0));
+  }
+
+  .hero-stat {
+    @apply flex flex-col gap-1.5 rounded-lg py-1 text-ink dark:text-snow hover:text-accent dark:hover:text-accent-light transition-colors;
+  }
+
+  .hero-stat-n {
+    @apply font-display text-[26px] md:text-[30px] font-semibold leading-none tracking-[-0.02em];
+    font-stretch: 112%;
+  }
+
+  .hero-stat-label {
+    @apply text-[12px] md:text-[13px] font-semibold leading-snug text-ink-soft dark:text-snow-soft;
+  }
+
+  .hero-rise {
+    animation: hero-rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  .hero-float {
+    animation: hero-float 6s ease-in-out infinite;
+  }
+
+  .hero-float-late {
+    animation-delay: -3s;
+  }
+
+  .hero-spin {
+    animation: hero-spin 28s linear infinite;
+  }
+
+  /* Oil series band between the hero and the products. */
+  .ticker {
+    @apply overflow-hidden border-y border-line py-4 md:py-5 dark:border-night-line;
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+
+  .ticker-track {
+    @apply flex w-max;
+    animation: ticker 70s linear infinite;
+  }
+
+  .ticker:hover .ticker-track {
+    animation-play-state: paused;
+  }
+
+  .ticker-group {
+    @apply flex shrink-0 items-center;
+  }
+
+  .ticker-item {
+    @apply flex items-center gap-7 md:gap-10 pr-7 md:pr-10 font-display text-[15px] md:text-[17px] font-semibold uppercase tracking-[0.12em]
+           text-ink-soft dark:text-snow-soft;
+    font-stretch: 118%;
+  }
+
+  .ticker-dot {
+    @apply w-2 h-2 rounded-full ring-[1.5px] ring-ink/25 dark:ring-snow/30;
+  }
+
+  .ticker-item:nth-child(3n) .ticker-dot {
+    @apply bg-accent ring-0;
   }
 
   .store-btn {
     @apply focus-ring flex-1 inline-flex items-center justify-center gap-2 h-10 px-2 rounded-xl
            bg-paper text-ink text-[13px] font-bold whitespace-nowrap hover:bg-paper-deep
            dark:bg-night-high dark:text-snow dark:hover:bg-night-line transition-colors;
+  }
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+@keyframes hero-float {
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes hero-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ticker {
+  to {
+    transform: translateX(-50%);
   }
 }
 
