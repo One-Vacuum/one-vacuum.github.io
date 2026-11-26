@@ -124,6 +124,12 @@
            focus:outline-none focus:ring-2 focus:ring-accent dark:focus:ring-accent-light;
   }
 
+  /* The search field has its own clear button (#search-clear); hide the browser's. */
+  .field[type='search']::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
   /* Product card: a framed shelf tile with the photo in a light well. */
   .product-card {
     @apply relative h-full flex flex-col rounded-[24px] bg-white p-2.5 md:p-3 ring-1 ring-line

@@ -89,6 +89,8 @@ def product_mask(solid: np.ndarray) -> np.ndarray:
                     labels[ny, nx] = labels[start]
                     queue.append((ny, nx))
         blobs.append((size, y0, x0, y1, x1))
+    if not blobs:
+        raise ValueError('no solid pixels: the product is too close to the background colour')
     largest = max(range(len(blobs)), key=lambda i: blobs[i][0])
     gap = GAP * max(grid.shape)
     group = {largest} | {i for i, b in enumerate(blobs) if b[0] >= BIG_SHARE * blobs[largest][0]}
@@ -118,7 +120,10 @@ def normalize(path: Path) -> str:
     a = np.asarray(Image.open(path).convert('RGB')).astype(np.float32)
     alpha, bg = background_alpha(a)
     solid = alpha >= SOLID_OVERRIDES.get(path.name, SOLID)
-    product = product_mask(solid)
+    try:
+        product = product_mask(solid)
+    except ValueError as e:
+        sys.exit(f'{path.name}: {e}; give it a lower threshold in SOLID_OVERRIDES')
     # Specks: solid pixels outside the product blobs (plus a small fringe) go white.
     specks = solid & ~product
     if specks.any():
