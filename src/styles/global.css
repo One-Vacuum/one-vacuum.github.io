@@ -5,49 +5,287 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
   }
 
   body {
-    @apply antialiased text-gray-900 bg-white dark:text-gray-100 dark:bg-gray-950;
+    @apply antialiased text-ink bg-white dark:text-snow dark:bg-night;
   }
 }
 
 @layer components {
   .container-custom {
-    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply max-w-[1320px] mx-auto px-5 sm:px-8 lg:px-10;
   }
 
   .section {
-    @apply py-16 md:py-24;
+    @apply py-20 md:py-28;
+  }
+
+  .section-title {
+    @apply text-[30px] md:text-[40px] font-extrabold leading-tight tracking-[-0.035em];
+  }
+
+  .section-sub {
+    @apply mt-3 text-base md:text-lg text-ink-soft dark:text-snow-soft;
+  }
+
+  /* Small uppercase Latin label set in the wordmark face. */
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full bg-white px-3.5 py-2 font-display text-[11px] font-semibold uppercase tracking-[0.14em] text-ink dark:bg-night-high dark:text-snow;
+    font-stretch: 125%;
+  }
+
+  /* The English headline is about twice as long as the Korean one. */
+  html[lang='en'] .hero-headline {
+    @apply text-[32px] sm:text-[40px] lg:text-[48px] leading-[1.12];
+  }
+
+  /* The transparent outline is what forced-colors (high contrast) mode shows,
+     since it drops the box-shadow ring. */
+  .focus-ring {
+    @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-transparent focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 dark:focus-visible:ring-accent-light dark:focus-visible:ring-offset-night;
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3
-           bg-primary-600 text-white font-medium rounded-lg
-           hover:bg-primary-700 transition-colors duration-200;
+    @apply focus-ring inline-flex items-center justify-center h-12 md:h-14 px-6 md:px-8 rounded-full
+           bg-ink text-white text-[15px] md:text-base font-bold
+           hover:bg-black dark:bg-snow dark:text-ink dark:hover:bg-white transition-colors duration-200;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center px-6 py-3
-           border-2 border-primary-600 text-primary-600 font-medium rounded-lg
-           hover:bg-primary-50 dark:text-primary-400 dark:border-primary-400
-           dark:hover:bg-primary-900/20 transition-colors duration-200;
+    @apply focus-ring inline-flex items-center justify-center h-12 md:h-14 px-6 md:px-8 rounded-full
+           bg-white text-ink text-[15px] md:text-base font-bold ring-1 ring-inset ring-line
+           hover:ring-ink dark:bg-night-high dark:text-snow dark:ring-night-line dark:hover:ring-snow transition duration-200;
   }
 
-  .filter-btn {
-    @apply px-4 py-2 text-sm font-medium rounded-full
-           border border-gray-200 dark:border-gray-700
-           text-gray-600 dark:text-gray-400
-           hover:border-primary-300 hover:text-primary-600
-           dark:hover:border-primary-600 dark:hover:text-primary-400
-           transition-colors duration-200 cursor-pointer;
+  .icon-btn {
+    @apply focus-ring inline-flex items-center justify-center w-10 h-10 rounded-full
+           text-ink-soft hover:text-ink hover:bg-paper
+           dark:text-snow-soft dark:hover:text-snow dark:hover:bg-night-high transition-colors;
   }
 
-  .filter-btn.filter-active {
-    @apply bg-primary-600 text-white border-primary-600
-           dark:bg-primary-500 dark:border-primary-500;
+  .nav-link {
+    @apply focus-ring px-3.5 py-2 rounded-full text-ink-soft hover:text-ink hover:bg-paper
+           dark:text-snow-soft dark:hover:text-snow dark:hover:bg-night-high transition-colors;
   }
 
+  /* KO / EN segmented switch. `lang-active` is toggled by setLang(). */
+  .lang-btn {
+    @apply focus-ring h-8 min-w-[2.25rem] px-2.5 rounded-full font-display text-[11px] font-semibold tracking-[0.08em]
+           text-ink-mute hover:text-ink dark:text-snow-mute dark:hover:text-snow transition-colors;
+    font-stretch: 112%;
+  }
+
+  .lang-btn.lang-active {
+    @apply bg-white text-ink shadow-sm dark:bg-night-line dark:text-snow;
+  }
+
+  /* Category tiles double as the product filter (`filter-btn` is the JS hook).
+     The photo sits inside a light disc (the wordmark's ring and dot) and never
+     past its edge: the hover scale isolates the disc, so mix-blend-multiply (on
+     photos) can only blend the photo's white background into the disc itself. */
+  .cat-tile {
+    @apply focus-ring relative overflow-hidden flex flex-col items-start text-left
+           h-[128px] md:h-[156px] rounded-3xl p-4 md:p-5 bg-paper text-ink hover:bg-paper-deep
+           dark:bg-night-high dark:text-snow dark:hover:bg-night-line transition-colors duration-200 cursor-pointer;
+  }
+
+  .cat-tile.filter-active {
+    @apply bg-ink text-white hover:bg-ink dark:bg-snow dark:text-ink dark:hover:bg-snow;
+  }
+
+  .cat-count {
+    @apply relative z-10 mt-auto font-display text-[30px] md:text-[38px] font-semibold leading-none tracking-[-0.02em];
+    font-stretch: 112%;
+  }
+
+  .cat-disc {
+    @apply absolute -right-3 -bottom-3 w-[96px] h-[96px] md:w-[132px] md:h-[132px] rounded-full
+           bg-paper-deep ring-1 ring-ink/10 dark:bg-paper-dim transition-transform duration-300;
+  }
+
+  .cat-tile:hover .cat-disc {
+    @apply scale-105;
+  }
+
+  .cat-disc img {
+    @apply absolute inset-[15%] w-[70%] h-[70%] object-contain;
+  }
+
+  .cat-disc::after {
+    content: '';
+    @apply absolute left-[12%] top-[12%] w-2.5 h-2.5 rounded-full bg-accent ring-2 ring-paper-deep dark:ring-paper-dim;
+  }
+
+  .field {
+    @apply h-12 rounded-full bg-paper dark:bg-night-raised border border-line-strong dark:border-night-strong px-5 text-[15px]
+           text-ink dark:text-snow placeholder:text-ink-mute dark:placeholder:text-snow-mute
+           focus:outline-none focus:ring-2 focus:ring-accent dark:focus:ring-accent-light;
+  }
+
+  /* The search field has its own clear button (#search-clear); hide the browser's. */
+  .field[type='search']::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  /* Product card: a framed shelf tile with the photo in a light well. */
+  .product-card {
+    @apply relative h-full flex flex-col rounded-[24px] bg-white p-2.5 md:p-3 ring-1 ring-line
+           transition duration-300 hover:-translate-y-1 hover:ring-ink/20 hover:shadow-[0_22px_40px_-24px_rgba(17,18,22,0.35)]
+           dark:bg-night-raised dark:ring-night-line dark:hover:ring-snow/25;
+  }
+
+  .product-well {
+    @apply relative aspect-square overflow-hidden rounded-[18px] bg-paper-well dark:bg-paper-dim;
+  }
+
+  /* Transparent cut-out (white filters): a soft shadow grounds it on the well. */
+  .product-cutout {
+    filter: drop-shadow(0 12px 14px rgba(17, 18, 22, 0.16));
+  }
+
+  .cat-disc .product-cutout {
+    filter: drop-shadow(0 5px 6px rgba(17, 18, 22, 0.16));
+  }
+
+  /* An arc of the wordmark's ring in the corner, clear of the centred photo. */
+  .product-well-ring {
+    @apply absolute -right-[34%] -top-[34%] w-[78%] h-[78%] rounded-full border border-ink/[0.07]
+           transition-transform duration-500 group-hover/card:-translate-x-2 group-hover/card:translate-y-2;
+  }
+
+  .product-best {
+    @apply absolute left-2.5 top-2.5 rounded-full bg-accent px-2.5 py-1 font-display text-[10px] font-bold tracking-[0.1em] text-white;
+    font-stretch: 125%;
+  }
+
+  .product-cat {
+    @apply absolute right-2.5 top-2.5 rounded-full bg-white/90 px-2.5 py-1 text-[11px] font-semibold text-ink-soft;
+  }
+
+  /* Hero: dot grid behind the product stage. */
+  .hero-panel {
+    @apply relative overflow-hidden isolate;
+  }
+
+  .hero-panel::before {
+    content: '';
+    @apply absolute inset-0 -z-10 pointer-events-none;
+    background-image: radial-gradient(rgb(17 18 22 / 0.09) 1px, transparent 1.3px);
+    background-size: 22px 22px;
+    mask-image: radial-gradient(ellipse 55% 75% at 78% 50%, #000 25%, transparent 75%);
+  }
+
+  .dark .hero-panel::before {
+    background-image: radial-gradient(rgb(242 242 240 / 0.08) 1px, transparent 1.3px);
+  }
+
+  .hero-glow {
+    background: radial-gradient(circle at 50% 42%, #fff 0%, #fff 34%, rgb(255 255 255 / 0) 70%);
+  }
+
+  .dark .hero-glow {
+    background: radial-gradient(circle at 50% 42%, #dcddd9 0%, #dcddd9 34%, rgb(220 221 217 / 0) 70%);
+  }
+
+  .hero-floor {
+    background: radial-gradient(closest-side, rgb(17 18 22 / 0.16), rgb(17 18 22 / 0));
+  }
+
+  .hero-stat {
+    @apply flex flex-col gap-1.5 rounded-lg py-1 text-ink dark:text-snow hover:text-accent dark:hover:text-accent-light transition-colors;
+  }
+
+  .hero-stat-n {
+    @apply font-display text-[26px] md:text-[30px] font-semibold leading-none tracking-[-0.02em];
+    font-stretch: 112%;
+  }
+
+  .hero-stat-label {
+    @apply text-[12px] md:text-[13px] font-semibold leading-snug text-ink-soft dark:text-snow-soft;
+  }
+
+  .hero-rise {
+    animation: hero-rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  .hero-float {
+    animation: hero-float 6s ease-in-out infinite;
+  }
+
+  .hero-float-late {
+    animation-delay: -3s;
+  }
+
+  .hero-spin {
+    animation: hero-spin 28s linear infinite;
+  }
+
+  /* Oil series band between the hero and the products. */
+  .ticker {
+    @apply overflow-hidden border-y border-line py-4 md:py-5 dark:border-night-line;
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+
+  .ticker-track {
+    @apply flex w-max;
+    animation: ticker 70s linear infinite;
+  }
+
+  .ticker:hover .ticker-track {
+    animation-play-state: paused;
+  }
+
+  .ticker-group {
+    @apply flex shrink-0 items-center;
+  }
+
+  .ticker-item {
+    @apply flex items-center gap-7 md:gap-10 pr-7 md:pr-10 font-display text-[15px] md:text-[17px] font-semibold uppercase tracking-[0.12em]
+           text-ink-soft dark:text-snow-soft;
+    font-stretch: 118%;
+  }
+
+  .ticker-dot {
+    @apply w-2 h-2 rounded-full ring-[1.5px] ring-ink/25 dark:ring-snow/30;
+  }
+
+  .ticker-item:nth-child(3n) .ticker-dot {
+    @apply bg-accent ring-0;
+  }
+
+  .store-btn {
+    @apply focus-ring flex-1 inline-flex items-center justify-center gap-2 h-10 px-2 rounded-xl
+           bg-paper text-ink text-[13px] font-bold whitespace-nowrap hover:bg-paper-deep
+           dark:bg-night-high dark:text-snow dark:hover:bg-night-line transition-colors;
+  }
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+@keyframes hero-float {
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes hero-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ticker {
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 /* Respect users who prefer reduced motion: neutralize the card lift, image

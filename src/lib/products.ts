@@ -33,6 +33,16 @@ export function loadProducts(): Product[] {
   return raw;
 }
 
+/**
+ * URL of the product's transparent cut-out from scripts/build-product-cutouts.py
+ * (`public/products/cutouts/<image name>.webp`), or undefined when it has none.
+ * Filters have one: their white bodies would vanish into the grey image well.
+ */
+export function cutoutUrl(product: Pick<Product, 'image'>): string | undefined {
+  const file = product.image.replace(/\.[^.]+$/, '') + '.webp';
+  return fs.existsSync(path.join(process.cwd(), 'public/products/cutouts', file)) ? `/products/cutouts/${file}` : undefined;
+}
+
 export function formatPrice(price: number): string {
   return '₩' + price.toLocaleString('ko-KR');
 }

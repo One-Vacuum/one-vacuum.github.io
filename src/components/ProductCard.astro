@@ -6,6 +6,8 @@ interface Props {
   nameKo: string;
   nameEn: string;
   image: string;
+  /** Transparent cut-out (`cutoutUrl()`); shown instead of `image` when set. */
+  cutout?: string;
   price: string;
   rawPrice: number;
   category: string;
@@ -19,80 +21,75 @@ interface Props {
   coupangIsExact?: boolean;
 }
 
-const { partNumber, nameKo, nameEn, image, price, rawPrice, category, descriptionKo, descriptionEn, bestSeller, naverUrl, coupangUrl, coupangIsExact } = Astro.props;
+const { partNumber, nameKo, nameEn, image, cutout, price, rawPrice, category, descriptionKo, descriptionEn, bestSeller, naverUrl, coupangUrl, coupangIsExact } = Astro.props;
 
 const t = ui.ko;
-const coupangLabel = coupangIsExact ? t['products.viewOnCoupangExact'] : t['products.viewOnCoupang'];
+const coupangKey = coupangIsExact ? 'products.viewOnCoupangExact' : 'products.viewOnCoupang';
+const CATEGORY_KEYS = {
+  oil: 'products.filterOil',
+  'oil-filter': 'products.filterOilFilter',
+  'vacuum-filter': 'products.filterVacuumFilter',
+} as const;
+const categoryKey = CATEGORY_KEYS[category as keyof typeof CATEGORY_KEYS];
 ---
 
-<div
-  class:list={[
-    'product-card group/card h-full flex flex-col bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-lg hover:-translate-y-1',
-    bestSeller && 'ring-2 ring-primary-400/50 dark:ring-primary-500/40',
-  ]}
+<article
+  class="product-card group/card"
   data-category={category}
   data-price={rawPrice}
   data-best-seller={bestSeller ? '1' : '0'}
   data-part-number={partNumber}
 >
-  {bestSeller ? (
-    <div class="bg-primary-500 text-white text-xs font-bold px-3 py-1 text-center" data-i18n="products.bestSeller">BEST</div>
-  ) : (
-    <div class="text-xs font-bold px-3 py-1">&nbsp;</div>
-  )}
-
-  <div class="aspect-square overflow-hidden bg-gray-50 dark:bg-gray-900">
+  <!-- Stays light in dark mode. Photos are multiplied onto it, so their white background takes the well's
+       colour; cut-outs (white filters, which multiply would wash out) sit on it with their own shadow. -->
+  <div class="product-well">
+    <span class="product-well-ring" aria-hidden="true"></span>
     <img
-      src={image}
+      src={cutout ?? image}
       alt={nameKo}
-      class="w-full h-full object-contain transition-transform duration-300 group-hover/card:scale-105"
-      onload="this.loading='eager';if(this.naturalWidth>this.naturalHeight*1.2&&this.naturalWidth<=this.naturalHeight*2){this.classList.remove('object-contain');this.classList.add('object-cover')}"
+      data-alt-ko={nameKo}
+      data-alt-en={nameEn}
+      class:list={[
+        'absolute inset-0 w-full h-full object-contain p-5 md:p-7 transition-transform duration-500 group-hover/card:scale-[1.05]',
+        cutout ? 'product-cutout' : 'mix-blend-multiply',
+      ]}
       onerror="this.src='/images/placeholder-product.svg'"
       loading="lazy"
-      decoding="sync"
+      decoding="async"
     />
+    {bestSeller && (
+      <span class="product-best" data-i18n="products.bestSeller">BEST</span>
+    )}
+    {categoryKey && (
+      <span class="product-cat" data-i18n={categoryKey}>{t[categoryKey]}</span>
+    )}
   </div>
 
-  <div class="p-4 flex flex-col flex-1">
-    <p class="text-xs text-gray-400 dark:text-gray-500 mb-0.5">{partNumber}</p>
-    <h3 class="product-name font-semibold text-gray-900 dark:text-gray-100 text-base min-h-[2.5rem] line-clamp-2" data-name-ko={nameKo} data-name-en={nameEn}>{nameKo}</h3>
+  <div class="px-1.5 md:px-2 pt-4 pb-1 flex flex-col flex-1">
+    <p class="font-display text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-mute dark:text-snow-mute [font-stretch:112%]">{partNumber}</p>
+    <h3 class="product-name mt-1 min-h-[2.6em] line-clamp-2 text-[15px] md:text-[17px] font-bold leading-snug tracking-[-0.02em] text-ink dark:text-snow" data-name-ko={nameKo} data-name-en={nameEn}>{nameKo}</h3>
     {(descriptionKo || descriptionEn) && (
-      <p class="product-desc mt-1 text-sm text-gray-500 dark:text-gray-400" data-desc-ko={descriptionKo || ''} data-desc-en={descriptionEn || ''}>{descriptionKo}</p>
+      <p class="product-desc mt-1 text-sm text-ink-soft dark:text-snow-soft" data-desc-ko={descriptionKo || ''} data-desc-en={descriptionEn || ''}>{descriptionKo}</p>
     )}
-    <p class="mt-2 text-lg font-bold text-primary-600 dark:text-primary-400">{price}</p>
+    <p class="mt-2 text-lg md:text-xl font-extrabold tracking-[-0.02em] text-ink dark:text-snow">{price}</p>
 
     <!-- Store links. Coupang is always present (exact URL or generated search
          link); Naver only when the product has a listing. Buttons stack on very
-         narrow cards (2-col mobile grid) and sit side by side once there's room. -->
-    <div class="mt-auto pt-3 flex flex-col min-[480px]:flex-row gap-2">
+         narrow cards (2-col mobile grid) and sit side by side once there's room.
+         Neutral buttons; the brand is signalled by a small colour dot. -->
+    <div class="mt-auto pt-4 flex flex-col min-[480px]:flex-row gap-2">
       {naverUrl && (
-        <a
-          href={naverUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={t['products.viewOnNaver']}
-          class="flex-1 inline-flex items-center justify-center gap-1.5 px-2 py-2 rounded-lg bg-[#00853B] text-white text-xs font-semibold whitespace-nowrap hover:bg-[#017A36] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00853B] focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-800 transition-colors"
-        >
-          <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-          </svg>
+        <a href={naverUrl} target="_blank" rel="noopener noreferrer" aria-label={t['products.viewOnNaver']} data-i18n-aria-label="products.viewOnNaver" class="store-btn">
+          <span class="w-1.5 h-1.5 rounded-full bg-naver" aria-hidden="true"></span>
           <span data-i18n="products.cardNaver">{t['products.cardNaver']}</span>
         </a>
       )}
       {coupangUrl && (
-        <a
-          href={coupangUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={coupangLabel}
-          class="flex-1 inline-flex items-center justify-center gap-1.5 px-2 py-2 rounded-lg bg-[#346AFF] text-white text-xs font-semibold whitespace-nowrap hover:bg-[#2b5ae0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#346AFF] focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-800 transition-colors"
-        >
-          <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-          </svg>
+        <a href={coupangUrl} target="_blank" rel="noopener noreferrer" aria-label={t[coupangKey]} data-i18n-aria-label={coupangKey} class="store-btn">
+          <span class="w-1.5 h-1.5 rounded-full bg-coupang" aria-hidden="true"></span>
           <span data-i18n="products.cardCoupang">{t['products.cardCoupang']}</span>
         </a>
       )}
     </div>
   </div>
-</div>
+</article>

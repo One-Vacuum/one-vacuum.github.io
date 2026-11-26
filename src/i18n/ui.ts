@@ -1,3 +1,5 @@
+import { CONTACT } from '../lib/contact';
+
 export const ui = {
   ko: {
     // Site
@@ -10,10 +12,10 @@ export const ui = {
     'nav.contact': '연락처',
     'nav.buy': '구매처',
 
-    // Hero
-    'hero.title': 'One Vacuum',
-    'hero.subtitle': '원베큠',
-    'hero.description': '진공 장비 및 부품을 도매·소매하는 전자상거래 전문 기업입니다. 다양한 산업 분야에 최적화된 진공 솔루션을 제공합니다.',
+    // Hero — reuses existing copy (site.description, the former hero's second sentence)
+    'hero.eyebrow': 'One Vacuum · 원베큠',
+    'hero.headline': '진공 장비 및 부품<br>도매·소매 전문 기업',
+    'hero.lead': '다양한 산업 분야에 최적화된 진공 솔루션을 제공합니다.',
 
     // Products
     'products.title': '제품 소개',
@@ -43,14 +45,24 @@ export const ui = {
     'buy.naverStore': '네이버 스토어',
     'buy.coupang': '쿠팡',
 
+
+    // Accessible names (read by screen readers, switched with the language)
+    'a11y.language': '언어',
+    'a11y.darkMode': '다크 모드',
+    'a11y.menu': '메뉴',
+    'a11y.mainNav': '주 메뉴',
+    'a11y.mobileNav': '모바일 메뉴',
+    'a11y.clearSearch': '검색어 지우기',
+    'products.sortLabel': '정렬',
+
     // Contact
     'contact.title': '연락처',
     'contact.phone': '전화',
     'contact.email': '이메일',
-    'contact.emailValue': 'sales@gvac.co.kr',
+    'contact.emailValue': CONTACT.email,
     'contact.address': '주소',
     'contact.addressValue': '충청남도 아산시 배방읍 희망로 32, 1동 840호(코아루웰메이드시티) (31470)',
-    'contact.phoneValue': '010-8525-7025',
+    'contact.phoneValue': CONTACT.phone,
 
     // KakaoTalk
     'kakao.tooltip': '카카오톡 문의',
@@ -74,9 +86,9 @@ export const ui = {
     'nav.buy': 'Where to Buy',
 
     // Hero
-    'hero.title': 'One Vacuum',
-    'hero.subtitle': '',
-    'hero.description': 'We are a wholesale and retail e-commerce company specializing in vacuum equipment and parts. We offer optimized vacuum solutions for various industries.',
+    'hero.eyebrow': 'One Vacuum',
+    'hero.headline': 'Wholesale &amp; retail <span class="whitespace-nowrap">e-commerce</span> for vacuum equipment and parts',
+    'hero.lead': 'We offer optimized vacuum solutions for various industries.',
 
     // Products
     'products.title': 'Our Products',
@@ -106,14 +118,24 @@ export const ui = {
     'buy.naverStore': 'Naver Store',
     'buy.coupang': 'Coupang',
 
+
+    // Accessible names
+    'a11y.language': 'Language',
+    'a11y.darkMode': 'Dark mode',
+    'a11y.menu': 'Menu',
+    'a11y.mainNav': 'Main menu',
+    'a11y.mobileNav': 'Mobile menu',
+    'a11y.clearSearch': 'Clear search',
+    'products.sortLabel': 'Sort',
+
     // Contact
     'contact.title': 'Contact Us',
     'contact.phone': 'Phone',
     'contact.email': 'Email',
-    'contact.emailValue': 'sales@gvac.co.kr',
+    'contact.emailValue': CONTACT.email,
     'contact.address': 'Address',
     'contact.addressValue': '32 Heemang-ro, Bldg 1 #840 (Koaru Wellmade City), Baebang-eup, Asan-si, Chungcheongnam-do 31470',
-    'contact.phoneValue': '010-8525-7025',
+    'contact.phoneValue': CONTACT.phone,
 
     // KakaoTalk
     'kakao.tooltip': 'KakaoTalk Inquiry',

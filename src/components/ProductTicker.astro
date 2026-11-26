@@ -1,0 +1,25 @@
+---
+import { loadProducts } from '../lib/products';
+
+// LEYBONOL oil series in the catalogue (LVO100 … LVO702), as a moving band.
+const series = [...new Set(loadProducts().filter((p) => p.category === 'oil').map((p) => p.nameEn.split(',')[0].trim()))].sort(
+  (a, b) => parseInt(a.replace(/\D/g, ''), 10) - parseInt(b.replace(/\D/g, ''), 10),
+);
+---
+
+{series.length > 0 && (
+  <div class="ticker mt-10 md:mt-14" aria-hidden="true">
+    <div class="ticker-track">
+      {[0, 1].map(() => (
+        <ul class="ticker-group">
+          {series.map((s) => (
+            <li class="ticker-item">
+              <span>{s}</span>
+              <span class="ticker-dot"></span>
+            </li>
+          ))}
+        </ul>
+      ))}
+    </div>
+  </div>
+)}

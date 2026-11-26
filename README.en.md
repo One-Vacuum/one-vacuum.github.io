@@ -39,24 +39,31 @@ Company brochure website built with Astro + Tailwind CSS.
 
 - `npm run dev` starts without errors
 - Page loads correctly (http://localhost:4321)
-- Language toggle works (tap either KO or EN to switch)
+- Language switch works (KO = Korean, EN = English)
 - All product images display
 - Naver/Coupang buy buttons on product cards work
 - Product search and sorting works
 - Mobile responsive layout works
 - `npm run build` completes without errors
+- `npm test` passes
+- `npm run check` passes (type check, needs Node 22 from `.tool-versions`)
+- If you changed the files both sites share (language switch, CI, …), `scripts/check-shared.sh ../top-vacuum.github.io` passes (both sites use the same files)
 
 ## Adding Images
 
 > **Image size optimization**: Use small file sizes for product images whenever possible. JPG format is recommended over PNG for smaller file sizes. Large images affect page load speed and GitHub repository size.
 
+> **Consistent product framing**: after adding or replacing a product photo, run `scripts/normalize-product-images.py <file>` (usage in the file header). It centres the product on a white square at 84% of the frame, so every card shows products at the same size.
+
+> **Filter cut-outs**: after adding or replacing a filter photo (oil or vacuum filter), also run `scripts/build-product-cutouts.py <file>` after the framing script (usage in the file header; the first run downloads a ~1 GB model). White filters vanish into the grey photo well, so the card shows the transparent cut-out from `public/products/cutouts/` instead. Without one, the card shows the photo itself.
+
 ### Company Logo
 
-Place your logo file at:
-```
-public/images/logo.png
-```
-- Supported formats: PNG, JPG, SVG
+- Header/footer wordmark: `src/components/Logo.astro` (inline SVG — follows the text colour; only the dot in the O uses the brand blue)
+- Logo file: `public/images/logo.svg`
+- To regenerate the logo: `scripts/build-wordmark.py` (usage in the file header) — don't hand-edit the paths
+- Link-preview image (1200×630): `public/images/logo.png`
+- Hero bottles (transparent cut-outs): `public/images/hero/` — if one of those product photos changes, regenerate with `scripts/build-hero-cutouts.py` (usage in the file header)
 
 ### Favicon
 
@@ -78,6 +85,7 @@ Everything is in one folder: `public/products/`
 ```
 public/products/
 ├── products.json      ← Product data (part number, names, category, price)
+├── cutouts/           ← Transparent filter cut-outs (generated, don't edit)
 └── images/            ← Product images
     ├── product-1.png
     ├── product-2.png
@@ -108,7 +116,7 @@ public/products/
    - `category`: `oil`, `oil-filter`, or `vacuum-filter`
    - `price`: integer in KRW (e.g. 50000 → displayed as ₩50,000)
    - `bestSeller`: set to `true` to show BEST badge and prioritize in default sort
-   - `naverUrl` (optional): Naver SmartStore product page link, wired to the green "Naver" button on the front of the product card. The button is hidden when absent.
+   - `naverUrl` (optional): Naver SmartStore product page link, wired to the "Naver" button (green dot) on the product card. The button is hidden when absent.
    - `coupangUrl` (optional): Coupang product page link. When omitted, a Coupang **search link** built from the product name is generated automatically (Coupang blocks automated harvesting of exact product URLs, so a search link is the default)
 
 3. **Commit and push** - website updates automatically!
@@ -124,7 +132,7 @@ Set `products.json` to `[]` and the website will show "Products Coming Soon..."
 
 ## Deployment
 
-The site auto-deploys to GitHub Pages when you push to `main`.
+Pushing to `main` runs the tests (`npm test`) and the build, then deploys to GitHub Pages. Opening a PR runs the same tests and build in CI (`.github/workflows/ci.yml`).
 
 ### First-time GitHub Pages Setup
 
